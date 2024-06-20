@@ -2,18 +2,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 
-<<<<<<< Updated upstream
-const firebaseConfig = {
-    apiKey: "AIzaSyAq_KXxghXKrYtbEpNEfL7M1hJOK9Z5LEA",
-    authDomain: "artist-alley-24.firebaseapp.com",
-    projectId: "artist-alley-24",
-    storageBucket: "artist-alley-24.appspot.com",
-    messagingSenderId: "341520869453",
-    appId: "1:341520869453:web:b7dba029d03445f5101404",
-    measurementId: "G-KZBL0MZCWF"
-};
-
-=======
 require('dotenv').config();
 
 const firebaseConfig = {
@@ -27,7 +15,6 @@ const firebaseConfig = {
 };
 
 
->>>>>>> Stashed changes
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -40,8 +27,6 @@ onAuthStateChanged(auth, user => {
     }
 });
 
-<<<<<<< Updated upstream
-=======
 
 auth.signOut()
     .then(() => {
@@ -86,7 +71,6 @@ document.getElementById('login-form').addEventListener('submit', (e) => {
 
 
 
->>>>>>> Stashed changes
 // Create Operation
 async function addDocument() {
     try {
