@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Booking</title>
+    <link rel="stylesheet" href="../css/demo_book.css">
+    <script type="module" src="../javascript/booking.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>My Booking Dashboard</h1>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button type="button" id="searchButton">Search</button>
+        </div>
+        <div class="booking-content-wrapper">
+            <div class="request-div">
+                <h2>Request:</h2>
+                <div id="request">
+                    <!-- Booking items will be dynamically added here -->
+                </div>
+            </div>
+            <div class="myBooking-div">
+                <h2>My Bookings:</h2>
+                <div id="booking-list">
+                    <!-- Booking items will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- button's -->
+        <div class="myButtonDiv">
+            <button onclick="makeRequest()">Make request</button>
+        </div>
+    </div>
+</body>
+
+</html>
