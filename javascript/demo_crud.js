@@ -1,54 +1,57 @@
+// Import Firebase services from app.js
+import { db } from '../app.js';
+import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
 
-onAuthStateChanged(auth, user => {
-    if (user != null) {
-        console.log('logged in!');
-    } else {
-        console.log('No user');
-    }
-});
+// onAuthStateChanged(auth, user => {
+//     if (user != null) {
+//         console.log('logged in!');
+//     } else {
+//         console.log('No user');
+//     }
+// });
 
 
-auth.signOut()
-    .then(() => {
-        console.log('User signed out.');
-    })
-    .catch((error) => {
-        console.error('Error signing out:', error);
-    });
+// auth.signOut()
+//     .then(() => {
+//         console.log('User signed out.');
+//     })
+//     .catch((error) => {
+//         console.error('Error signing out:', error);
+//     });
 
 
-// Sign-up
-document.getElementById('signup-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = document.getElementById('signup-email').value;
-    const password = document.getElementById('signup-password').value;
+// // Sign-up
+// document.getElementById('signup-form').addEventListener('submit', (e) => {
+//     e.preventDefault();
+//     const email = document.getElementById('signup-email').value;
+//     const password = document.getElementById('signup-password').value;
 
-    auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // Signed up
-            console.log('User signed up:', userCredential.user);
-        })
-        .catch((error) => {
-            console.error('Error during sign-up:', error);
-        });
-});
+//     auth.createUserWithEmailAndPassword(email, password)
+//         .then((userCredential) => {
+//             // Signed up
+//             console.log('User signed up:', userCredential.user);
+//         })
+//         .catch((error) => {
+//             console.error('Error during sign-up:', error);
+//         });
+// });
 
-// Log in
-document.getElementById('login-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
+// // Log in
+// document.getElementById('login-form').addEventListener('submit', (e) => {
+//     e.preventDefault();
+//     const email = document.getElementById('login-email').value;
+//     const password = document.getElementById('login-password').value;
 
-    auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // Logged in
-            console.log('User logged in:', userCredential.user);
-        })
-        .catch((error) => {
-            console.error('Error during login:', error);
-        });
-});
+//     auth.signInWithEmailAndPassword(email, password)
+//         .then((userCredential) => {
+//             // Logged in
+//             console.log('User logged in:', userCredential.user);
+//         })
+//         .catch((error) => {
+//             console.error('Error during login:', error);
+//         });
+// });
 
 
 
