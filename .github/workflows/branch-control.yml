@@ -1,0 +1,22 @@
+name: Branch Control
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/*'
+      - 'bugfix/*'
+
+jobs:
+  restrict-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check if push is allowed
+      run: |
+        AUTHOR=$(git log -1 --pretty=format:'%an')
+        if [[ "$AUTHOR" != "Soud-Haroon" ]]; then
+          echo "Unauthorized push by $AUTHOR. Exiting..."
+          exit 1
+        fi
+      shell: bash
