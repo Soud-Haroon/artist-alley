@@ -2,6 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getFirestore, collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 import { getAuth, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 
+<<<<<<< Updated upstream
 const firebaseConfig = {
     apiKey: "AIzaSyAq_KXxghXKrYtbEpNEfL7M1hJOK9Z5LEA",
     authDomain: "artist-alley-24.firebaseapp.com",
@@ -12,6 +13,21 @@ const firebaseConfig = {
     measurementId: "G-KZBL0MZCWF"
 };
 
+=======
+require('dotenv').config();
+
+const firebaseConfig = {
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID,
+    measurementId: process.env.FIREBASE_MEASUREMENT_ID
+};
+
+
+>>>>>>> Stashed changes
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -24,6 +40,53 @@ onAuthStateChanged(auth, user => {
     }
 });
 
+<<<<<<< Updated upstream
+=======
+
+auth.signOut()
+    .then(() => {
+        console.log('User signed out.');
+    })
+    .catch((error) => {
+        console.error('Error signing out:', error);
+    });
+
+
+// Sign-up
+document.getElementById('signup-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+
+    auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            // Signed up
+            console.log('User signed up:', userCredential.user);
+        })
+        .catch((error) => {
+            console.error('Error during sign-up:', error);
+        });
+});
+
+// Log in
+document.getElementById('login-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            // Logged in
+            console.log('User logged in:', userCredential.user);
+        })
+        .catch((error) => {
+            console.error('Error during login:', error);
+        });
+});
+
+
+
+>>>>>>> Stashed changes
 // Create Operation
 async function addDocument() {
     try {
