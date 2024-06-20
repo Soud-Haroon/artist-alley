@@ -73,11 +73,7 @@ function renderBookingRequest(request) {
         <p>Email: ${request.email}</p>
         <p>Phone: ${request.phone}</p>
         <p>Business Name: ${request.business_name}</p>
-        <p>Age: ${request.age}</p>
-        <p>User Type: ${request.user_type}</p>
-        <p>Offer: ${request.offer}</p>
-        <p>Address: ${request.address}</p>
-        <p>Request Date: ${request.req_date}</p>
+       
     `;
     document.getElementById('request').appendChild(requestElement);
 }
@@ -114,3 +110,10 @@ async function makeRequest() {
 window.makeRequest = makeRequest;
 
 console.log('Firebase booking loaded!');
+
+
+//  <p>Age: ${request.age}</p>
+//         <p>User Type: ${request.user_type}</p>
+//         <p>Offer: ${request.offer}</p>
+//         <p>Address: ${request.address}</p>
+//         <p>Request Date: ${request.req_date}</p>
