@@ -1,0 +1,143 @@
+/* by carlos */
+
+*{
+    margin: 0;
+    padding: 0;
+    color: #FFD9DA;
+}
+
+body{
+    background-color: #30343F;
+}
+
+header{
+    background-color: #89023E;
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: 10fr 13fr;
+    align-self: center;
+    padding-left: 1rem;
+}
+
+header nav, header h1{
+    align-self: center;
+    color: white;
+}
+
+header li{
+    list-style: none;
+}
+
+header i{
+    color: white;
+}
+
+main{
+    background-color: #30343F;
+    padding: 2rem 0;
+}
+
+.profileArtistDiv {
+    max-width: 1000px;
+    margin: auto;
+    font-size: 1.3rem;
+}
+
+
+#artistProfileForm{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.artistProfileForms{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1rem;
+}
+
+.artistProfileForms label{
+    padding-left: clamp(2.7rem, 8.5vw,9.5rem);
+    align-self: center;
+}
+
+.artistProfileForms p { 
+    align-items: left;
+    align-self: center; 
+    padding-left: 0;
+    margin: 0;
+}
+
+#artistPerf{
+    grid-column: span 3;
+}
+
+#artistMessage{
+    grid-column: 2 / 3;
+}
+
+.artistProfileForms input, textarea, select{
+    width: 100%;
+    padding: 0.5rem 0;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+   
+.artistProfileButton button{
+    background-color: #89023E;
+    color: white;
+    border-radius: 15px;
+    padding: 0.3rem 4rem;
+    border-style: none;
+}
+
+.artistProfileButton button:hover{
+    background-color: #FFD9DA;
+    color: black;
+}
+
+.artistProfileMedia nav ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.artistProfileMedia nav ul li {
+    text-align: center;
+}
+
+.artistProfileMedia nav ul li a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.artistProfileMedia nav ul li a i {
+    display: block;
+    font-size: 8rem;
+    margin-bottom: 10px;
+}
+
+.artistMoreImages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 2.5rem;
+}
+
+.artistMoreImages nav ul li a {
+    color: #FFD9DA;
+}
+
+.artistMoreImages nav ul li {
+    list-style: none;
+}
+
+.artistProfileButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

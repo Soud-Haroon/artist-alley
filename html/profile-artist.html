@@ -1,0 +1,107 @@
+<!-- by carlos -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Profile</title>
+
+    <link rel="stylesheet" href="../css/profile-artist.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#"><i class="fa-solid fa-chevron-left"></i></a></li>
+            </ul>
+        </nav>
+        <h1>PROFILE</h1>
+    </header>
+
+    <Main class="profileArtist">
+
+        
+            <div class="profileArtistDiv" class="centeredContent">
+                <form id="artistProfileForm" action="#" method="post">
+                    <div class="artistProfileForms">
+                        <label for="artistname">Name</label>
+                        <input type="text" id="artistname" name="artistname">
+                    </div>
+       
+                    <div class="artistProfileForms">
+                        <label for="artistCategory">Category</label>
+                        <select name="region" id="region">
+                            <option value="any"></option>
+                            <option value="Pop">Pop</option>
+                            <option value="Jazz">Jazz</option>
+                            <option value="Country">Country</option>
+                            <option value="Hip Hop">Hip Hop</option>
+                            <option value="Electronic">Electronic</option>
+                            <option value="Rock">Rock</option>
+                        </select>
+                        
+                    </div>
+           
+                    <div class="artistProfileForms">
+                        <label for="artistPhone">Phone</label>
+                        <input type="text" id="artistPhone" name="artistPhone">
+                    </div>
+            
+                    <div class="artistProfileForms">
+                        <label for="artistLocation">Location</label>
+                        <input type="text" id="artistLocation" name="artistLocation">
+                    </div>
+
+                    <div class="artistProfileForms">
+                        <label for="artistAboutMe">About Me</label>
+                        <textarea id="artistAboutMe" name="artistAboutMe" rows="1"></textarea>
+                    </div>
+            
+                    <div class="artistProfileForms">
+                        <label id="artistPerf" for="artistPerformance">About My Performance</label>
+                        <textarea id="artistMessage" name="artistPerformance" rows="5"></textarea>
+                    </div>
+
+                    <div class="artistProfileForms">
+                        <label for="artistAboutMe">Rate</label>
+                        <input type="text" id="artistAboutMe" name="artistAboutMe">
+                        <p>Per hour</p>
+                    </div>
+
+                    <div class="artistProfileMedia">
+
+                        <nav>
+                            <ul>
+                                <li><a href="#"><i class="fa-regular fa-image"></i>Upload a profile image</a></li>
+                                <li><a href="#"><i class="fa-solid fa-play"></i>Upload a profile video</a></li>
+                                <li><a href="#"><i class="fa-solid fa-music"></i>Upload a profile song</a></li>
+                              </ul>
+                        </nav>
+
+                    </div>
+
+                    <div class="artistMoreImages">
+                        <nav>
+                            <ul>
+                                <li><a href="#">Add more images</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+            
+                    <div class="artistProfileButton">
+                        <button id="profileArtistButton" type="submit">CREATE</button>
+                    </div>
+                </form>
+                       
+            </div>  
+
+
+    </Main>
+
+    
+</body>
+</html>
