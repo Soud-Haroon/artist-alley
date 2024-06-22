@@ -15,7 +15,7 @@ header{
     background-color: #89023E;
     padding: 1rem 0;
     display: grid;
-    grid-template-columns: 10fr 12fr;
+    grid-template-columns: 10fr 16fr;
     align-self: center;
     padding-left: 1rem;
 }
