@@ -19,51 +19,47 @@ class BookingRequest {
     }
 }
 
-
+// ==============================================//
 // Fetch and listen for data changes
-const q = query(collection(db, "request"));
-const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    const requests = [];
-    querySnapshot.forEach((doc) => {
-        const requestData = doc.data();
-        const myUser = new BookingRequest(
-            requestData.name,
-            requestData.email,
-            requestData.phone,
-            requestData.business_name,
-            requestData.age,
-            requestData.user_type,
-            requestData.offer,
-            requestData.address,
-            requestData.req_date,
-            requestData.response,
-            requestData.uid,
-        );
-        requests.push(myUser);
+function listenToRequests() {
+    const q = query(collection(db, "request"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const requests = [];
+        querySnapshot.forEach((doc) => {
+            const requestData = doc.data();
+            const myUser = new BookingRequest(
+                requestData.name,
+                requestData.email,
+                requestData.phone,
+                requestData.business_name,
+                requestData.age,
+                requestData.user_type,
+                requestData.offer,
+                requestData.address,
+                requestData.req_date,
+                requestData.response,
+                requestData.uid,
+            );
+            requests.push(myUser);
+        });
+
+        // Clear previous content in #request
+        document.getElementById('request-view').innerHTML = '';
+
+        renderBookingRequest(requests);
+
+        console.log("Current request in database: ", requests);
     });
-
-    // Clear previous content in #request
-    document.getElementById('request').innerHTML = '';
-
-    // Render the booking requests in the UI
-    // requests.forEach((request) => {
-    //     renderBookingRequest(request);
-    // });
-
-    renderBookingRequest(requests);
-
-    console.log("Current request in database: ", requests);
-});
+}
 
 // Function to generate HTML for all booking requests and update the UI
 function renderBookingRequest(requests) {
-    const container = document.getElementById('request');
+    // Get the template content
+    const template = document.getElementById('request-template');
+    const container = document.getElementById('request-view');
 
     // Clear the container
     container.innerHTML = '';
-
-    // Get the template content
-    const template = document.getElementById('request-template');
 
     // Create document fragment to minimize reflows
     const fragment = document.createDocumentFragment();
@@ -74,7 +70,6 @@ function renderBookingRequest(requests) {
         // Set the data attribute for UID
         const requestItem = clone.querySelector('.request-item');
         requestItem.setAttribute('data-uid', requests.uid); // Ensure request.uid is not null
-
         clone.querySelector('.request-name').textContent = requests.name;
         clone.querySelector('.request-email').textContent = requests.email;
         clone.querySelector('.request-phone').textContent = requests.phone;
@@ -92,8 +87,77 @@ function renderBookingRequest(requests) {
     // Append the fragment to the container
     container.appendChild(fragment);
 }
+//------------------------------------------------//
 
-// Create Operation
+// ==============================================//
+// Render a single booking item
+function renderBookingList(bookings) {
+    const template = document.getElementById('booking-template');
+    const bookingView = document.getElementById('booking-view');
+
+    // Clear the container
+    bookingView.innerHTML = '';
+
+    // Create document fragment to minimize reflows
+    const fragment = document.createDocumentFragment();
+
+
+    bookings.forEach(bookings => {
+        const clone = template.content.cloneNode(true);
+        const bookingItem = clone.querySelector('.booking-item');
+        bookingItem.setAttribute('data-uid', bookings.uid);
+        clone.querySelector('.booking-name').textContent = bookings.name;
+        clone.querySelector('.booking-email').textContent = bookings.email;
+        clone.querySelector('.booking-phone').textContent = bookings.phone;
+        clone.querySelector('.booking-business-name').textContent = bookings.business_name;
+        clone.querySelector('.booking-age').textContent = bookings.age;
+        clone.querySelector('.booking-user-type').textContent = bookings.user_type;
+        clone.querySelector('.booking-offer').textContent = bookings.offer;
+        clone.querySelector('.booking-address').textContent = bookings.address;
+        // clone.querySelector('.booking-req-date').textContent = bookings.req_date;
+        clone.querySelector('.booking-response').textContent = bookings.response;
+
+        fragment.appendChild(clone);
+    });
+
+    bookingView.appendChild(fragment);
+}
+
+// Function to fetch and listen to the `booking` collection
+function listenToBookings() {
+    const q = query(collection(db, "booking"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const bookings = [];
+        querySnapshot.forEach((doc) => {
+            const bookingtData = doc.data();
+            const bookUser = new BookingRequest(
+                bookingtData.name,
+                bookingtData.email,
+                bookingtData.phone,
+                bookingtData.business_name,
+                bookingtData.age,
+                bookingtData.user_type,
+                bookingtData.offer,
+                bookingtData.address,
+                bookingtData.req_date,
+                bookingtData.response,
+                bookingtData.uid,
+            );
+            bookings.push(bookUser);
+        });
+
+        // Clear previous content in #request
+        document.getElementById('booking-view').innerHTML = '';
+
+        renderBookingList(bookings);
+
+        console.log("Current booking in database: ", bookings);
+    });
+}
+// ---------------------------------------------//
+
+
+// Creating request function
 async function makeRequest() {
     try {
         const docRef = await addDoc(collection(db, "request"), {
@@ -120,6 +184,8 @@ async function makeRequest() {
     }
 }
 
+
+// function to accept Booking request ============ //
 async function bookingComfirmed(docID) {
     try {
         console.log("================" + docID);
@@ -168,11 +234,22 @@ async function bookingComfirmed(docID) {
     }
 }
 
-
+listenToRequests();
+listenToBookings();
 window.makeRequest = makeRequest;
 window.bookingComfirmed = bookingComfirmed;
 
 console.log('Firebase booking loaded!');
+
+
+
+
+
+
+
+
+
+
 
 
 //  <p>Age: ${requests.age}</p>
@@ -213,3 +290,9 @@ console.log('Firebase booking loaded!');
 //         console.log("error while listening to request:", error);
 //     }
 // }
+
+
+// Render the booking requests in the UI
+// requests.forEach((request) => {
+//     renderBookingRequest(request);
+// });

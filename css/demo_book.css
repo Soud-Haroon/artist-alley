@@ -36,6 +36,28 @@
     margin: 5px 0;
 }
 
+/* booking css */
+.booking-item {
+    max-height: 250px;
+    font-size: 14px;
+    background-color: rgb(160, 214, 160);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.booking-item h2 {
+    margin: 0;
+    font-size: 18px;
+    /* margin-bottom: 10px; */
+}
+
+.booking-item p {
+    margin: 5px 0;
+}
+
 /* Add styles for the search bar */
 .search-container {
     margin-bottom: 20px;
