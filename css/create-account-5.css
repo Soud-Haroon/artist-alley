@@ -1,0 +1,109 @@
+/* by carlos */
+
+*{
+    margin: 0;
+    padding: 0;
+    color: #FFD9DA;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #30343F;
+}
+
+header{
+    background-color: #89023E;
+    padding: 1rem 0;
+    display: grid;
+    grid-template-columns: 10fr 16fr;
+    align-self: center;
+    padding-left: 1rem;
+}
+
+header nav, header h1{
+    align-self: center;
+    color: white;
+}
+
+header li{
+    list-style: none;
+}
+
+header i{
+    color: white;
+}
+
+main{
+    background-color: #30343F;
+    padding: 0 0 2rem 0;
+}
+
+img{
+    max-width: 40%;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+.centeredContent{
+    display: grid;
+    grid-column: 1fr;
+    gap: 0.5rem;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+.createLink{
+    border-bottom: 1px solid white;
+    padding-bottom: 0.5rem;
+}
+
+.loginAccount ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+}
+
+.loginAccount ul li{
+    list-style: none;
+    text-align: center;
+}
+
+.loginAccount ul li a{
+    text-decoration: none;
+    text-align: center;
+}
+
+.createForm{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+}
+
+.createButton button{
+    background-color: #89023E;
+    color: white;
+    border-radius: 15px;
+    padding: 0.3rem 4rem;
+    border-style: none;
+}
+
+.createButton button:hover{
+    background-color: #FFD9DA;
+    color: black;
+}
+
+.createButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.googleButton button, .facebookButton button{
+    color: #30343F;
+}
+
+.password input, .email input, .confirmPassword input{
+    color: #30343F;
+}
