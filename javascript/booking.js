@@ -1,6 +1,9 @@
 import { db } from '../app.js';
 import { collection, addDoc, getDocs, getDoc, updateDoc, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 import { query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+// by soud
+
+let unsubscribe;
 
 // Define a model for your booking requests (optional)
 class BookingRequest {
@@ -19,35 +22,44 @@ class BookingRequest {
     }
 }
 
-// ==============================================//
+// Load templates from a separate HTML file
+async function loadTemplates() {
+    const response = await fetch('../templates/booking-cards-template.html');
+    const text = await response.text();
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = text;
+    document.body.appendChild(tempDiv);
+}
+
+// ====================Start==========================//
 // Fetch and listen for data changes
 function listenToRequests() {
     const q = query(collection(db, "request"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    unsubscribe = onSnapshot(q, (querySnapshot) => {
         const requests = [];
         querySnapshot.forEach((doc) => {
             const requestData = doc.data();
-            const myUser = new BookingRequest(
-                requestData.name,
-                requestData.email,
-                requestData.phone,
-                requestData.business_name,
-                requestData.age,
-                requestData.user_type,
-                requestData.offer,
-                requestData.address,
-                requestData.req_date,
-                requestData.response,
-                requestData.uid,
-            );
-            requests.push(myUser);
+            if (requestData.response != "decline") {
+                const myUser = new BookingRequest(
+                    requestData.name,
+                    requestData.email,
+                    requestData.phone,
+                    requestData.business_name,
+                    requestData.age,
+                    requestData.user_type,
+                    requestData.offer,
+                    requestData.address,
+                    requestData.req_date,
+                    requestData.response,
+                    requestData.uid,
+                );
+                requests.push(myUser);
+            }
         });
 
         // Clear previous content in #request
         document.getElementById('request-view').innerHTML = '';
-
         renderBookingRequest(requests);
-
         console.log("Current request in database: ", requests);
     });
 }
@@ -78,7 +90,7 @@ function renderBookingRequest(requests) {
         clone.querySelector('.request-user-type').textContent = requests.user_type;
         clone.querySelector('.request-offer').textContent = requests.offer;
         clone.querySelector('.request-address').textContent = requests.address;
-        clone.querySelector('.request-req-date').textContent = requests.req_date;
+        // clone.querySelector('.request-req-date').textContent = requests.req_date;
         // clone.querySelector('.request-uid').textContent = requests.uid;
 
         fragment.appendChild(clone);
@@ -87,9 +99,41 @@ function renderBookingRequest(requests) {
     // Append the fragment to the container
     container.appendChild(fragment);
 }
-//------------------------------------------------//
+//---------------------End---------------------------//
 
-// ==============================================//
+// =====================Start=========================//
+// Function to fetch and listen to the `booking` collection
+function listenToBookings() {
+    const q = query(collection(db, "booking"));
+    unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const bookings = [];
+        querySnapshot.forEach((doc) => {
+            const bookingtData = doc.data();
+            if (bookingtData.response == "accept") {
+                const bookUser = new BookingRequest(
+                    bookingtData.name,
+                    bookingtData.email,
+                    bookingtData.phone,
+                    bookingtData.business_name,
+                    bookingtData.age,
+                    bookingtData.user_type,
+                    bookingtData.offer,
+                    bookingtData.address,
+                    bookingtData.req_date,
+                    bookingtData.response,
+                    bookingtData.uid,
+                );
+                bookings.push(bookUser);
+            }
+        });
+
+        // Clear previous content in #request
+        document.getElementById('booking-view').innerHTML = '';
+        renderBookingList(bookings);
+        console.log("Current booking in database: ", bookings);
+    });
+}
+
 // Render a single booking item
 function renderBookingList(bookings) {
     const template = document.getElementById('booking-template');
@@ -122,42 +166,10 @@ function renderBookingList(bookings) {
 
     bookingView.appendChild(fragment);
 }
+// ---------------------End--------------------------//
 
-// Function to fetch and listen to the `booking` collection
-function listenToBookings() {
-    const q = query(collection(db, "booking"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        const bookings = [];
-        querySnapshot.forEach((doc) => {
-            const bookingtData = doc.data();
-            const bookUser = new BookingRequest(
-                bookingtData.name,
-                bookingtData.email,
-                bookingtData.phone,
-                bookingtData.business_name,
-                bookingtData.age,
-                bookingtData.user_type,
-                bookingtData.offer,
-                bookingtData.address,
-                bookingtData.req_date,
-                bookingtData.response,
-                bookingtData.uid,
-            );
-            bookings.push(bookUser);
-        });
-
-        // Clear previous content in #request
-        document.getElementById('booking-view').innerHTML = '';
-
-        renderBookingList(bookings);
-
-        console.log("Current booking in database: ", bookings);
-    });
-}
-// ---------------------------------------------//
-
-
-// Creating request function
+// ================================ || ================================ //
+// Making an demo request ===========//
 async function makeRequest() {
     try {
         const docRef = await addDoc(collection(db, "request"), {
@@ -186,31 +198,22 @@ async function makeRequest() {
 
 
 // function to accept Booking request ============ //
-async function bookingComfirmed(docID) {
+async function bookingAccepted(docID) {
     try {
-        console.log("================" + docID);
         // Get a reference to the document
         const docReqRef = doc(db, "request", docID);
-
-        // console.log('========------------===========');
         // Retrieve the document data
         const docSnap = await getDoc(docReqRef);
-
-        // console.log('========------------===========');
         if (!docSnap.exists()) {
             console.error("No such document! ==========");
             return;
         }
-
         const docData = docSnap.data();
-
         // Ensure docData is not null or undefined
         if (!docData) {
             console.error("Document data is null or undefined!");
             return;
         }
-
-        console.log('========------------===========');
         // Add the booking to the 'booking' collection
         const bookingCollectionRef = collection(db, "booking");
         const newBookingDocRef = await addDoc(bookingCollectionRef, {
@@ -228,28 +231,66 @@ async function bookingComfirmed(docID) {
         await updateDoc(newBookingDocRef, {
             uid: newBookingDocRef.id,
         });
+
+        await deleteBooking(docID);
         console.log("document accepted and created in db!");
     } catch (error) {
         console.log("error while accepting request:" + error);
     }
 }
 
-listenToRequests();
-listenToBookings();
+// function to decline Booking request ============ //
+async function bookingDeclined(docID) {
+    try {
+        const bookingRef = doc(db, 'request', docID);
+        // Update the document
+        await updateDoc(bookingRef, {
+            'response': 'decline',
+        });
+        console.log('Document successfully updated!');
+    } catch (error) {
+        console.error('Error updating document: ', error);
+    }
+}
+
+// function to delete an document =============//
+async function deleteBooking(docID) {
+    try {
+        // Reference to the document to delete
+        const bookingRef = doc(db, "request", docID);
+        // Delete the document
+        await deleteDoc(bookingRef);
+        console.log("Document successfully deleted!");
+    } catch (error) {
+        console.error("Error deleting document: ", error);
+    }
+}
+
+// Later, when you want to unsubscribe
+// function unsubscribeListener(unsubscribe) {
+//     if (unsubscribe) {
+//         unsubscribe(); // Detach the listener
+//         console.log('Listener unsubscribed');
+//     } else {
+//         console.warn('No active listener to unsubscribe');
+//     }
+// }
+
+// Load templates and then start listening to Firestore collections
+loadTemplates().then(() => {
+    listenToRequests();
+    listenToBookings();
+});
+
+
+// unsubscribeListener();
+
 window.makeRequest = makeRequest;
-window.bookingComfirmed = bookingComfirmed;
+window.bookingComfirmed = bookingAccepted;
+window.bookingDeclined = bookingDeclined;
+
 
 console.log('Firebase booking loaded!');
-
-
-
-
-
-
-
-
-
-
 
 
 //  <p>Age: ${requests.age}</p>

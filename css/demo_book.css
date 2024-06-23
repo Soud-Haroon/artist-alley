@@ -1,15 +1,15 @@
 /* css for booking-content-wrapper */
-
+/* by Soud */
 .booking-content-wrapper {
     background-color: bisque;
-    min-height: 500px;
+    min-height: 400px;
     display: grid;
     padding: 1rem;
     grid-template-columns: repeat(2, 1fr);
 }
 
 .myBooking-div {
-    padding-left: 5px;
+    padding-left: 1rem;
     border-left: 1px solid black;
 }
 
@@ -36,7 +36,8 @@
     margin: 5px 0;
 }
 
-/* booking css */
+/* =========================== */
+/* styling for booking */
 .booking-item {
     max-height: 250px;
     font-size: 14px;
@@ -58,6 +59,12 @@
     margin: 5px 0;
 }
 
+/* ============================= */
+.myButtonDiv {
+    margin: 1rem;
+}
+
+/* ============================= */
 /* Add styles for the search bar */
 .search-container {
     margin-bottom: 20px;
