@@ -1,3 +1,5 @@
+//Hide Password
+
 function togglePasswordVisibility() {
     var passwordInput = document.getElementById('password');
     var togglePassword = document.querySelector('.toggle-password i');
@@ -12,4 +14,16 @@ function togglePasswordVisibility() {
     }
 }
 
+//Hide Nav Menu on Mobile
 
+mblNavBtn.addEventListener("click", function(){
+    document.body.classList.toggle("showMblNav")
+});
+
+applySavedMode();
+
+function toggleMobileNav(){
+    document.body.classList.toggle("showMblNav");
+
+    document.getElementById("mainNavigation").classList.add("XYZ");
+}
