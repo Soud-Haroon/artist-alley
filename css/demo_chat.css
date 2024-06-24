@@ -1,0 +1,125 @@
+/* by soud */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    background-color: grey;
+}
+
+header nav ul {
+    list-style: none;
+}
+
+header nav ul li a {
+    text-decoration: none;
+}
+
+/* ========================= */
+.chat-content-wrapper {
+    height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.chatSideBar {
+    background-color: lightslategray;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.chat-view {
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.chat-box {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#chat-screen {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+/* General message styles */
+.message {
+    max-width: 60%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    font-size: 14px;
+    position: relative;
+}
+
+/* Sender message styles */
+.message.sender {
+    background-color: #dcf8c6;
+    /* Light green */
+    align-self: flex-end;
+    /* Align to the right */
+    border-top-right-radius: 0;
+}
+
+/* Receiver message styles */
+.message.receiver {
+    background-color: #ffffff;
+    /* White */
+    align-self: flex-start;
+    /* Align to the left */
+    border-top-left-radius: 0;
+    border: 1px solid #ccc;
+    /* Light gray border */
+}
+
+/* Timestamp styling */
+.message .timestamp {
+    font-size: 10px;
+    color: #999;
+    /* Light gray */
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+
+/* Message input styles */
+.message-input-wrapper {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+}
+
+#message-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+#send-button {
+    padding: 10px 20px;
+    background-color: grey;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#send-button:hover {
+    background-color: darkgrey;
+}

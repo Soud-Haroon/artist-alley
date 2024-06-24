@@ -1,5 +1,29 @@
-/* css for booking-content-wrapper */
 /* by Soud */
+
+/* Header */
+header {
+    margin: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header nav ul {
+    list-style-type: none;
+}
+
+header nav ul li {
+    border: 1px solid green;
+}
+
+header nav ul li a {
+    padding: 1rem;
+    font-size: larger;
+    text-decoration: none;
+}
+
+
+/* css for booking-content-wrapper */
 .booking-content-wrapper {
     background-color: bisque;
     min-height: 400px;

@@ -7,7 +7,7 @@ let unsubscribe;
 
 // Define a model for your booking requests (optional)
 class BookingRequest {
-    constructor(name, email, phone, business_name, age, user_type, offer, address, req_date, response, uid) {
+    constructor(name, email, phone, business_name, age, user_type, offer, address, req_date, response, uid, artist_id) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -19,6 +19,7 @@ class BookingRequest {
         this.req_date = req_date;
         this.response = response;
         this.uid = uid;
+        this.artist_id = artist_id;
     }
 }
 
@@ -175,6 +176,7 @@ async function makeRequest() {
         const docRef = await addDoc(collection(db, "request"), {
             name: "Soud haroon",
             email: "soudharoon@gmail.com",
+            artist_id: 224277,
             phone: 6722728422,
             business_name: "root cafe",
             age: 24,
@@ -266,16 +268,6 @@ async function deleteBooking(docID) {
     }
 }
 
-// Later, when you want to unsubscribe
-// function unsubscribeListener(unsubscribe) {
-//     if (unsubscribe) {
-//         unsubscribe(); // Detach the listener
-//         console.log('Listener unsubscribed');
-//     } else {
-//         console.warn('No active listener to unsubscribe');
-//     }
-// }
-
 // Load templates and then start listening to Firestore collections
 loadTemplates().then(() => {
     listenToRequests();
@@ -291,49 +283,3 @@ window.bookingDeclined = bookingDeclined;
 
 
 console.log('Firebase booking loaded!');
-
-
-//  <p>Age: ${requests.age}</p>
-//         <p>User Type: ${requests.user_type}</p>
-//         <p>Offer: ${requests.offer}</p>
-//         <p>Address: ${requests.address}</p>
-//         <p>Request Date: ${requests.req_date}</p>
-
-
-
-// Function to render a booking request in the UI
-// function renderBookingRequest(request) {
-//     const requestElement = document.createElement('div');
-//     requestElement.classList.add('.request-item');
-//     requestElement.innerHTML = `
-//         <h2>${requests.name}</h2>
-//         <p>Email: ${requests.email}</p>
-//         <p>Phone: ${requests.phone}</p>
-//         <p>Business Name: ${requests.business_name}</p>
-
-//     `;
-//     document.getElementById('request').appendChild(requestElement);
-// }
-
-
-// listening to data base //the callback function
-// function myListening() {
-//     try {
-//         onSnapshot(collection(db, "request"), (snapshot) => {
-//             console.log(`Total records : ${snapshot.size} `);
-//             snapshot.forEach((doc) => {
-//                 console.log(" Document id: ", doc.id);
-//                 console.log(`Document content: ${JSON.stringify(doc.data())}`);
-//             }
-//             );
-//         });
-//     } catch (error) {
-//         console.log("error while listening to request:", error);
-//     }
-// }
-
-
-// Render the booking requests in the UI
-// requests.forEach((request) => {
-//     renderBookingRequest(request);
-// });

@@ -11,34 +11,43 @@
 </head>
 
 <body>
-    <div class="container">
+    <header>
         <h1>My Booking Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="../html/demo_chat.html">chat</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
 
-        <!-- Search Bar -->
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search...">
-            <button type="button" id="searchButton">Search</button>
-        </div>
-        <!-- button's -->
-        <div class="myButtonDiv">
-            <button onclick="makeRequest()">Make request</button>
-        </div>
-        <!-- booking content -->
-        <div class="booking-content-wrapper">
-            <div class="request-div">
-                <h2>Request:</h2>
-                <div id="request-view">
-                    <!-- Booking items will be dynamically added here -->
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search...">
+                <button type="button" id="searchButton">Search</button>
+            </div>
+            <!-- button's -->
+            <div class="myButtonDiv">
+                <button onclick="makeRequest()">Make request</button>
+            </div>
+            <!-- booking content -->
+            <div class="booking-content-wrapper">
+                <div class="request-div">
+                    <h2>Request:</h2>
+                    <div id="request-view">
+                        <!-- Booking items will be dynamically added here -->
+                    </div>
+                </div>
+                <div class="myBooking-div">
+                    <h2>My Bookings:</h2>
+                    <div id="booking-view">
+                        <!-- Booking items will be dynamically added here -->
+                    </div>
                 </div>
             </div>
-            <div class="myBooking-div">
-                <h2>My Bookings:</h2>
-                <div id="booking-view">
-                    <!-- Booking items will be dynamically added here -->
-                </div>
-            </div>
         </div>
-    </div>
+    </main>
 </body>
 
 </html>
