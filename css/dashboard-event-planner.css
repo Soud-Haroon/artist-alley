@@ -1,0 +1,413 @@
+/* by carlos */
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+/* Header */
+
+header{
+    background-color: #30343F ;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.headerNav{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding-bottom: 3rem;
+    padding-top: 1rem;
+}
+
+.artistNav ul li{
+    text-align: center;
+    List-style: none;
+    padding: 0;   
+    margin: 0; 
+    display: block;
+    font-size: 1rem;
+    padding-bottom: 0.2rem;
+}
+
+.artistNav ul li a{
+    text-decoration: none;	
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.mobileBtn button{
+    padding: 0;
+    background: none;     
+    border: none;  
+    color: #89023E;  
+}
+
+.mobileBtn i{
+    padding: 0.2rem;
+    font-size: 1.4rem;
+}
+
+.artistNav a{
+    color: white;
+}
+
+.artistNav ul{
+    display: none;
+}
+
+.showMblNav nav ul{
+    display: grid;
+}
+
+.eventPlannerName{
+    color: #F37F81;
+}
+
+.search li{
+    list-style: none;
+}
+
+/* Main */
+
+main{
+    padding: 1rem;
+}
+
+.profileEventPlanner{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+eventPlannerInfo
+.artistCard{
+    box-shadow: 5px 5px 10px 5px #30343f72;
+    padding: 2rem;
+}
+
+.eventPlannerInfo{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    box-shadow: 5px 5px 10px 5px #30343f72;
+    padding: 1.5rem;
+    border-radius: 20px;
+}
+
+.plannerInfoDesc{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1rem;
+}
+
+.plannerImage{
+    grid-row: span 2;
+}
+
+.plannerImage img{
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+}
+
+.plannerAddress{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+}
+
+.plannerAddress li{
+    list-style: none;
+}
+
+.plannerAddress a{
+    text-decoration: none;
+    background-color: #F37F81;
+    padding: 0.3rem 2rem;
+    color: black;
+    border-radius: 15px;
+}
+
+.plannerAdDiv{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 0.5rem;
+}
+
+.plannerBookings{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.ArtistGallery{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    background-color: lightslategrey;
+    color: white;
+    padding-bottom: 1rem;
+}
+
+.ArtistGallery h2{
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.ArtistGallery ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.ArtistGallery ul li{
+    list-style: none;
+    text-align: center;
+}
+
+.ArtistGallery ul li a{
+    text-decoration: none;
+    color: white;
+}
+
+.ArtistGallery img{
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    display: block;
+    margin: auto;
+} 
+
+.artistInfo{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.artistCard{
+    box-shadow: 5px 5px 10px 5px #30343f72;
+    padding: 2rem;
+}
+
+.artistInfoDesc{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.artistImage{
+    grid-row: span 2;
+}
+
+.artistImage img{
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
+}
+
+.channels{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.channels ul{
+    display: flex;
+    gap: 1rem;
+}
+
+.channels ul li{
+    list-style: none;
+}
+
+.channels ul li a{
+    font-size: 1.5rem;
+}
+
+.artistPerformance{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.artistPerformance ul{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: center;
+}
+
+.artistPerformance ul li{
+    list-style: none;
+}
+
+.artistPerformance ul li a{
+    text-decoration: none;
+    background-color: #89023E;
+    padding: 0.4rem;
+    border-radius: 15px;
+    color: white;
+}
+
+/* FOOTER */
+
+footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    background-color: #30343F;
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+.logoFooter,
+.textFooter,
+.mediaFooter,
+.arrowFooter,
+.copywrite{
+    grid-column: span 2;
+    color: white;
+}
+
+.logoFooter img{
+    height: 200px;
+    display: block;
+    margin: auto;
+}
+
+.mediaFooter ul{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.mediaFooter ul li,
+.quickLinks ul li,
+.contactFooter ul li{
+    list-style: none;
+}
+
+.mediaFooter ul li a,
+.quickLinks ul li a,
+.contactFooter ul li a{
+    color: white;
+    text-decoration: none;
+}
+
+.quickLinks{
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.contactFooter{
+    text-align: left;
+}
+
+.quickLinks h3,
+.contactFooter h3{
+    color: white;
+    padding-bottom: 1rem;
+}
+
+.arrowFooter a{
+    color: white;
+}
+
+.arrowFooter li{
+    list-style: none;
+}
+
+
+@media screen and (min-width: 1000px) {
+
+/* MAIN */
+
+.profileEventPlanner{
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.wellcome,
+.ArtistGallery,
+.artistInfo{
+    grid-column: span 2;
+}
+
+.ArtistGallery{
+    grid-template-columns: 2fr 4fr;
+    padding: 1rem;
+
+}
+
+.ArtistGallery h2{
+    align-self: center;
+    margin: 0;
+    padding: 0;
+}
+.ArtistGallery ul{
+    grid-template-columns: repeat(4,1fr);
+}
+
+.artistInfo{
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.artistInfo h2{
+    grid-column: 1/-1;
+}
+
+
+
+
+/* FOOTER */
+
+    footer{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    .textFooter{
+        grid-row: 2/3;
+    }
+
+    .mediaFooter{
+        grid-row: 3/4;
+    }
+
+    .copywrite{
+        grid-row: 4/5;
+        grid-column: span 5;
+    }
+
+    .quickLinks{
+        grid-row: 1/4;
+    }
+
+    .contactFooter{
+        grid-row: 1/4;
+    }
+    .arrowFooter{
+        grid-column: 5/-1;
+        grid-row: 1/4;
+        align-self: end;
+        text-align: right;
+        padding-right: 1rem;
+    }
+
+}
+

@@ -1,0 +1,257 @@
+<!-- by carlos -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Profile</title>
+
+    <link rel="stylesheet" href="../css/dashboard-event-planner.css">
+    <script src="../javascript/dashboard-event-planner.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+    <header id=footerUp>
+        <div class="headerNav">
+            <ul>
+                <li><a href="#"><i class="fa-solid fa-chevron-left"></i></a></li>
+            </ul>
+
+            <div class="logo">
+                <img src="../src/Logo_test.png" alt="Logo">
+            </div>
+
+            <nav class="artistNav" id="mainNavigation">
+                <div class="mobileBtn">
+                    <button id="mblNavBtn"><i class="fa-solid fa-bars"></i><span class="visually-hidden">Toggle Menu</span></button>
+                </div>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Book an artist</a></li>
+                    <li><a href="#">Join our artist</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </nav>
+
+            <ul class="search">
+                <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+            </ul>
+        </div>
+        <div>
+            <h1>My dashboard</h1>
+            <h1 class="eventPlannerName" id="eventPlannerName">Mark Tunner</h1>
+        </div>
+
+    </header>
+
+    <Main class="profileEventPlanner">
+
+        <div class="wellcome">
+            <h1>Welcome!</h1>
+            <p>Here you can manage your address events, manage youbookings,<br>check your event dates and see your latest hired artists.</p>
+        </div>
+
+        <div class="eventPlannerInfo">
+            <div class="plannerInfoDesc">
+                <div class="plannerImage">
+                    <img src="../src/Artist.png" alt="Artist Image">
+                </div>
+                <div class="plannerReviewStar">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p id="plannerDescription">Mark Tunner is the pub owner of "The Majestic" place, specialized in beer, soft rock and pop.</p>
+            </div>
+            <div class="plannerAddress">
+                <div class="plannerAdDiv">
+                    <h3>Address 1:</h3>
+                    <p>3678 Commercial Dr, Vancouver, BC</p>
+                </div>
+                <ul class="edit">
+                    <li><a href="#">Edit</a></li>
+                </ul>
+                <div class="plannerAdDiv">
+                    <h3>Address 1:</h3>
+                    <p>3678 Commercial Dr, Vancouver, BC</p>
+                </div>
+                <ul class="edit">
+                    <li><a href="#">Edit</a></li>
+                </ul>
+                <div class="plannerAdDiv">
+                    <h3>Interests:</h3>
+                    <p>Soft Rock, Rock, Jazz, New Year's Parties</p>
+                </div>
+                <ul class="edit">
+                    <li><a href="#">Edit</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="plannerBookings">
+            <h2>My bookings</h2>
+            <img src="../src/Calendar.png" alt="Calendar">
+        </div>
+
+        <div class="ArtistGallery">
+            <h2>Check out our new Featured Artists:</h2>
+            <ul>
+                <li class="gallery1"><a href="#"><img src="../src/Artist.png" alt="Artist Image">Lana Be<br>Singer</a></li>
+                <li class="gallery1"><a href="#"><img src="../src/Artist.png" alt="Artist Image">Rich Adam<br>Comedy</a></li>
+                <li class="gallery1"><a href="#"><img src="../src/Artist.png" alt="Artist Image">Marcus Lan<br>DJ</a></li>
+                <li class="gallery1"><a href="#"><img src="../src/Artist.png" alt="Artist Image">Dan Miller<br>DJ</a></li>
+            </ul>
+        </div>
+
+        <div class="artistInfo">
+            <h2>Latest Hired</h2>
+            <div class="artistCard">
+                <div class="artistInfoDesc">
+                    <div class="artistImage">
+                        <img src="../src/Artist.png" alt="Artist Image">
+                    </div>
+                    <div class="artistReviewStar">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p id="artistDescription">Jonh Doe is a dinamyc and versatile guitarist known for his electrifying performances and soulful sound.</p>
+                </div>
+                <p>Pricing starts at: <span id="artistPrice">$125</span></p>
+                <p>Pick me for: <span id="artistCategory">Rock and Jazz</span></p>
+                <p>Location: <span id="artistLocation">Vancouver, BC</span></p>
+                <div>
+                    <div class="channels">
+                        <ul>
+                            <li><a href="#"><i class="fa-brands fa-spotify"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-square-youtube"></i></a></li>
+                        </ul>
+                        <p>My Channels</p>
+                    </div>
+                </div>
+            
+
+                <div class="artistPerformance">
+                    <h2>About my Performance:</h2>
+                    <p>I love to dance and bring my culture to events and parties, dancing is my passion and I use traditional dances from Spain and South America to create my own coreographies. My show is 2 hours long but I can addapt according to the occasion and necessity. I have my own setting of music and car for transportation is included.</p>
+                    <ul>
+                        <li><a href="#">Check calendar</a></li>
+                        <li><a href="#">Book</a></li>
+                    </ul>
+                </div>
+            </div>         
+    
+            <div class="artistCard">
+                <div class="artistInfoDesc">
+                    <div class="artistImage">
+                        <img src="../src/Artist.png" alt="Artist Image">
+                    </div>
+                    <div class="artistReviewStar">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p id="artistDescription">Jonh Doe is a dinamyc and versatile guitarist known for his electrifying performances and soulful sound.</p>
+                </div>
+                <p>Pricing starts at: <span id="artistPrice">$125</span></p>
+                <p>Pick me for: <span id="artistCategory">Rock and Jazz</span></p>
+                <p>Location: <span id="artistLocation">Vancouver, BC</span></p>
+                <div>
+                    <div class="channels">
+                        <ul>
+                            <li><a href="#"><i class="fa-brands fa-spotify"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-square-youtube"></i></a></li>
+                        </ul>
+                        <p>My Channels</p>
+                    </div>
+                </div>
+            
+
+                <div class="artistPerformance">
+                    <h2>About my Performance:</h2>
+                    <p>I love to dance and bring my culture to events and parties, dancing is my passion and I use traditional dances from Spain and South America to create my own coreographies. My show is 2 hours long but I can addapt according to the occasion and necessity. I have my own setting of music and car for transportation is included.</p>
+                    <ul>
+                        <li><a href="#">Check calendar</a></li>
+                        <li><a href="#">Book</a></li>
+                    </ul>
+                </div>
+            </div>                  
+
+            <div class="artistCard">
+                <div class="artistInfoDesc">
+                    <div class="artistImage">
+                        <img src="../src/Artist.png" alt="Artist Image">
+                    </div>
+                    <div class="artistReviewStar">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p id="artistDescription">Jonh Doe is a dinamyc and versatile guitarist known for his electrifying performances and soulful sound.</p>
+                </div>
+                <p>Pricing starts at: <span id="artistPrice">$125</span></p>
+                <p>Pick me for: <span id="artistCategory">Rock and Jazz</span></p>
+                <p>Location: <span id="artistLocation">Vancouver, BC</span></p>
+                <div>
+                    <div class="channels">
+                        <ul>
+                            <li><a href="#"><i class="fa-brands fa-spotify"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-square-youtube"></i></a></li>
+                        </ul>
+                        <p>My Channels</p>
+                    </div>
+                </div>
+            
+
+                <div class="artistPerformance">
+                    <h2>About my Performance:</h2>
+                    <p>I love to dance and bring my culture to events and parties, dancing is my passion and I use traditional dances from Spain and South America to create my own coreographies. My show is 2 hours long but I can addapt according to the occasion and necessity. I have my own setting of music and car for transportation is included.</p>
+                    <ul>
+                        <li><a href="#">Check calendar</a></li>
+                        <li><a href="#">Book</a></li>
+                    </ul>
+                </div>
+            </div>                  
+
+    </Main>
+
+    <footer>
+        <div class="logoFooter">
+            <img src="../src/Logo2.png" alt="Logo">
+        </div>
+
+        <p class="textFooter">Your source for artistic excellence, delivering creativity and talent for every occasion.</p>
+
+        <nav class="mediaFooter">
+            <ul>
+                <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+            </ul>
+        </nav>
+        <nav class="quickLinks">
+            <h3>Quick links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About us</a></li>
+                <li><a href="#">Book an artist</a></li>
+                <li><a href="#">Join our artist</a></li>
+            </ul>
+        </nav>
+        <nav class="contactFooter">
+            <h3>Contact us</h3>
+            <ul>
+                <li><a href="#">1-800-123-4567</a></li>
+                <li><a href="#">info@artistalley.com</a></li>
+                <li><a href="#">4878, Main Street, <br>Vancouver, <br>British Columbia, <br>V52TP</a></li>
+            </ul>
+        </nav>
+
+        <ul class="arrowFooter">
+            <li><a href="#footerUp"><i class="fa-solid fa-arrow-up"></i></a></li>
+        </ul>
+
+        <div class="copywrite">    
+            <small> &copy; 2024 Artist Alley. All rights reserved. | Privacy Policy | Terms of Service</small>
+        </div>
+
+    </footer>
+    
+</body>
+</html>
