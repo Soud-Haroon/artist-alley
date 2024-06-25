@@ -1,6 +1,6 @@
 import {
     loginWithEmailAndPassword
-} from './auth.js';
+} from './firebase-auth.js';
 
 import {
     getUserTypeDataById

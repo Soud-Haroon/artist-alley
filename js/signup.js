@@ -1,6 +1,6 @@
 import {
     signupWithEmailAndPassword
-} from './auth.js';
+} from './firebase-auth.js';
 
 import {
     USER_TYPE_ARTIST,
@@ -19,6 +19,8 @@ submitBtn.addEventListener('click', async function (event) {
     try {
         statusBox.style.display = 'none';
 
+        const firstName = document.getElementById('fName').value;
+        const lastName = document.getElementById('lName').value;
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
         const confirmPass = document.getElementById("confirmPass").value;
@@ -30,7 +32,7 @@ submitBtn.addEventListener('click', async function (event) {
             if (password != '' && password === confirmPass) {
                 let result = await signupWithEmailAndPassword(email, password)
                 if (result) {
-                    gotoHomepage(result.user, userType);
+                    gotoHomepage(result.user, firstName, lastName, userType);
                 } else {
                     alert("Oops, something went wrong!");
                 }
@@ -46,8 +48,10 @@ submitBtn.addEventListener('click', async function (event) {
     }
 });
 
-async function gotoHomepage(loggedInUser, userType) {
+async function gotoHomepage(loggedInUser, firstName, lastName, userType) {
     let user = {
+        fName: firstName,
+        lName: lastName,
         uid: loggedInUser.uid,
         email: loggedInUser.email,
         userType: userType,

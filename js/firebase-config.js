@@ -1,6 +1,5 @@
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBaekTDsTlMwiJyHuLv_veg44dvRv3gNkk",
@@ -14,4 +13,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
+
 export { firebase };
