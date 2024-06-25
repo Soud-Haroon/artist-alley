@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@200..700&display=swap');
+body{
+    font-family: 'Nunito Sans';
+}
+
+h1, h2, h3{
+    font-family: Oswald;
+}
+img {
+max-width: 100%;
+height: auto;
+display: block;
+}
+header .site-heading img{
+width: 50px;
+height: auto;
+}
+.footer-head img{
+    width: 70px;
+    background-color: black;
+}

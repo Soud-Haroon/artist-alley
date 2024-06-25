@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+    <link rel="stylesheet" href="../css/parul.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+
+        <div class="headerContent">
+            <div class="site-heading">
+                <img src="../src/Untitled-9.png" alt="logo">
+                <h1>artist alley</h1>
+            </div>
+
+            <div class="navbar">
+                <nav>
+                    <ul>
+                        <li><a href="Home">Home</a></li>
+                        <li><a href="About Us">About us</a></li>
+                        <li><a href="">Book an artist</a></li>
+                        <li><a href="">Join our artist</a></li>
+                        <li class="login-btn"><a href="">Login</a></li>
+                    </ul>
+                </nav>
+                <div class="search"><a href=""><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                <div class="menuBtn">
+                    <a href="#"><i class="fa-solid fa-bars"></i></a>
+                </div>
+            </div>
+
+            <h2>Great<span>Just few more steps to confirm your booking:</span></h2>
+
+        </div>
+
+    </header>
+    <main>
+        <div class="booking-main">
+            <form action="#" method="get">
+
+                <div class="selections">
+                    <h2>Choose your location:</h2>
+
+                    <select id="country" name="country" required>
+                        <option value="" disabled selected>city</option>
+                        <option value="usa">Vancouver</option>
+                        <option value="canada">Abbotsford</option>
+                        <option value="uk">Richmond</option>
+                        <option value="australia">Burnaby</option>
+                        <option value="india">Kamloops</option>
+                    </select>
+
+                    <div class="confirm-btn">
+                        <a href="#confirm">Confirm</a>
+                    </div>
+                </div>
+
+                <div class="selections">
+                    <h2>Choose event date:</h2>
+                    <!-- <label for="date"></label> -->
+
+                    <input id="country" name="country"  placeholder="Month/Day/Year" required>
+                        <!-- <option value="" disabled selected>city</option> -->
+                        <!-- <option value="usa">Vancouver</option>
+                        <option value="canada">Abbotsford</option>
+                        <option value="uk">Richmond</option>
+                        <option value="australia">Burnaby</option>
+                        <option value="india">Kamloops</option> -->
+
+                    <div class="confirm-btn">
+                        <a href="#confirm">Confirm</a>
+                    </div>
+                </div>
+
+                <div class="selections">
+
+                    <h2>Choose event time:</h2>
+                    <input type="text" placeholder="02:00">
+                    <select name="time" id="time">
+                        <option value="">AM/ PM</option>
+                        <option value="am">AM</option>
+                        <option value="pm">PM</option>
+                    </select>
+
+                    <div class="confirm-btn">
+                        <a href="#confirm">Confirm</a>
+                    </div>
+                </div>
+
+            </form>
+
+            <div class="event-time">
+                <h3>Your event will happen at:</h3>
+                <ul>
+                    <li>Address: 7656 Commercial Dr</li>
+                    <li>Date: 10 july</li>
+                    <li>Time: 10 P.M.</li>
+                </ul>
+                <div class="confirm-btn">
+                    <a href="#confirm">Cancel</a>
+                    <a href="./parul-book-success.html">Confirm</a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <footer>
+        <div class="footerContent">
+
+            <div class="footer-head">
+                <img src="../src/logo2.png" alt="">
+                <p>Your source for artistic excellence, delivering creativity and talent for every occasion.</p>
+                <div class="icons">
+                    <ul>
+                        <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quick-links">
+                <p>Quick links</p>
+                <ul>
+                    <li><a href="./parul.html">Home</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Book an artist</a></li>
+                    <li><a href="#">Join our artist</a></li>
+                </ul>
+            </div>
+            
+            <div class="contact-us">
+                <p>Contact us</p>
+                <ul>
+                    <li><a href="#">1-800-123-4567</a></li>
+                    <li><a href="#">info@artistalley.com</a></li>
+                    <li><a href="#">4878, Main street, Vancouver, BC, V52TP</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
