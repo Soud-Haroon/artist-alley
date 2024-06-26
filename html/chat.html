@@ -7,20 +7,47 @@
    <title>Document</title>
    <link rel="stylesheet" href="../css/chat.css">
 
+   <script src="../javascript/chat.js" defer></script>
+
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
 
 </head>
 <body>
 
-  <header>
-     <nav>
-         <ul>
-             <li><a href="#"><i class="fa-solid fa-chevron-left"></i></a></li>
-         </ul>
-     </nav>
-     <h1>CHAT</h1>
-  </header>
+    <header id=footerUp>
+        <div class="headerNav">
+            <ul>
+                <li><a href="#"><i class="fa-solid fa-chevron-left"></i></a></li>
+            </ul>
+
+            <div class="logo">
+                <img src="../src/Logo_test.png" alt="Logo">
+            </div>
+
+            <nav class="artistNav" id="mainNavigation">
+                <div class="mobileBtn">
+                    <button id="mblNavBtn"><i class="fa-solid fa-bars"></i><span class="visually-hidden">Toggle Menu</span></button>
+                </div>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Book an artist</a></li>
+                    <li><a href="#">Join our artist</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </nav>
+
+            <ul class="search">
+                <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+            </ul>
+        </div>
+        <div>
+            <h1>CHAT</h1>
+            <h1 class="artistName" id="artistName">John Doe</h1>
+        </div>
+
+    </header>
 
   <main>
 
@@ -43,6 +70,48 @@
     </div>
 
   </main>
+  <footer>
+    <div class="logoFooter">
+        <img src="../src/Logo2.png" alt="Logo">
+    </div>
+
+    <p class="textFooter">Your source for artistic excellence, delivering creativity and talent for every occasion.</p>
+
+    <nav class="mediaFooter">
+        <ul>
+            <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+            <li><a href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+        </ul>
+    </nav>
+    <nav class="quickLinks">
+        <h3>Quick links</h3>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Book an artist</a></li>
+            <li><a href="#">Join our artist</a></li>
+        </ul>
+    </nav>
+    <nav class="contactFooter">
+        <h3>Contact us</h3>
+        <ul>
+            <li><a href="#">1-800-123-4567</a></li>
+            <li><a href="#">info@artistalley.com</a></li>
+            <li><a href="#">4878, Main Street, <br>Vancouver, <br>British Columbia, <br>V52TP</a></li>
+        </ul>
+    </nav>
+
+    <ul class="arrowFooter">
+        <li><a href="#footerUp"><i class="fa-solid fa-arrow-up"></i></a></li>
+    </ul>
+
+    <div class="copywrite">    
+        <small> &copy; 2024 Artist Alley. All rights reserved. | Privacy Policy | Terms of Service</small>
+    </div>
+
+</footer>
 </body>
 </html>
 

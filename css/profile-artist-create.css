@@ -3,37 +3,90 @@
 *{
     margin: 0;
     padding: 0;
-    color: #FFD9DA;
 }
 
-body{
-    background-color: #30343F;
+img{
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+/* Header */
 
 header{
-    background-color: #89023E;
-    padding: 1rem 0;
+    background-color: #30343F ;
     display: grid;
-    grid-template-columns: 10fr 13fr;
-    align-self: center;
-    padding-left: 1rem;
+    grid-template-columns: 1fr;
 }
 
-header nav, header h1{
-    align-self: center;
+.headerNav{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding-bottom: 3rem;
+    padding-top: 1rem;
+}
+
+.artistNav ul li{
+    text-align: center;
+    List-style: none;
+    padding: 0;   
+    margin: 0; 
+    display: block;
+    font-size: 1rem;
+    padding-bottom: 0.2rem;
+}
+
+.artistNav ul li a{
+    text-decoration: none;	
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.mobileBtn button{
+    padding: 0;
+    background: none;     
+    border: none;  
+    color: #89023E;  
+}
+
+.mobileBtn i{
+    padding: 0.2rem;
+    font-size: 1.4rem;
+}
+
+.artistNav a{
     color: white;
 }
 
-header li{
+.artistNav ul{
+    display: none;
+}
+
+.showMblNav nav ul{
+    display: grid;
+}
+
+.artistName{
+    color: #F37F81;
+}
+
+.search li{
     list-style: none;
 }
 
-header i{
-    color: white;
-}
+/*Main*/
 
 main{
-    background-color: #30343F;
     padding: 2rem 0;
 }
 
@@ -129,7 +182,7 @@ main{
 }
 
 .artistMoreImages nav ul li a {
-    color: #FFD9DA;
+    color: black;
 }
 
 .artistMoreImages nav ul li {
@@ -141,3 +194,113 @@ main{
     justify-content: center;
     align-items: center;
 }
+
+/* FOOTER */
+
+footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    background-color: #30343F;
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+.logoFooter,
+.textFooter,
+.mediaFooter,
+.arrowFooter,
+.copywrite{
+    grid-column: span 2;
+    color: white;
+}
+
+.logoFooter img{
+    height: 200px;
+    display: block;
+    margin: auto;
+}
+
+.mediaFooter ul{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.mediaFooter ul li,
+.quickLinks ul li,
+.contactFooter ul li{
+    list-style: none;
+}
+
+.mediaFooter ul li a,
+.quickLinks ul li a,
+.contactFooter ul li a{
+    color: white;
+    text-decoration: none;
+}
+
+.quickLinks{
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.contactFooter{
+    text-align: left;
+}
+
+.quickLinks h3,
+.contactFooter h3{
+    color: white;
+    padding-bottom: 1rem;
+}
+
+.arrowFooter a{
+    color: white;
+}
+
+.arrowFooter li{
+    list-style: none;
+}
+
+
+
+@media screen and (min-width: 900px) {
+
+
+/*FOOTER*/
+
+    footer{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    .textFooter{
+        grid-row: 2/3;
+    }
+
+    .mediaFooter{
+        grid-row: 3/4;
+    }
+
+    .copywrite{
+        grid-row: 4/5;
+        grid-column: span 5;
+    }
+
+    .quickLinks{
+        grid-row: 1/4;
+    }
+
+    .contactFooter{
+        grid-row: 1/4;
+    }
+    .arrowFooter{
+        grid-column: 5/-1;
+        grid-row: 1/4;
+        align-self: end;
+        text-align: right;
+        padding-right: 1rem;
+    }
+
+}
+

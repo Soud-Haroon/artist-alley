@@ -102,6 +102,12 @@ main{
     gap: 1rem;
 }
 
+.artistInfoWrapper{
+    box-shadow: 5px 5px 10px 5px #30343f72;
+    padding: 1.5rem;
+    border-radius: 20px;
+}
+
 .artistInfoDesc{
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -349,6 +355,8 @@ footer{
     .artistReviews div{
         margin: 0 0.5rem;
     }
+
+/*FOOTER*/
 
     footer{
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
