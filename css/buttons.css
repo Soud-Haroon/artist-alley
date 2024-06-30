@@ -1,0 +1,39 @@
+/* this "a" below is for the button which has darker color named as secondary color */
+
+a {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-items: center;
+    background-color: var(--secondary-clr);
+    width: 250px;
+    margin: auto;
+    color: var(--white-clr);
+    padding: .5rem;
+    border-radius: 25px;
+}
+
+
+a.check {
+    background-color: var(--accent-clr);
+    color: var(--white-clr);
+    padding: .5rem;
+    border-radius: 25px;
+    width: 250px;
+    margin: auto;
+    margin-bottom: 8px;
+    margin-top: 2rem;
+}
+
+
+
+/* for desktop--------------- */
+
+
+@media screen and (min-width: 900px) {
+
+    a.book-artist,
+    a.check {
+        width: 140px;
+    }
+}

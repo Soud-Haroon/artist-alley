@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking</title>
     <link rel="stylesheet" href="../css/parul.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -28,13 +30,13 @@
                         <li class="login-btn"><a href="">Login</a></li>
                     </ul>
                 </nav>
-                <div class="search"><a href=""><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                <div class="search"><a href="#">Search <i class="fa-solid fa-magnifying-glass"></i></a></div>
                 <div class="menuBtn">
                     <a href="#"><i class="fa-solid fa-bars"></i></a>
                 </div>
             </div>
 
-            <h2>Great<span>Just few more steps to confirm your booking:</span></h2>
+            <h2 class="booking-h2"><span>Great</span> <br>Just few more steps to confirm your booking:</h2>
 
         </div>
 
@@ -55,37 +57,35 @@
                         <option value="india">Kamloops</option>
                     </select>
 
-                    <div class="confirm-btn">
-                        <a href="#confirm">Confirm</a>
-                    </div>
+                   
                 </div>
 
                 <div class="selections">
                     <h2>Choose event date:</h2>
                     <!-- <label for="date"></label> -->
 
-                    <input id="country" name="country"  placeholder="Month/Day/Year" required>
-                        <!-- <option value="" disabled selected>city</option> -->
-                        <!-- <option value="usa">Vancouver</option>
+                    <input id="country" name="country" placeholder="Month/Day/Year" required>
+                    <!-- <option value="" disabled selected>city</option> -->
+                    <!-- <option value="usa">Vancouver</option>
                         <option value="canada">Abbotsford</option>
                         <option value="uk">Richmond</option>
                         <option value="australia">Burnaby</option>
                         <option value="india">Kamloops</option> -->
 
-                    <div class="confirm-btn">
-                        <a href="#confirm">Confirm</a>
-                    </div>
+                  
                 </div>
 
                 <div class="selections">
 
                     <h2>Choose event time:</h2>
-                    <input type="text" placeholder="02:00">
-                    <select name="time" id="time">
-                        <option value="">AM/ PM</option>
-                        <option value="am">AM</option>
-                        <option value="pm">PM</option>
-                    </select>
+                    <div class="timings">
+                        <input type="text" placeholder="02:00">
+                        <select name="time" id="time">
+                            <option value="">AM/ PM</option>
+                            <option value="am">AM</option>
+                            <option value="pm">PM</option>
+                        </select>
+                    </div>
 
                     <div class="confirm-btn">
                         <a href="#confirm">Confirm</a>
@@ -134,7 +134,7 @@
                     <li><a href="#">Join our artist</a></li>
                 </ul>
             </div>
-            
+
             <div class="contact-us">
                 <p>Contact us</p>
                 <ul>

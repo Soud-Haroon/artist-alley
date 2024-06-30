@@ -1,0 +1,89 @@
+
+
+ul{
+    padding: 0;
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+
+img {
+max-width: 100%;
+height: auto;
+display: block;
+}
+.artist-descp{
+    border: 1px solid rgb(213, 213, 213);
+    box-shadow: #797979 2px 5px 10px;
+    border-radius: 25px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+.artist-descp .artist-briefing img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.artist-descp .artist-briefing{
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1rem;
+    align-items: center;
+}
+.artist-descp .icons-grp {
+    text-align: end;
+    color: var(--secondary-clr);
+}
+.artist-descp .about-artist ul li{
+font-family: oswald;
+}
+.artist-descp .about-artist ul li span{
+    font-family: 'Nunito Sans';
+}
+
+.artist-descp .artist-perf h3{
+    font-size: 1.1rem;
+    font-weight: normal;
+}
+ .artist-descp .artist-perf p{
+    border-bottom: 1px solid var(--accent-clr);
+    padding-bottom: 1rem;
+}
+.artist-descp .artist-perf a{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-items: center;
+    background-color: var(--secondary-clr);
+    width: 250px;
+    margin: auto;
+    color: var(--white-clr);
+    padding: .5rem;
+    border-radius: 25px;
+}
+.artist-descp .artist-perf a.check{
+    background-color: var(--accent-clr);
+    color: var(--white-clr);
+    padding: .5rem;
+    border-radius: 25px;
+    width: 250px;
+    margin: auto;
+    margin-bottom: 8px;
+    margin-top: 2rem;
+}
+
+.artist-work .images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .6rem;
+}
+.artist-work .images img{
+    border-radius: 20px;
+} 
+
+.artist-work .images img:nth-of-type(1), .artist-work .images img:nth-of-type(2){
+   grid-column: 1/-1;
+}
+

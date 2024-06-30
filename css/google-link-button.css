@@ -1,0 +1,20 @@
+.google a{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+
+    border: 1px solid black;
+    border-radius: 25px;
+    width: 327px;
+    height: 53px;
+    margin: auto;
+}
+
+
+@media screen and (min-width: 900px) {
+    .google a{
+        width: 716px;
+    }
+}

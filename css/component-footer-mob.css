@@ -1,0 +1,36 @@
+footer{
+    background-color: var(--primary-clr);
+    color: var(--white-clr);
+    padding: 1rem;
+}
+.footerContent{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2rem;
+}
+.footerContent a{
+    color: var(--white-clr);
+}
+
+.footerContent .footer-head{
+    text-align: center;
+    grid-column: span 2;
+}
+.footerContent .footer-head img{
+    margin: auto;
+    width: 70px;
+}
+.footerContent .footer-head .icons ul li{
+    display: inline;
+    margin: .3rem;
+}
+.footerContent .copyright{
+    grid-column: span 2;
+    text-align: center;
+}
+.footerContent .quick-links p, .footerContent .contact-us p{
+font-weight: 700;
+}
+.footerContent .quick-links ul li, .footerContent .contact-us ul li{
+    margin-bottom: .5rem;
+}

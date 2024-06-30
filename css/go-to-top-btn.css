@@ -1,0 +1,10 @@
+main .top-btn {
+    position: fixed;
+    bottom: 3rem; 
+    right: 1rem;
+    cursor: pointer;
+}
+main .top-btn img{
+    width: 40px;
+    height: auto;
+}
