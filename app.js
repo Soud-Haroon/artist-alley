@@ -7,9 +7,9 @@ import { getAuth } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-aut
 const firebaseConfig = firebase_ApiKey;
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+const firebase = initializeApp(firebaseConfig);
+const auth = getAuth(firebase);
+const db = getFirestore(firebase);
 
 // Export the Firebase services
-export { app, auth, db };
+export { firebase, auth, db };

@@ -1,0 +1,15 @@
+const USER_TYPE_ARTIST = 1000;
+const USER_TYPE_ORGANISER = 2000;
+const ARTIST_TABLE = 'artists';
+const ORGANISER_TABLE = 'organisers';
+const TABLE_USER_TYPE = 'user-type';
+
+
+
+export {
+    USER_TYPE_ARTIST,
+    USER_TYPE_ORGANISER,
+    ARTIST_TABLE,
+    ORGANISER_TABLE,
+    TABLE_USER_TYPE
+}

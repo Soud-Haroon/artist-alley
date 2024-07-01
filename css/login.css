@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    max-width: 450px;
+    margin: auto;
+    text-align: center;
+}
+
+.login-form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    text-align: start;
+    margin-top: 5rem;
+}
+
+.inputField {
+    padding: 10px;
+}
+
+#loginBtn {
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.label {
+    font-weight: bold;
+}
+
+#status {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: tomato;
+    color: white;
+    display: none;
+}
