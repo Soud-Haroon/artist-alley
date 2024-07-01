@@ -4,7 +4,7 @@ import {
 
 import {
     getUserDataById
-} from '../js/firestore.js';
+} from '../javascript/firestore.js';
 
 import { loggedInUser } from "./utilities.js";
 

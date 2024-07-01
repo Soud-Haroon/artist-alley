@@ -4,7 +4,7 @@ import {
 
 import {
     getUserTypeDataById
-} from '../js/firestore.js';
+} from '../javascript/firestore.js';
 
 const loginBtn = document.getElementById('loginBtn');
 

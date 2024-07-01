@@ -13,7 +13,7 @@ import {
     ARTIST_TABLE,
     ORGANISER_TABLE,
     TABLE_USER_TYPE
-} from '../js/app-constants.js';
+} from '../javascript/app-constants.js';
 
 const firestore = getFirestore(firebase);
 

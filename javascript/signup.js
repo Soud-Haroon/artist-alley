@@ -5,11 +5,11 @@ import {
 import {
     USER_TYPE_ARTIST,
     USER_TYPE_ORGANISER
-} from '../js/app-constants.js';
+} from '../javascript/app-constants.js';
 
 import {
     saveUserDataInDb
-} from '../js/firestore.js';
+} from '../javascript/firestore.js';
 
 const statusBox = document.getElementById('status');
 

@@ -1,7 +1,7 @@
 import { firebase } from './firebase-config.js';
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
 
-import { loggedInUser } from "../js/utilities.js";
+import { loggedInUser } from "./utilities.js";
 
 const firebaseStorage = getStorage(firebase);
 

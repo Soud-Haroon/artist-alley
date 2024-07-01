@@ -1,4 +1,4 @@
-import { dataUrlToFile, loggedInUser } from "../js/utilities.js";
+import { dataUrlToFile, loggedInUser } from "./utilities.js";
 import { uploadProfileImage } from "./firebase-storage.js";
 
 const userAvatar = document.getElementById('profile-image');
