@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
-    <link rel="stylesheet" href="../css/homepage.css">
+    <title>Account</title>
+    <link rel="stylesheet" href="../css/account-orgraniser.css">
     <link rel="stylesheet" href="../css/headerstyle.css">
 
     <script type="module" src="../javascript/utilities.js" defer></script>
-    <script type="module" src="../javascript/homepage.js" defer></script>
-
+    <script type="module" src="../javascript/account-organiser.js" defer></script>
 </head>
 
 <body>
@@ -28,28 +27,21 @@
         </nav>
     </header>
     <main>
-        <!-- Search Bar -->
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search...">
-            <button type="button" id="searchButton">Search</button>
+        <div class="user-data">
+            <div class="user-avatar">
+                <img id="profile-image" alt="user avatar">
+            </div>
+            <div class="info" id="info">
+
+            </div>
+
+            <h1>Webcam Capture</h1>
+            <video id="webcam" autoplay playsinline width="320" height="240"></video>
+            <button id="capture">Capture</button>
+
+            <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
         </div>
-
-        <!-- Search Results Results -->
-        <div id="searchResults"></div>
-
-        <!-- <div class="searchList"></div>
-        <h1>Welcome to Artist Alley!</h1><br>
-        <div id="user"></div>
-
-        <div class="portfolio">
-            <button id="portfolioBtn">My Portfolio</button>
-        </div>
-
-        <div class="logout">
-            <button id="logoutBtn">Logout</button>
-        </div> -->
     </main>
-
 </body>
 
 </html>

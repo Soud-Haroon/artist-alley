@@ -3,10 +3,7 @@ import {
     getUserDataById
 } from '../javascript/firestore.js';
 
-import { loggedInUser, logoutUser } from "./utilities.js";
-
-const portfolioBtn = document.getElementById('portfolioBtn');
-const userDiv = document.getElementById('user');
+import { loggedInUser } from "./utilities.js";
 
 let userData = await getUserData(loggedInUser.uid, loggedInUser.userType);
 localStorage.setItem("user", JSON.stringify(userData));
@@ -14,12 +11,6 @@ localStorage.setItem("user", JSON.stringify(userData));
 // userDiv.innerHTML = `${userData.fName} ${userData.lName}`;
 
 // console.log("USER DATA: " + JSON.stringify(userData));
-
-// portfolioBtn.addEventListener('click', async function (event) {
-//     event.preventDefault();
-
-//     window.location = './my-portfolio.html';
-// });
 
 async function getUserData(userId, userType) {
     return await getUserDataById(userId, userType);
