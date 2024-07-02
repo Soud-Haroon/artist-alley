@@ -13,7 +13,7 @@ localStorage.setItem("user", JSON.stringify(userData));
 
 // userDiv.innerHTML = `${userData.fName} ${userData.lName}`;
 
-console.log("USER DATA: " + JSON.stringify(userData));
+// console.log("USER DATA: " + JSON.stringify(userData));
 
 // portfolioBtn.addEventListener('click', async function (event) {
 //     event.preventDefault();
