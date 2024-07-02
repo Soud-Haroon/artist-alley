@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     <link rel="stylesheet" href="../css/homepage.css">
+    <link rel="stylesheet" href="../css/headerstyle.css">
     <script type="module" src="../javascript/homepage.js" defer></script>
 </head>
-<body>
 
-    <main> 
+<body>
+    <header>
+        <h1>Artist Alley</h1>
+        <nav>
+            <ul>
+                <li><a href="../html/homepage.html">Home</a></li>
+                <li><a href="../html/demo_book.html">Booking</a></li>
+                <li><a href="../html/demo_chat.html">chat</a></li>
+                <li><a href="" id="myProfile">profile</a></li>
+                <li><a href="" id="logoutBtn">logout</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button type="button" id="searchButton">Search</button>
+        </div>
+
+        <!-- Search Results List -->
+        <div id="searchList"></div>
+
+        <!-- <div class="searchList"></div>
         <h1>Welcome to Artist Alley!</h1><br>
         <div id="user"></div>
 
@@ -19,8 +44,9 @@
 
         <div class="logout">
             <button id="logoutBtn">Logout</button>
-        </div>
+        </div> -->
     </main>
-    
+
 </body>
+
 </html>

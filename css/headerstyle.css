@@ -1,0 +1,26 @@
+/* ============================= */
+/* style for header */
+header {
+    display: flex;
+    background-color: gray;
+    margin-bottom: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+}
+
+header nav ul {
+    display: flex;
+    gap: 1rem;
+    list-style-type: none;
+}
+
+header nav ul li {
+    border: 1px solid green;
+}
+
+header nav ul li a {
+    padding: 1rem;
+    font-size: larger;
+    text-decoration: none;
+}
