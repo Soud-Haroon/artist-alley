@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    max-width: 800px;
+    margin: auto;
+    padding: 1rem;
+    text-align: center;
+}
+
+#profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
+}
+
+.user-data {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.portfolio-images {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+    justify-content: center;
+}
