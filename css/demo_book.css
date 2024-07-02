@@ -1,7 +1,11 @@
 /* by Soud */
 
+body {
+    margin: 0;
+}
+
 /* Header */
-header {
+/* header {
     margin: 0 2rem;
     display: flex;
     align-items: center;
@@ -10,17 +14,7 @@ header {
 
 header nav ul {
     list-style-type: none;
-}
-
-header nav ul li {
-    border: 1px solid green;
-}
-
-header nav ul li a {
-    padding: 1rem;
-    font-size: larger;
-    text-decoration: none;
-}
+} */
 
 
 /* css for booking-content-wrapper */
