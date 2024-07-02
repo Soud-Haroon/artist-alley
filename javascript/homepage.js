@@ -5,7 +5,6 @@ import {
 
 import { loggedInUser, logoutUser } from "./utilities.js";
 
-const logoutBtn = document.getElementById('logoutBtn');
 const portfolioBtn = document.getElementById('portfolioBtn');
 const userDiv = document.getElementById('user');
 
@@ -15,11 +14,6 @@ localStorage.setItem("user", JSON.stringify(userData));
 // userDiv.innerHTML = `${userData.fName} ${userData.lName}`;
 
 console.log("USER DATA: " + JSON.stringify(userData));
-logoutBtn.addEventListener('click', async function (event) {
-    event.preventDefault();
-
-    logoutUser();
-});
 
 // portfolioBtn.addEventListener('click', async function (event) {
 //     event.preventDefault();
