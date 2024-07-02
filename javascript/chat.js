@@ -1,7 +1,6 @@
 import { db } from '../app.js';
 import { collection, addDoc, getDocs, getDoc, updateDoc, deleteDoc, doc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 import { query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import {logout} from './utilities.js';
 // by soud
 var currentUser = "24";
 const chatId = "h5Ely2RkaZWInosjDwY9";
