@@ -1,9 +1,9 @@
 import {
     saveUserDataInDb
-} from '../javascript/firestore.js';
+} from './firestore.js';
 
 import { uploadProfileImage, uploadPortfolioImages } from './firebase-storage.js';
-import { loggedInUser } from "../javascript/utilities.js";
+import { loggedInUser } from "./utilities.js";
 
 
 const imageInput = document.getElementById('imageInput');
