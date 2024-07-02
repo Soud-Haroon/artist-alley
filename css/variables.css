@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@200..700&display=swap');
 
 :root{
+    --gradient: linear-gradient(to bottom, #111415, #363a47);
     --primary-clr: rgb(56, 56, 56);
     --secondary-clr: #89023E;
     --accent-clr: #F37F81;
