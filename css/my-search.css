@@ -1,0 +1,19 @@
+.artist-item {
+    background-color: lightsalmon;
+    max-width: fit-content;
+    padding: 1rem .5rem;
+    text-align: left;
+    min-width: 150px;
+}
+
+.artist-name h3 {
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+#searchResults {
+    display: flex;
+    gap: 1rem;
+    flex-flow: row wrap;
+    padding: 1rem;
+}
