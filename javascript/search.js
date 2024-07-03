@@ -1,8 +1,8 @@
 // var fireLink = "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import { firebase, db } from "../app.js";
-import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
+import { collection, getDocs, addDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const currentUser = JSON.parse(localStorage.getItem("user"));
 
 // Load templates from a separate HTML file
 async function loadTemplates() {
@@ -61,8 +61,9 @@ function renderArtistResults(artistResults) {
         artistResults.forEach(artist => {
             const clone = template.content.cloneNode(true);
             // 
+            console.log('Soud look art id:' + artist.uid);
             const artistItem = clone.querySelector('.artist-item');
-            artistItem.setAttribute('data-uid', artist.uid);
+            artistItem.setAttribute('artist-uid', artist.uid);
             // 
             clone.querySelector('.artist-name').textContent = artist.fName + " " + artist.lName;
             clone.querySelector('.artist-phone').textContent = artist.phone;
@@ -77,6 +78,46 @@ function renderArtistResults(artistResults) {
     container.appendChild(fragment);
 }
 
+// View profile
+function veiwPortfolio(artist_id) {
+    console.log(artist_id);
+    let url = `../html/artist-portfolio.html?artist_id=${artist_id}`;
+    window.location = url;
+}
+
+// Making an demo request ===========//
+async function sendOffer(artist_id) {
+    try {
+        console.log('from artist profile artist id: ', artist_id);
+        const docRef = await addDoc(collection(db, "request"), {
+            host_id: currentUser.uid,
+            name: currentUser.fName + " " + currentUser.lName,
+            email: currentUser.email,
+            artist_id: artist_id,
+            phone: currentUser.phone,
+            business_name: currentUser.org_name,
+            offer: "20",
+            address: "vancouver",
+            req_date: Date(),
+            response: "pending",
+        });
+        const docID = docRef.id;
+
+        await updateDoc(docRef, {
+            uid: docID,
+        });
+
+        alert('Offer send successfully!');
+        console.log("request created and id updated!");
+        console.log("Document written with ID: ", docID);
+    } catch (error) {
+        console.error("Error adding document: ", error);
+    }
+}
+
+
+window.sendUserOffer = sendOffer;
+window.veiwPortfolio = veiwPortfolio;
 loadTemplates();
 
 

@@ -6,9 +6,13 @@
     min-width: 150px;
 }
 
-.artist-name h3 {
+.artist-item h4 {
     margin: 0;
     margin-bottom: 4px;
+}
+
+.artist-item span {
+    text-transform: capitalize;
 }
 
 #searchResults {
@@ -16,4 +20,15 @@
     gap: 1rem;
     flex-flow: row wrap;
     padding: 1rem;
+}
+
+
+.artist-body,
+.artist-header {
+    background-color: white;
+    padding: .5rem;
+}
+
+.stage-name span {
+    font-weight: bold;
 }

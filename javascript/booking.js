@@ -2,24 +2,39 @@ import { db } from '../app.js';
 import { collection, addDoc, getDocs, getDoc, updateDoc, deleteDoc, doc } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 import { query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 // by soud
-
+const currentUser = JSON.parse(localStorage.getItem("user"));
 let unsubscribe;
 
 // Define a model for your booking requests (optional)
+// class BookingRequest {
+//     constructor(name, email, phone, business_name, age, user_type, offer, address, req_date, response, uid, artist_id) {
+//         this.name = name;
+//         this.email = email;
+//         this.phone = phone;
+//         this.business_name = business_name;
+//         this.age = age;
+//         this.user_type = user_type;
+//         this.offer = offer;
+//         this.address = address;
+//         this.req_date = req_date;
+//         this.response = response;
+//         this.uid = uid;
+//         this.artist_id = artist_id;
+//     }
+// }
 class BookingRequest {
-    constructor(name, email, phone, business_name, age, user_type, offer, address, req_date, response, uid, artist_id) {
+    constructor(uid, name, email, phone, artist_id, host_id, business_name, offer, address, req_date, response) {
+        this.uid = uid;
         this.name = name;
         this.email = email;
         this.phone = phone;
+        this.artist_id = artist_id;
+        this.host_id = host_id;
         this.business_name = business_name;
-        this.age = age;
-        this.user_type = user_type;
         this.offer = offer;
         this.address = address;
         this.req_date = req_date;
         this.response = response;
-        this.uid = uid;
-        this.artist_id = artist_id;
     }
 }
 
@@ -40,21 +55,23 @@ function listenToRequests() {
         const requests = [];
         querySnapshot.forEach((doc) => {
             const requestData = doc.data();
-            if (requestData.response != "decline") {
-                const myUser = new BookingRequest(
-                    requestData.name,
-                    requestData.email,
-                    requestData.phone,
-                    requestData.business_name,
-                    requestData.age,
-                    requestData.user_type,
-                    requestData.offer,
-                    requestData.address,
-                    requestData.req_date,
-                    requestData.response,
-                    requestData.uid,
-                );
-                requests.push(myUser);
+            if (currentUser.uid === requestData.uid) {
+                if (requestData.response != "decline") {
+                    const myUser = new BookingRequest(
+                        requestData.uid,
+                        requestData.name,
+                        requestData.email,
+                        requestData.phone,
+                        requestData.artist_id,
+                        requestData.host_id,
+                        requestData.business_name,
+                        requestData.offer,
+                        requestData.address,
+                        requestData.req_date,
+                        requestData.response,
+                    );
+                    requests.push(myUser);
+                }
             }
         });
 
@@ -87,12 +104,8 @@ function renderBookingRequest(requests) {
         clone.querySelector('.request-email').textContent = requests.email;
         clone.querySelector('.request-phone').textContent = requests.phone;
         clone.querySelector('.request-business-name').textContent = requests.business_name;
-        clone.querySelector('.request-age').textContent = requests.age;
-        clone.querySelector('.request-user-type').textContent = requests.user_type;
         clone.querySelector('.request-offer').textContent = requests.offer;
         clone.querySelector('.request-address').textContent = requests.address;
-        // clone.querySelector('.request-req-date').textContent = requests.req_date;
-        // clone.querySelector('.request-uid').textContent = requests.uid;
 
         fragment.appendChild(clone);
     });
@@ -112,17 +125,17 @@ function listenToBookings() {
             const bookingtData = doc.data();
             if (bookingtData.response == "accept") {
                 const bookUser = new BookingRequest(
+                    bookingtData.uid,
                     bookingtData.name,
                     bookingtData.email,
                     bookingtData.phone,
+                    bookingtData.artist_id,
+                    bookingtData.host_id,
                     bookingtData.business_name,
-                    bookingtData.age,
-                    bookingtData.user_type,
                     bookingtData.offer,
                     bookingtData.address,
                     bookingtData.req_date,
                     bookingtData.response,
-                    bookingtData.uid,
                 );
                 bookings.push(bookUser);
             }
@@ -155,8 +168,6 @@ function renderBookingList(bookings) {
         clone.querySelector('.booking-email').textContent = bookings.email;
         clone.querySelector('.booking-phone').textContent = bookings.phone;
         clone.querySelector('.booking-business-name').textContent = bookings.business_name;
-        clone.querySelector('.booking-age').textContent = bookings.age;
-        clone.querySelector('.booking-user-type').textContent = bookings.user_type;
         clone.querySelector('.booking-offer').textContent = bookings.offer;
         clone.querySelector('.booking-address').textContent = bookings.address;
         // clone.querySelector('.booking-req-date').textContent = bookings.req_date;
