@@ -6,48 +6,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Info</title>
     <link rel="stylesheet" href="../css/artist-portfolio.css">
+    <link rel="stylesheet" href="../css/headerstyle.css">
+
     <script type="module" src="../javascript/artists-portfolio.js" defer></script>
 </head>
 
 <body>
+    <header>
+        <h1>Artist Alley</h1>
+        <nav>
+            <ul>
+                <li><a href="../html/homepage.html">Home</a></li>
+                <li><a href="../html/demo_book.html">Booking</a></li>
+                <li><a href="../html/demo_chat.html">chat</a></li>
+                <li><a href="" id="myProfile">profile</a></li>
+                <li><a href="" id="logoutBtn">logout</a></li>
+
+            </ul>
+        </nav>
+    </header>
     <main>
-        <h1> Let's get to know you better!</h1>
         <div class="user-avatar">
             <img id="profile-pic"
                 src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="user photo">
-            <input type="file" id="imageInput" accept="image/*">
-            <input type="button" id="uploadImageBtn" value="Upload">
         </div>
         <div class="user-info">
+            <label class="label" for="name">Name: </label>
+            <span id="name" class="inputField"></span>
             <label class="label" for="stage-name">Stage Name: </label>
-            <input type="text" id="stage-name" class="inputField">
+            <span id="stage-name" class="inputField"></span>
 
             <label class="label" for="genre">Genre: </label>
-            <select name="genre" id="genre" class="inputField">
-                <option value="" selected disabled> Choose an option</option>
-                <option value="pop">Pop</option>
-                <option value="rock">Rock</option>
-                <option value="r&b">Rythm & Blues</option>
-                <option value="indie">Indie</option>
-                <option value="country">Country music</option>
-            </select>
+            <span id="genre" class="inputField"></span>
 
             <label class="label" for="phone">Phone Number: </label>
-            <input type="number" id="phone" class="inputField">
+            <span id="phone" class="inputField"></span>
 
             <label class="label" for="website">Website/Portfolio:</label>
-            <input type="text" id="website" class="inputField">
+            <span id="website" class="inputField"></span>
 
             <label class="label" for="summary">Introduce yourself (max 120 words):</label>
-            <textarea type="text" id="summary" class="inputField" minlength="10" required> </textarea>
+            <span id="summary" class="inputField"></span>
+        </div>
 
-            <input type="file" id="portfolioImageInput" accept="image/*" multiple>
-            <div id="portfolio-images">
-            </div>
-            <input type="button" id="uploadPortfolioImageBtn" value="Upload All">
+        <div class="booking-request">
+            <label class="label" for="address">Event Address:</label>
+            <input type="text" id="address" class="inputField" required>
+            <label class="label" for="date">Event Date: </label>
+            <input type="text" id="date" class="inputField" required>
+            <label class="label" for="offer">Offer</label>
+            <input type="text" id="offer" class="inputField" required>
 
-            <input id="saveBtn" type="submit" value="Save">
+            <input id="saveBtn" type="submit" value="Make An Offer">
+            <input id="chatBtn" type="submit" value="Chat With Artist">
+
+        </div>
         </div>
     </main>
 

@@ -1,102 +1,77 @@
 import {
-    saveUserDataInDb
-} from './firestore.js';
+    getUserDataById
+} from '../javascript/firestore.js';
 
-import { uploadProfileImage, uploadPortfolioImages } from './firebase-storage.js';
-import { loggedInUser } from "./utilities.js";
+import { USER_TYPE_ARTIST } from './app-constants.js';
+
+const params = new URLSearchParams(window.location.search);
+const uid = params.get('artist_id');
+let userData = await getUserData(uid, USER_TYPE_ARTIST);
 
 
-const imageInput = document.getElementById('imageInput');
-const uploadImageBtn = document.getElementById('uploadImageBtn');
+const userAvatar = document.getElementById('profile-pic');
+const name = document.getElementById('name');
+const stageName = document.getElementById('stage-name');
+const genre = document.getElementById('genre');
+const phone = document.getElementById('phone');
+const website = document.getElementById('website');
+const summary = document.getElementById('summary');
 
-const portfolioImageInput = document.getElementById('portfolioImageInput');
-const uploadPortfolioImageBtn = document.getElementById('uploadPortfolioImageBtn');
+const address = document.getElementById('address');
+const date = document.getElementById('date');
+const offerPrice = document.getElementById('offer');
 
 const saveBtn = document.getElementById('saveBtn');
+const chatBtn = document.getElementById('chatBtn');
 
-async function updateUserData(user) {
-    await saveUserDataInDb(user);
-    window.location.replace("homepage.html");
+
+saveBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+
+})
+
+chatBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    
+})
+
+
+setUserDataOnUI(userData);
+
+
+
+
+async function getUserData(userId, userType) {
+    return await getUserDataById(userId, userType);
 }
 
-// preview the selected profile picture of the user
-imageInput.addEventListener('change', function (event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            document.getElementById('profile-pic').src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
-// upload the profile picture of the user
-uploadImageBtn.addEventListener('click', function (event) {
-    event.preventDefault();
-    const file = imageInput.files[0];
-    if (file) {
-        try {
-            uploadProfileImage(file);
-        } catch (error) {
-            console.error(error);
+function setUserDataOnUI(user) {
+    if (user) {
+        if (user.profile_image) {
+            userAvatar.src = user.profile_image;
         }
-    } else {
-        alert('No image selected!');
-    }
-})
-
-// preview the portfolio selected images of the user
-portfolioImageInput.addEventListener('change', function (event) {
-    event.preventDefault();
-    const files = event.target.files;
-    const imagePreviewDiv = document.getElementById('portfolio-images');
-    imagePreviewDiv.innerHTML = ''; // Clear previous images
-
-    for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            imagePreviewDiv.appendChild(img);
-        };
-
-        reader.readAsDataURL(file);
-    }
-});
-
-// upload the portfolio images of the user
-uploadPortfolioImageBtn.addEventListener('click', function(event) {
-    event.preventDefault();
-    const files = portfolioImageInput.files;
-    if(files.length > 0) {
-        try {
-            uploadPortfolioImages(files);
-        } catch(error) {
-            console.error(error);
+        if(user.fName) {
+            name.textContent = user.fName;
         }
-    } else {
-        alert('No files selected!');
+        if (user.stageName) {
+            stageName.textContent = user.stageName;
+        }
+        if (user.genre) {
+            genre.textContent = user.genre;
+        }
+        if (user.phone) {
+            phone.textContent = user.phone;
+        }
+        if (user.website) {
+            website.textContent = user.website;
+        }
+        if (user.summary) {
+            summary.textContent = user.summary;
+        }
     }
-})
 
-// Save the user input data
-saveBtn.addEventListener('click', function (event) {
-    event.preventDefault();
 
-    const stageName = document.getElementById('stage-name').value;
-    const genre = document.getElementById('genre').value;
-    const phone = document.getElementById('phone').value;
-    const website = document.getElementById('website').value;
-    const summary = document.getElementById('summary').value;
 
-    loggedInUser.stageName = stageName;
-    loggedInUser.genre = genre;
-    loggedInUser.phone = phone;
-    loggedInUser.website = website;
-    loggedInUser.summary = summary;
 
-    updateUserData(loggedInUser);
-});
+
+}
