@@ -4,6 +4,8 @@ import {
 
 import { USER_TYPE_ARTIST } from './app-constants.js';
 
+import { sendOffer } from './search.js';
+
 const params = new URLSearchParams(window.location.search);
 const uid = params.get('artist_id');
 let userData = await getUserData(uid, USER_TYPE_ARTIST);
@@ -17,9 +19,9 @@ const phone = document.getElementById('phone');
 const website = document.getElementById('website');
 const summary = document.getElementById('summary');
 
-const address = document.getElementById('address');
-const date = document.getElementById('date');
-const offerPrice = document.getElementById('offer');
+const address = document.getElementById('address').value;
+const date = document.getElementById('date').value;
+const offerPrice = document.getElementById('offer').value;
 
 const saveBtn = document.getElementById('saveBtn');
 const chatBtn = document.getElementById('chatBtn');
@@ -28,11 +30,21 @@ const chatBtn = document.getElementById('chatBtn');
 saveBtn.addEventListener('click', (event) => {
     event.preventDefault();
 
+    try {
+        console.log(`art id : ` + uid);
+        console.log(`address : ` + address);
+        console.log(`date : ` + date);
+        console.log(`offer : ` + offerPrice);
+        // sendOffer(uid, address, date, offerPrice);
+    } catch (error) {
+        console.log("on send offer click: " + error);
+    }
+
 })
 
 chatBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    
+
 })
 
 
@@ -50,7 +62,7 @@ function setUserDataOnUI(user) {
         if (user.profile_image) {
             userAvatar.src = user.profile_image;
         }
-        if(user.fName) {
+        if (user.fName) {
             name.textContent = user.fName;
         }
         if (user.stageName) {
@@ -69,9 +81,4 @@ function setUserDataOnUI(user) {
             summary.textContent = user.summary;
         }
     }
-
-
-
-
-
 }

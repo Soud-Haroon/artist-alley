@@ -13,26 +13,31 @@ async function loadTemplates() {
     document.body.appendChild(tempDiv);
 }
 
-document.getElementById('searchButton').addEventListener('click', async function () {
-    var search = "empty";
-    search = document.getElementById('searchInput').value;
-    if (search !== '') { // Check if input is not empty
-        await searchArtists(search);
-    } else {
-        alert('Please enter a search query.');
+document.addEventListener('DOMContentLoaded', function () {
+    const searchButton = document.getElementById('searchButton');
+    if (!searchButton) {
+        console.error('Search button not found in the document.');
+        return;
     }
+
+    searchButton.addEventListener('click', async function () {
+        const searchInput = document.getElementById('searchInput').value.trim();
+
+        if (searchInput !== '') {
+            await searchArtists(searchInput);
+        } else {
+            alert('Please enter a search query.');
+        }
+    });
 });
 
 async function searchArtists(search) {
     let resultList = [];
     let results = [];
     try {
-        // console.log("search", " text => ", search);
         const querySnapshot = await getDocs(collection(db, "artists"));
         querySnapshot.forEach((doc) => {
-            // Push each document's data into the resultList array
             resultList.push(doc.data());
-            // console.log("name", " => ", doc.data().fName);
         });
 
         console.log("============ search results  ==================");
@@ -61,7 +66,7 @@ function renderArtistResults(artistResults) {
         artistResults.forEach(artist => {
             const clone = template.content.cloneNode(true);
             // 
-            console.log('Soud look art id:' + artist.uid);
+            // console.log('Soud look art id:' + artist.uid);
             const artistItem = clone.querySelector('.artist-item');
             artistItem.setAttribute('artist-uid', artist.uid);
             // 
@@ -86,35 +91,38 @@ function veiwPortfolio(artist_id) {
 }
 
 // Making an demo request ===========//
-async function sendOffer(artist_id) {
+export async function sendOffer(artist_id, address, date, offerPrice) {
+    // console.log(`art id : ` + artist_id);
+    // console.log(`address : ` + address);
+    // console.log(`date : ` + date);
+    // console.log(`offer : ` + offerPrice);
     try {
-        console.log('from artist profile artist id: ', artist_id);
-        const docRef = await addDoc(collection(db, "request"), {
-            host_id: currentUser.uid,
-            name: currentUser.fName + " " + currentUser.lName,
-            email: currentUser.email,
-            artist_id: artist_id,
-            phone: currentUser.phone,
-            business_name: currentUser.org_name,
-            offer: "20",
-            address: "vancouver",
-            req_date: Date(),
-            response: "pending",
-        });
-        const docID = docRef.id;
+        // console.log('from artist profile artist id: ', artist_id);
+        // const docRef = await addDoc(collection(db, "request"), {
+        //     host_id: currentUser.uid,
+        //     name: currentUser.fName + " " + currentUser.lName,
+        //     email: currentUser.email,
+        //     artist_id: artist_id,
+        //     phone: currentUser.phone,
+        //     business_name: currentUser.org_name,
+        //     offer: offerPrice,
+        //     address: address,
+        //     req_date: date,
+        //     response: "pending",
+        // });
+        // const docID = docRef.id;
 
-        await updateDoc(docRef, {
-            uid: docID,
-        });
+        // await updateDoc(docRef, {
+        //     uid: docID,
+        // });
 
-        alert('Offer send successfully!');
+        // alert('Offer send successfully!');
         console.log("request created and id updated!");
-        console.log("Document written with ID: ", docID);
+        // console.log("Document written with ID: ", docID);
     } catch (error) {
         console.error("Error adding document: ", error);
     }
 }
-
 
 window.sendUserOffer = sendOffer;
 window.veiwPortfolio = veiwPortfolio;
