@@ -61,9 +61,12 @@ async function gotoHomepage(loggedInUser, firstName, lastName, userType) {
     await saveUser(user);
     // store this user data in the local storage
     localStorage.setItem("user", JSON.stringify(user));
-    // go to the homepage or any other appropriate page
-
-    window.location.replace("user-info.html");
+    // go to the appropriate user type profile page
+    if(user.userType == USER_TYPE_ARTIST) {
+        window.location.replace("account-artist.html");
+    } else {
+        window.location.replace("account-organiser.html");
+    }
 }
 
 async function saveUser(user) {

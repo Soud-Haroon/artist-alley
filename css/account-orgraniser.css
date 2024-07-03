@@ -27,3 +27,31 @@ main {
     gap: 1rem;
     justify-content: center;
 }
+
+.label {
+    font-weight: bold;
+    justify-content: center;
+}
+
+.inputField {
+    padding: 10px;
+}
+
+#summary {
+    min-height: 100px;
+}
+
+#saveBtn {
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.user-info {
+    display: grid;
+    grid-template-columns: 20% 1fr;
+    gap: 0.75rem;
+    text-align: start;
+    margin-top: 5rem;
+}
