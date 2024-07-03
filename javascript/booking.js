@@ -55,7 +55,8 @@ function listenToRequests() {
         const requests = [];
         querySnapshot.forEach((doc) => {
             const requestData = doc.data();
-            if (currentUser.uid === requestData.uid) {
+
+            if (currentUser.uid === requestData.host_id || currentUser.uid == requestData.artist_id) {
                 if (requestData.response != "decline") {
                     const myUser = new BookingRequest(
                         requestData.uid,
@@ -77,7 +78,11 @@ function listenToRequests() {
 
         // Clear previous content in #request
         document.getElementById('request-view').innerHTML = '';
-        renderBookingRequest(requests);
+        if (currentUser.userType === '2000') {
+            renderBookingPendingRequest(requests);
+        } else {
+            renderBookingRequest(requests);
+        }
         console.log("Current request in database: ", requests);
     });
 }
@@ -106,6 +111,38 @@ function renderBookingRequest(requests) {
         clone.querySelector('.request-business-name').textContent = requests.business_name;
         clone.querySelector('.request-offer').textContent = requests.offer;
         clone.querySelector('.request-address').textContent = requests.address;
+
+        fragment.appendChild(clone);
+    });
+
+    // Append the fragment to the container
+    container.appendChild(fragment);
+}
+// Function to generate HTML for all booking requests and update the UI
+function renderBookingPendingRequest(requests) {
+    // Get the template content
+    const template = document.getElementById('request-template-owner');
+    const container = document.getElementById('request-view');
+
+    // Clear the container
+    container.innerHTML = '';
+
+    // Create document fragment to minimize reflows
+    const fragment = document.createDocumentFragment();
+
+    requests.forEach(requests => {
+        const clone = template.content.cloneNode(true);
+
+        // Set the data attribute for UID
+        const requestItem = clone.querySelector('.request-item');
+        requestItem.setAttribute('data-uid', requests.uid); // Ensure request.uid is not null
+        clone.querySelector('.request-name').textContent = requests.name;
+        clone.querySelector('.request-email').textContent = requests.email;
+        clone.querySelector('.request-phone').textContent = requests.phone;
+        clone.querySelector('.request-business-name').textContent = requests.business_name;
+        clone.querySelector('.request-offer').textContent = requests.offer;
+        clone.querySelector('.request-address').textContent = requests.address;
+        clone.querySelector('.request-response').textContent = requests.response;
 
         fragment.appendChild(clone);
     });
@@ -233,9 +270,9 @@ async function bookingAccepted(docID) {
             name: docData.name || "",
             email: docData.email || "",
             phone: docData.phone || "",
+            artist_id: docData.artist_id || "",
+            host_id: docData.host_id || "",
             business_name: docData.business_name || "",
-            age: docData.age || "",
-            user_type: docData.user_type || "",
             offer: docData.offer || "",
             address: docData.address || "",
             req_date: docData.req_date || "",

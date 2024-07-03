@@ -19,9 +19,9 @@ const phone = document.getElementById('phone');
 const website = document.getElementById('website');
 const summary = document.getElementById('summary');
 
-const address = document.getElementById('address').value;
-const date = document.getElementById('date').value;
-const offerPrice = document.getElementById('offer').value;
+const address = document.getElementById('address');
+const date = document.getElementById('date');
+const offerPrice = document.getElementById('offer');
 
 const saveBtn = document.getElementById('saveBtn');
 const chatBtn = document.getElementById('chatBtn');
@@ -29,13 +29,13 @@ const chatBtn = document.getElementById('chatBtn');
 
 saveBtn.addEventListener('click', (event) => {
     event.preventDefault();
-
+    console.log("====================");
     try {
-        console.log(`art id : ` + uid);
-        console.log(`address : ` + address);
-        console.log(`date : ` + date);
-        console.log(`offer : ` + offerPrice);
-        // sendOffer(uid, address, date, offerPrice);
+        // console.log(`art id : ` + uid);
+        // console.log(`address : ` + address.value);
+        // console.log(`date : ` + date.value);
+        // console.log(`offer : ` + offerPrice.value);
+        sendOffer(uid, address.value, date.value, offerPrice.value);
     } catch (error) {
         console.log("on send offer click: " + error);
     }

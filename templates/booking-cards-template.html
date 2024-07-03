@@ -8,8 +8,6 @@
             <p><strong>Email:</strong> <span class="request-email"></span></p>
             <p><strong>Phone:</strong> <span class="request-phone"></span></p>
             <p><strong>Business Name:</strong> <span class="request-business-name"></span></p>
-            <p><strong>Age:</strong> <span class="request-age"></span></p>
-            <p><strong>User Type:</strong> <span class="request-user-type"></span></p>
             <p><strong>Offer:</strong> <span class="request-offer"></span></p>
             <p><strong>Address:</strong> <span class="request-address"></span></p>
             <!-- <p><strong>Request Date:</strong> <span class="request-req-date"></span></p> -->
@@ -18,8 +16,24 @@
                     onclick="bookingComfirmed(this.parentElement.parentElement.parentElement.getAttribute('data-uid'))">Accept</button>
                 <button
                     onclick="bookingDeclined(this.parentElement.parentElement.parentElement.getAttribute('data-uid'))">Decline</button>
-                <button class="chat-button">Chat</button>
+                <!-- <button class="chat-button">Chat</button> -->
             </div>
+        </div>
+    </div>
+</template>
+<!--  -->
+<template id="request-template-owner">
+    <div class="request-item">
+        <div class="request-header">
+            <h2 class="request-name"></h2>
+        </div>
+        <div class="request-body">
+            <p><strong>Email:</strong> <span class="request-email"></span></p>
+            <p><strong>Phone:</strong> <span class="request-phone"></span></p>
+            <p><strong>Business Name:</strong> <span class="request-business-name"></span></p>
+            <p><strong>Offer:</strong> <span class="request-offer"></span></p>
+            <p><strong>Address:</strong> <span class="request-address"></span></p>
+            <p><strong>Address:</strong> <span class="request-response"></span></p>
         </div>
     </div>
 </template>
@@ -33,8 +47,6 @@
             <p><strong>Email:</strong> <span class="booking-email"></span></p>
             <p><strong>Phone:</strong> <span class="booking-phone"></span></p>
             <p><strong>Business Name:</strong> <span class="booking-business-name"></span></p>
-            <p><strong>Age:</strong> <span class="booking-age"></span></p>
-            <p><strong>User Type:</strong> <span class="booking-user-type"></span></p>
             <p><strong>Offer:</strong> <span class="booking-offer"></span></p>
             <p><strong>Address:</strong> <span class="booking-address"></span></p>
             <p><strong>Response:</strong> <span class="booking-response"></span></p>

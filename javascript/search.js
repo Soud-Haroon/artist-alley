@@ -92,31 +92,31 @@ function veiwPortfolio(artist_id) {
 
 // Making an demo request ===========//
 export async function sendOffer(artist_id, address, date, offerPrice) {
-    // console.log(`art id : ` + artist_id);
-    // console.log(`address : ` + address);
-    // console.log(`date : ` + date);
-    // console.log(`offer : ` + offerPrice);
+    console.log(`art id : ` + artist_id);
+    console.log(`address : ` + address);
+    console.log(`date : ` + date);
+    console.log(`offer : ` + offerPrice);
     try {
-        // console.log('from artist profile artist id: ', artist_id);
-        // const docRef = await addDoc(collection(db, "request"), {
-        //     host_id: currentUser.uid,
-        //     name: currentUser.fName + " " + currentUser.lName,
-        //     email: currentUser.email,
-        //     artist_id: artist_id,
-        //     phone: currentUser.phone,
-        //     business_name: currentUser.org_name,
-        //     offer: offerPrice,
-        //     address: address,
-        //     req_date: date,
-        //     response: "pending",
-        // });
-        // const docID = docRef.id;
+        console.log('from artist profile artist id: ', artist_id);
+        const docRef = await addDoc(collection(db, "request"), {
+            host_id: currentUser.uid,
+            name: currentUser.fName + " " + currentUser.lName,
+            email: currentUser.email,
+            artist_id: artist_id,
+            phone: currentUser.phone,
+            business_name: currentUser.org_name,
+            offer: offerPrice,
+            address: address,
+            req_date: date,
+            response: "pending",
+        });
+        const docID = docRef.id;
 
-        // await updateDoc(docRef, {
-        //     uid: docID,
-        // });
+        await updateDoc(docRef, {
+            uid: docID,
+        });
 
-        // alert('Offer send successfully!');
+        alert('Offer send successfully!');
         console.log("request created and id updated!");
         // console.log("Document written with ID: ", docID);
     } catch (error) {
