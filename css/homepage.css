@@ -21,14 +21,11 @@
 }
 
 body {
+  background: linear-gradient(to bottom, #111415, #363a47);
   position: relative;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+
 
 header {
   height: 220vh;
