@@ -28,7 +28,6 @@ height: auto;
 
 nav{
     display: none;
-   
 }
 
 .headerContent .navbar .search a, .headerContent .navbar .menuBtn a{
@@ -80,4 +79,24 @@ nav ul li a:hover{
     color: var(--accent-clr);
     border-bottom: 1px solid var(--accent-clr);
     transition: all .5s;
+}
+@media screen and (min-width: 700px) {
+    .headerContent .navbar .menuBtn{
+        display: none;
+    }
+    nav{
+        display: block;
+    }
+   
+    .headerContent .site-heading,  .headerContent .navbar{
+        grid-column: 1/span 2;
+        grid-row: 1/span 2;
+    }
+    nav ul li{
+        display: inline;
+    }
+    nav ul li a{
+        color: var(--white-clr);
+        margin-left: 1rem;
+    }
 }

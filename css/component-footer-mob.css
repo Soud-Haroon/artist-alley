@@ -1,5 +1,5 @@
 footer{
-    background-color: var(--primary-clr);
+    background:  linear-gradient(to bottom, #111415, #363a47);
     color: var(--white-clr);
     padding: 1rem;
 }
