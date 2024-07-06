@@ -1,0 +1,25 @@
+@media screen and (min-width:700px) {
+    footer .footerContent {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        color: white;
+    }
+    
+    footer .footerContent .footer-head {
+        text-align: left;
+        display: grid;
+        gap: 1rem;
+    }
+    
+    footer .footerContent .footer-head img {
+        margin: 0;
+    
+    }
+    
+    footer .footerContent .copyright {
+        grid-column: 1/ span 4;
+        text-align: center;
+    
+        margin-top: 2rem;
+    }
+    }
