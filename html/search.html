@@ -8,97 +8,94 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="../css/search.css">
     <title>Search page</title>
 </head>
 
 <body>
     <header>
-        <div class="logo">Logo</div>
-        <nav>
-            <ul>
-                <li><a href="">Book an Artist</a></li>
-                <li><a href="">Join our artist</a></li>
-                <li><a href="">My Account</a></li>
-                <li><a href="">Login</a></li>
-            </ul>
-        </nav>
+
+        <div class="headerContent">
+            <div class="site-heading">
+                <img src="../src/Untitled-9.png" alt="logo">
+                <h1>artist alley</h1>
+            </div>
+
+            <div class="navbar">
+                <nav>
+                    <ul>
+                        <li><a href="Home">Home</a></li>
+                        <li><a href="About Us">About us</a></li>
+                        <li><a href="">Book an artist</a></li>
+                        <li><a href="">Join our artist</a></li>
+                        <li class="login-btn"><a href="">Login</a></li>
+                    </ul>
+                </nav>
+                <div class="search"><a href="#">Search <i class="fa-solid fa-magnifying-glass"></i></a></div>
+                <div class="menuBtn">
+                    <a href="#"><i class="fa-solid fa-bars"></i></a>
+                </div>
+            </div>
+
+        </div>
+
     </header>
-
-    <!-- <section class="hero">
-        <div class="hero-search-bar">
-            <i class="fa-solid fa-search"></i>
-            <input type="text" name="search-bar" class="search-bar" id="search" placeholder="Search for artist... "></input>
+    <main>
+        <div class="search-text">
+            <h1>Search</h1>
         </div>
-    </section> -->
+        <div class="search-container">
+            <input type="text" placeholder="Search.." name="search" id="search">
+            <a href="#">
+                <i class="fa fa-search"></i>
+            </a>
+        </div>
+    </main>
 
 
-    <div class="hero">
-        <div class="search-section">
-            <div class="search-bar">
-                <input type="text" placeholder="Search bar">
-                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
-        </div>
-        <div class="hero-pagination">
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">&raquo;</a>
-            </div>
-            <p>1-20 of 226</p>
-        </div>
-    </div>
-    <section class="result">
-        <section class="result-info">
-           
-            <div class="artist-card">
-                <div class="article-info">
-                    <p>Name</p>
-                    <p>Rock</p>
-                    <P>I love to make people happy and bring joy and music to events. I have 1 years of experience as a singer in Vancouver and love rock and roll.</P>
-                    <p>01 Reviews</p>
+    <footer>
+        <div class="footerContent">
+
+            <div class="footer-head">
+                <img src="../src/logo2.png" alt="">
+                <p>Your source for artistic excellence, delivering creativity and talent for every occasion.</p>
+                <div class="icons">
+                    <ul>
+                        <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+                    </ul>
                 </div>
-                <!-- <button class="artist-button">Read More</button> -->
-                <img class="artist-image " src="http://picsum.photos/600/200?random=1">
-            </div>
-            <div class="artist-card">
-                <div class="artist-info">
-                    <p>Name</p>
-                    <p>Rock</p>
-                    <P>I love to make people happy and bring joy and music to events. I have 1 years of experience as a singer in Vancouver and love rock and roll.</P>
-                    <p>16 Reviews</p>
-                </div>
-                <!-- <button class="artist-button">Read More</button> -->
-                <img class="artist-image " src="http://picsum.photos/600/200?random=1">
             </div>
 
-        </section>
-            <section class="filter">
-                <h2><a href="">Filter</a></h2>
-                <h3><a href="">Category</h3>
-                <h3><a href="">Location</a></h3>
-                <h3><a href="">Availability</h3>
-                <h3><a href="">Occasions</a></h3>
+            <div class="quick-links">
+                <p>Quick links</p>
                 <ul>
-                    <li>Birthdays & Anniversaries</li>
-                    <li>Community Events</li>
-                    <li>Corporate Events</li>
-                    <li>Cultural Events</li>
-                    <li>Holidays</li>
-                    <li>Private Events</li>
-                    <li>Religious Events</li>
-                    <li>School Events</li>
-                    <li>Sporting Events</li>
-                    <li>Theme Parties</li>
-                    <li>Weddings</li>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Book an artist</a></li>
+                    <li><a href="#">Join our artist</a></li>
                 </ul>
-                
-            </section>
-        </section>
+            </div>
+
+            <div class="contact-us">
+                <p>Contact us</p>
+                <ul>
+                    <li><a href="#">1-800-123-4567</a></li>
+                    <li><a href="#">info@artistalley.com</a></li>
+                    <li><a href="#">4878, Main street, Vancouver, BC, V52TP</a></li>
+                </ul>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2024 Artist Alley. All rights reserved. | privacy Policy | Terms of Service</p>
+            </div>
+
+        </div>
+
+    </footer>
 
 
 </body>
