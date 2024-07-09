@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Booking</title>
+
     <link rel="stylesheet" href="../css/demo_book.css">
     <link rel="stylesheet" href="../css/headerstyle.css">
     <script type="module" src="../javascript/utilities.js" defer></script>
@@ -28,21 +29,17 @@
     </header>
     <main>
         <div class="container">
-            <!-- button's -->
-            <!-- <div class="myButtonDiv">
-                <button onclick="makeRequest()">Make request</button>
-            </div> -->
             <!-- booking content -->
             <div class="booking-content-wrapper">
-                <div class="request-div">
+                <div class="pending-view">
                     <h2>Request Pending:</h2>
-                    <div id="request-view">
+                    <div id="bookings-pending">
                         <!-- Booking items will be dynamically added here -->
                     </div>
                 </div>
-                <div class="myBooking-div">
+                <div class="aceepted-view">
                     <h2>My Bookings:</h2>
-                    <div id="booking-view">
+                    <div id="bookings-accepted">
                         <!-- Booking items will be dynamically added here -->
                     </div>
                 </div>

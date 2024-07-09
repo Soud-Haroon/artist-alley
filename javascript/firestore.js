@@ -1,9 +1,14 @@
 import { firebase } from '../app.js';
 
 import {
+    collection,
+    query,
+    where,
+    getDocs,
     getFirestore,
     doc,
     setDoc,
+    addDoc,
     getDoc
 } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
@@ -12,7 +17,8 @@ import {
     USER_TYPE_ORGANISER,
     ARTIST_TABLE,
     ORGANISER_TABLE,
-    TABLE_USER_TYPE
+    TABLE_USER_TYPE,
+    TABLE_BOOKINGS
 } from '../javascript/app-constants.js';
 
 const firestore = getFirestore(firebase);
@@ -48,6 +54,16 @@ async function saveUserTypeInDb(user) {
     }
 }
 
+async function saveBookingInDb(booking) {
+    try {
+        const ref = doc(firestore, TABLE_BOOKINGS, booking.booking_id);
+        await setDoc(ref, booking);
+        console.log('============= Booking added successfully! ============');
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 async function getUserDataById(userId, userType) {
     let table;
     if (userType == USER_TYPE_ARTIST) {
@@ -80,8 +96,31 @@ async function getUserTypeDataById(userId) {
     }
 }
 
+async function getBookingsFromDb(uid, userType) {
+    let bookings = [];
+    // const bookingRef = doc(firestore, TABLE_BOOKINGS);
+    let key = '';
+    if (userType == USER_TYPE_ARTIST) {
+        key = 'artist_id';
+    } else {
+        key = 'host_id';
+    }
+    const q = query(collection(firestore, TABLE_BOOKINGS), where(key, "==", uid));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        // console.log(doc.id, " => ", doc.data());
+        bookings.push(doc.data());
+    });
+    return bookings;
+
+}
+
 export {
     saveUserDataInDb,
+    saveBookingInDb,
     getUserDataById,
-    getUserTypeDataById
+    getUserTypeDataById,
+    getBookingsFromDb
 }

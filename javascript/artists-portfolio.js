@@ -1,14 +1,17 @@
 import {
-    getUserDataById
+    getUserDataById,
+    saveBookingInDb
 } from '../javascript/firestore.js';
 
-import { USER_TYPE_ARTIST } from './app-constants.js';
+import { loggedInUser } from './utilities.js';
 
-import { sendOffer } from './search.js';
+import { USER_TYPE_ARTIST, STATUS_PENDING } from './app-constants.js';
+
+// import { sendOffer } from './search.js';
 
 const params = new URLSearchParams(window.location.search);
-const uid = params.get('artist_id');
-let userData = await getUserData(uid, USER_TYPE_ARTIST);
+const artist_id = params.get('artist_id');
+let artist_data = await getArtistData(artist_id, USER_TYPE_ARTIST);
 
 
 const userAvatar = document.getElementById('profile-pic');
@@ -23,19 +26,27 @@ const address = document.getElementById('address');
 const date = document.getElementById('date');
 const offerPrice = document.getElementById('offer');
 
-const saveBtn = document.getElementById('saveBtn');
+const makeOfferBtn = document.getElementById('makeOfferBtn');
 const chatBtn = document.getElementById('chatBtn');
 
+setUserDataOnUI(artist_data);
 
-saveBtn.addEventListener('click', (event) => {
+
+makeOfferBtn.addEventListener('click', (event) => {
     event.preventDefault();
     console.log("====================");
     try {
-        // console.log(`art id : ` + uid);
-        // console.log(`address : ` + address.value);
-        // console.log(`date : ` + date.value);
-        // console.log(`offer : ` + offerPrice.value);
-        sendOffer(uid, address.value, date.value, offerPrice.value);
+        let booking = {
+            booking_id: loggedInUser.uid+artist_data.uid,
+            host_id: loggedInUser.uid,
+            artist_id: artist_data.uid,
+            artist_name: artist_data.fName,
+            event_address: address.value,
+            event_date: date.value,
+            offer_price: offerPrice.value,
+            status: STATUS_PENDING
+        }
+        makeAnOffer(booking);
     } catch (error) {
         console.log("on send offer click: " + error);
     }
@@ -47,38 +58,36 @@ chatBtn.addEventListener('click', (event) => {
 
 })
 
-
-setUserDataOnUI(userData);
-
-
-
-
-async function getUserData(userId, userType) {
+async function getArtistData(userId, userType) {
     return await getUserDataById(userId, userType);
 }
 
-function setUserDataOnUI(user) {
-    if (user) {
-        if (user.profile_image) {
-            userAvatar.src = user.profile_image;
+async function makeAnOffer(booking) {
+    return await saveBookingInDb(booking);
+}
+
+function setUserDataOnUI(artist) {
+    if (artist) {
+        if (artist.profile_image) {
+            userAvatar.src = artist.profile_image;
         }
-        if (user.fName) {
-            name.textContent = user.fName;
+        if (artist.fName) {
+            name.textContent = artist.fName;
         }
-        if (user.stageName) {
-            stageName.textContent = user.stageName;
+        if (artist.stageName) {
+            stageName.textContent = artist.stageName;
         }
-        if (user.genre) {
-            genre.textContent = user.genre;
+        if (artist.genre) {
+            genre.textContent = artist.genre;
         }
-        if (user.phone) {
-            phone.textContent = user.phone;
+        if (artist.phone) {
+            phone.textContent = artist.phone;
         }
-        if (user.website) {
-            website.textContent = user.website;
+        if (artist.website) {
+            website.textContent = artist.website;
         }
-        if (user.summary) {
-            summary.textContent = user.summary;
+        if (artist.summary) {
+            summary.textContent = artist.summary;
         }
     }
 }
