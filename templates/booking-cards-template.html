@@ -1,5 +1,5 @@
-<!-- Pending templates -->
-<template id="bookingPendingTemplate">
+<!-- Pending templates ARTIST-->
+<template id="bookingPendingTemplateArtist">
     <div class="pending-item">
         <div class="pending-header">
             <h2 class="pending-name"></h2>
@@ -15,15 +15,33 @@
             <div class="response-div">
                 <button id="accept-request">Accept</button>
                 <button id="decline-request">Decline</button>
-                    <!-- onclick="bookingComfirmed(this.parentElement.parentElement.parentElement.getAttribute('data-uid'))" -->
-                    <!-- onclick="bookingDeclined(this.parentElement.parentElement.parentElement.getAttribute('data-uid'))" -->
-                <!-- <button class="chat-button">Chat</button> -->
             </div>
         </div>
     </div>
 </template>
 
-<!-- Booking templates -->
+<!-- Pending templates ORGANISER-->
+<template id="bookingPendingTemplateOrganiser">
+    <div class="pending-item">
+        <div class="pending-header">
+            <h2 class="pending-name"></h2>
+        </div>
+        <div class="pending-body">
+            <p><strong>Host Name:</strong> <span id="host-name"></span></p>
+            <p><strong>Event Address:</strong> <span id="event-address"></span></p>
+            <p><strong>Event Date:</strong> <span id="event-date"></span></p>
+            <p><strong>Offer:</strong> <span id="request-offer"></span></p>
+            <p><strong>Status:</strong> <span id="request-status"></span></p>
+
+
+            <div class="response-div">
+                <!-- <button id="accept-request">Accept</button> -->
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- Booking templates ARTIST/ORGANISER-->
 <template id="bookingAcceptedTemplate">
     <div class="booking-item">
         <div class="booking-header">
@@ -38,21 +56,3 @@
         </div>
     </div>
 </template>
-
-
-<!-- 
-<template id="request-template-owner">
-    <div class="request-item">
-        <div class="request-header">
-            <h2 class="request-name"></h2>
-        </div>
-        <div class="request-body">
-            <p><strong>Email:</strong> <span class="request-email"></span></p>
-            <p><strong>Phone:</strong> <span class="request-phone"></span></p>
-            <p><strong>Business Name:</strong> <span class="request-business-name"></span></p>
-            <p><strong>Offer:</strong> <span class="request-offer"></span></p>
-            <p><strong>Address:</strong> <span class="request-address"></span></p>
-            <p><strong>Address:</strong> <span class="request-response"></span></p>
-        </div>
-    </div>
-</template> -->
