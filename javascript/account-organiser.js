@@ -12,6 +12,7 @@ const firstName = document.getElementById('fName');
 const lastName = document.getElementById('lName');
 const orgName = document.getElementById('orgName');
 const role = document.getElementById('role');
+const address = document.getElementById('address');
 const summary = document.getElementById('summary');
 
 const saveBtn = document.getElementById('saveBtn');
@@ -44,6 +45,7 @@ saveBtn.addEventListener('click', (event) => {
     loggedInUser.lName = lastName.value;
     loggedInUser.org_name = orgName.value;
     loggedInUser.role = role.value;
+    loggedInUser.address = address.value;
     loggedInUser.summary = summary.value;
 
     updateUserData(loggedInUser);
@@ -97,6 +99,9 @@ function setUserDataOnUI() {
         }
         if(loggedInUser.role) {
             role.value = loggedInUser.role;
+        }
+        if(loggedInUser.address) {
+            address.value = loggedInUser.address;
         }
         if(loggedInUser.summary) {
             summary.value = `${loggedInUser.summary}`;
