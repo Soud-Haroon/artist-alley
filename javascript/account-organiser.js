@@ -8,12 +8,12 @@ import { saveUserDataInDb } from "./firestore.js";
 // const startCameraBtn = document.getElementById('start-camera');
 
 const userAvatar = document.getElementById('profile-image');
-// const firstName = document.getElementById('fName');
-// const lastName = document.getElementById('lName');
-// const orgName = document.getElementById('orgName');
-// const role = document.getElementById('role');
-const summary = document.getElementById('summary');
+const firstName = document.getElementById('fName');
+const lastName = document.getElementById('lName');
+const orgName = document.getElementById('orgName');
+const role = document.getElementById('role');
 const address = document.getElementById('address');
+const summary = document.getElementById('summary');
 
 // const saveBtn = document.getElementById('saveBtn');
 

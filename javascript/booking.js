@@ -1,4 +1,4 @@
-import { STATUS_PENDING, STATUS_DECLINED, getStatus, STATUS_ACCEPTED } from './app-constants.js';
+import { STATUS_PENDING, STATUS_DECLINED, getStatus, STATUS_ACCEPTED, USER_TYPE_ARTIST } from './app-constants.js';
 import { getBookingsFromDb, saveBookingInDb } from './firestore.js';
 import { loggedInUser } from './utilities.js';
 
@@ -35,10 +35,29 @@ async function fetchAndUsePendingTemplate(pendingBooking) {
     const temp = document.createElement('div');
     temp.innerHTML = html;
 
-    
+
     // Extract the template content
-    const bookingPendingTemplate = temp.querySelector('#bookingPendingTemplate');
-    const clone = document.importNode(bookingPendingTemplate.content, true);
+    let bookingPendingTemplate;
+    let clone;
+    if (loggedInUser.userType == USER_TYPE_ARTIST) {
+        bookingPendingTemplate = temp.querySelector('#bookingPendingTemplateArtist');
+        clone = document.importNode(bookingPendingTemplate.content, true);
+
+        const acceptBtn = clone.querySelector('#accept-request');
+        const declineBtn = clone.querySelector('#decline-request');
+        acceptBtn.addEventListener('click', () => {
+            pendingBooking.status = STATUS_ACCEPTED;
+            updateBookingStatus(pendingBooking);
+        });
+
+        declineBtn.addEventListener('click', () => {
+            pendingBooking.status = STATUS_DECLINED;
+            updateBookingStatus(pendingBooking);
+        });
+    } else {
+        bookingPendingTemplate = temp.querySelector('#bookingPendingTemplateOrganiser');
+        clone = document.importNode(bookingPendingTemplate.content, true);
+    }
 
     // const hostName = clone.querySelector('#host-name');
     const eventAddress = clone.querySelector('#event-address');
@@ -46,24 +65,11 @@ async function fetchAndUsePendingTemplate(pendingBooking) {
     const requestOffer = clone.querySelector('#request-offer');
     const requestStatus = clone.querySelector('#request-status');
 
-    const acceptBtn = clone.querySelector('#accept-request');
-    const declineBtn = clone.querySelector('#decline-request');
-
     // hostName.innerHTML = pendingBooking.hostName;
     eventAddress.innerHTML = pendingBooking.event_address;
     eventDate.innerHTML = pendingBooking.event_date;
     requestOffer.textContent = pendingBooking.offer_price;
     requestStatus.textContent = getStatus(pendingBooking.status);
-
-    acceptBtn.addEventListener('click', () => {
-        pendingBooking.status = STATUS_ACCEPTED;
-        updateBookingStatus(pendingBooking);
-    });
-
-    declineBtn.addEventListener('click', () => {
-        pendingBooking.status = STATUS_DECLINED;
-        updateBookingStatus(pendingBooking);
-    });
 
     bookingsPendingContainer.appendChild(clone);
 }
