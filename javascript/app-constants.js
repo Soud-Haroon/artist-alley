@@ -4,6 +4,7 @@ const ARTIST_TABLE = 'artists';
 const ORGANISER_TABLE = 'organisers';
 const TABLE_USER_TYPE = 'user-type';
 const TABLE_BOOKINGS = 'bookings';
+const TABLE_CHAT = 'chat';
 
 const STATUS_PENDING = 1000;
 const STATUS_ACCEPTED = 2000;
@@ -27,6 +28,7 @@ export {
     ORGANISER_TABLE,
     TABLE_USER_TYPE,
     TABLE_BOOKINGS,
+    TABLE_CHAT,
     STATUS_PENDING,
     STATUS_ACCEPTED,
     STATUS_DECLINED,
