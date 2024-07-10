@@ -95,11 +95,11 @@ uploadPortfolioImageBtn.addEventListener('click', function (event) {
 saveBtn.addEventListener('click', function (event) {
     event.preventDefault();
 
-    loggedInUser.stageName = stageName.value;
-    loggedInUser.genre = genre.value;
-    loggedInUser.phone = phone.value;
-    loggedInUser.website = website.value;
-    loggedInUser.summary = summary.value;
+    loggedInUser.stageName = stageName.textContent;
+    loggedInUser.genre = genre.textContent;
+    loggedInUser.phone = phone.textContent;
+    loggedInUser.website = website.textContent;
+    loggedInUser.summary = summary.textContent;
 
     updateUserData(loggedInUser);
 });
@@ -111,23 +111,23 @@ function setUserDataOnUI() {
             profilePic.src = loggedInUser.profile_image;
         }
         if (loggedInUser.stageName) {
-            stageName.value = loggedInUser.stageName;
+            stageName.textContent = loggedInUser.stageName;
         }
         if (loggedInUser.genre) {
             for (let i = 0; i < genre.options.length; i++) {
-                if (genre.options[i].value == loggedInUser.genre) {
+                if (genre.options[i].textContent == loggedInUser.genre) {
                     genre.selectedIndex = i;
                 }
             }
         }
         if (loggedInUser.phone) {
-            phone.value = loggedInUser.phone;
+            phone.textContent = loggedInUser.phone;
         }
         if (loggedInUser.website) {
-            website.value = loggedInUser.website;
+            website.textContent = loggedInUser.website;
         }
         if (loggedInUser.summary) {
-            summary.value = loggedInUser.summary;
+            summary.textContent = loggedInUser.summary;
         }
         if (loggedInUser.portfolio_images) {
             imagePreviewDiv.innerHTML = '';

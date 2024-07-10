@@ -7,13 +7,15 @@
     <title>Account</title>
     <link rel="stylesheet" href="../css/account-orgraniser.css">
     <link rel="stylesheet" href="../css/headerstyle.css">
+    <link rel="stylesheet" href="../css/main-footer.css">
 
     <script type="module" src="../javascript/utilities.js" defer></script>
+    <script type="module" src="../javascript/firebase-auth.js" defer></script>
     <script type="module" src="../javascript/account-organiser.js" defer></script>
 </head>
 
 <body>
-    <header>
+    <!-- <header>
         <h1>Artist Alley</h1>
         <nav>
             <ul>
@@ -25,45 +27,269 @@
 
             </ul>
         </nav>
-    </header>
-    <main>
-        <div class="user-data">
-            <h1>Complete Your Profile</h1>
+    </header> -->
 
-            <div class="user-avatar">
-                <img
-                src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                id="profile-image" alt="user avatar">
-            </div>
-            <input id="start-camera" type="button" value="Start Camera">
-            <div id="camera">
-                <video id="webcam" autoplay playsinline width="320" height="240"></video>
-                <button id="capture">Capture</button>
+    <header>
+
+        <div class="headerContent">
+            <div class="site-heading">
+                <img src="../src/Untitled-9.png" alt="logo">
+                <h1>artist alley</h1>
             </div>
 
-            <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
-
-            <div class="user-info">
-                <label class="label" for="fName">First Name:</label>
-                <input type="text" id="fName" class="inputField">
-
-                <label class="label" for="lName">Last Name:</label>
-                <input type="text" id="lName" class="inputField">
-
-                <label class="label" for="orgName">Organisation Name:</label>
-                <input type="text" id="orgName" class="inputField">
-
-                <label class="label" for="role">Role:</label>
-                <input type="text" id="role" class="inputField">
-
-                <label class="label" for="summary">Introduce yourself (max 120 words):</label>
-                <textarea type="text" id="summary" class="inputField" minlength="10" required> </textarea>
+            <div class="navbar">
+                <nav>
+                    <ul>
+                        <li><a href="./homepage.html">Home</a></li>
+                        <li><a href="">About us</a></li>
+                        <li><a href="">Book an artist</a></li>
+                        <li><a href="">Join our artist</a></li>
+                        <li><a href="" id="myProfile">profile</a></li>
+                        <li><a href="" id="logoutBtn">logout</a></li>
+                    </ul>
+                </nav>
+                <div class="search"><a href="">Search <i class="fa-solid fa-magnifying-glass"></i></a></div>
+                <div class="menuBtn">
+                    <a href="#"><i class="fa-solid fa-bars"></i></a>
+                </div>
             </div>
 
-            <input id="saveBtn" type="submit" value="Save">
+            <h2>My Dashboard</h2>
 
         </div>
+
+    </header>
+
+    <!--  -->
+    <main>
+        <!-- =========================== -->
+        <div class="user-data">
+            <section class="profile">
+                <div class="profile-div">
+                    <article>
+                        <img id="profile-image" src="" alt="">
+                        <p id="summary"></p>
+                    </article>
+                    <div class="addressSec">
+                        <div>
+                            <span>Address:</span>
+                            <p id="address"></p>
+                        </div>
+                        <button id="editProfile" onclick="console.log(`clicking`);">Edit Profile</button>
+                    </div>
+                </div>
+            </section>
+            <section class="featuredArtist">
+                <div class="feature-banner-div">
+                    <h3>Check out our new featured artists:</h3>
+                    <div class="promoteArtist" id="proArtist">
+                        <div class="user-artist-profile">
+                            <img src="../src/person-1.jpg" alt="person-1">
+                            <p>Ben Smith</p>
+                        </div>
+                        <div class="user-artist-profile">
+                            <img src="../src/person-2.jpg" alt="person-2">
+                            <p>Wiliiams</p>
+                        </div>
+                        <div class="user-artist-profile">
+                            <img src="../src/person-3.jpg" alt="person-3">
+                            <p>Sam Flynn</p>
+                        </div>
+                        <div class="user-artist-profile">
+                            <img src="../src/person-4.jpg" alt="person-4">
+                            <p>Sinet</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <section class="Hired">
+                <h2>Lastest:</h2>
+                <div class="hiredContent">
+                    <div class="artist-descp">
+                        <div class="about-artist">
+                            <div class="icons-grp">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-regular fa-star"></i>
+                            </div>
+                            <div class="artist-briefing">
+                                <img src="../src/hector-bermudez-iIWDt0fXa84-unsplash.jpg" alt="">
+                                <p>Jonh Doe is a dinamyc and versatile guitarist known for his electrifying performances
+                                    and
+                                    soulful
+                                    sound.</p>
+                            </div>
+                            <ul>
+                                <li>Priving starts at: <span>$ 125</span></li>
+                                <li>Pick me for: <span>Rock and Jazz</span></li>
+                                <li>Location: <span>Vancouvver, BC</span></li>
+                            </ul>
+                        </div>
+                        <div class="artist-perf">
+                            <h3>About my performance:</h3>
+                            <p>I have more 15 years of experience being part of some well reconized bands and making
+                                presentatiosn
+                                around the country. I'm a dinamyc and versatile guitarist known for my electrifying
+                                performances
+                                and
+                                soulful sound. I have my own equipment and transportation.</p>
+                            <a href="./parul-calendar.html" class="check">Check calendar</a>
+                            <a href="./parul-booking.html" class="book-artist">Book</a>
+                        </div>
+                    </div>
+                    <div class="artist-descp">
+                        <div class="about-artist">
+                            <div class="icons-grp">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-regular fa-star"></i>
+                            </div>
+                            <div class="artist-briefing">
+                                <img src="../src/hector-bermudez-iIWDt0fXa84-unsplash.jpg" alt="">
+                                <p>Jonh Doe is a dinamyc and versatile guitarist known for his electrifying performances
+                                    and
+                                    soulful
+                                    sound.</p>
+                            </div>
+                            <ul>
+                                <li>Priving starts at: <span>$ 125</span></li>
+                                <li>Pick me for: <span>Rock and Jazz</span></li>
+                                <li>Location: <span>Vancouvver, BC</span></li>
+                            </ul>
+                        </div>
+                        <div class="artist-perf">
+                            <h3>About my performance:</h3>
+                            <p>I have more 15 years of experience being part of some well reconized bands and making
+                                presentatiosn
+                                around the country. I'm a dinamyc and versatile guitarist known for my electrifying
+                                performances
+                                and
+                                soulful sound. I have my own equipment and transportation.</p>
+                            <a href="./parul-calendar.html" class="check">Check calendar</a>
+                            <a href="./parul-booking.html" class="book-artist">Book</a>
+                        </div>
+                    </div>
+                    <div class="artist-descp">
+                        <div class="about-artist">
+                            <div class="icons-grp">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-regular fa-star"></i>
+                            </div>
+                            <div class="artist-briefing">
+                                <img src="../src/hector-bermudez-iIWDt0fXa84-unsplash.jpg" alt="">
+                                <p>Jonh Doe is a dinamyc and versatile guitarist known for his electrifying performances
+                                    and
+                                    soulful
+                                    sound.</p>
+                            </div>
+                            <ul>
+                                <li>Priving starts at: <span>$ 125</span></li>
+                                <li>Pick me for: <span>Rock and Jazz</span></li>
+                                <li>Location: <span>Vancouvver, BC</span></li>
+                            </ul>
+                        </div>
+                        <div class="artist-perf">
+                            <h3>About my performance:</h3>
+                            <p>I have more 15 years of experience being part of some well reconized bands and making
+                                presentatiosn
+                                around the country. I'm a dinamyc and versatile guitarist known for my electrifying
+                                performances
+                                and
+                                soulful sound. I have my own equipment and transportation.</p>
+                            <a href="./parul-calendar.html" class="check">Check calendar</a>
+                            <a href="./parul-booking.html" class="book-artist">Book</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
     </main>
+
+    <!--  -->
+    <footer>
+        <div class="footerContent">
+
+            <div class="footer-head">
+                <img src="../src/logo2.png" alt="">
+                <p>Your source for artistic excellence, delivering creativity and talent for every occasion.</p>
+                <div class="icons">
+                    <ul>
+                        <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fa-brands fa-pinterest"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quick-links">
+                <p>Quick links</p>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">Book an artist</a></li>
+                    <li><a href="#">Join our artist</a></li>
+                </ul>
+            </div>
+
+            <div class="contact-us">
+                <p>Contact us</p>
+                <ul>
+                    <li><a href="#">1-800-123-4567</a></li>
+                    <li><a href="#">info@artistalley.com</a></li>
+                    <li><a href="#">4878, Main street, Vancouver, BC, V52TP</a></li>
+                </ul>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2024 Artist Alley. All rights reserved. | privacy Policy | Terms of Service</p>
+            </div>
+
+        </div>
+
+    </footer>
 </body>
 
 </html>
+
+
+
+<!-- <div class="user-data">
+                    <h1>Complete Your Profile</h1>
+        
+                    <div class="user-avatar">
+                        <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=2980&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            id="profile-image" alt="user avatar">
+                    </div>
+                    <input id="start-camera" type="button" value="Start Camera">
+                    <div id="camera">
+                        <video id="webcam" autoplay playsinline width="320" height="240"></video>
+                        <button id="capture">Capture</button>
+                    </div>
+        
+                    <canvas id="canvas" width="320" height="240" style="display:none;"></canvas>
+        
+                    <div class="user-info">
+                        <label class="label" for="fName">First Name:</label>
+                        <input type="text" id="fName" class="inputField">
+        
+                        <label class="label" for="lName">Last Name:</label>
+                        <input type="text" id="lName" class="inputField">
+        
+                        <label class="label" for="orgName">Organisation Name:</label>
+                        <input type="text" id="orgName" class="inputField">
+        
+                        <label class="label" for="role">Role:</label>
+                        <input type="text" id="role" class="inputField">
+        
+                        <label class="label" for="summary">Introduce yourself (max 120 words):</label>
+                        <textarea type="text" id="summary" class="inputField" minlength="10" required> </textarea>
+                    </div>
+        
+                    <input id="saveBtn" type="submit" value="Save">
+        
+                </div> -->
