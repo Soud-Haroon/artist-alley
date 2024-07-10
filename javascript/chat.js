@@ -1,5 +1,5 @@
 import { loggedInUser } from './utilities.js';
-import { getUserDataById, saveUserDataInDb, getChatData, saveChatItem, updateChatItem } from './firestore.js';
+import { getUserDataById, saveUserDataInDb, getChatData, saveChatItem, updateChatItem, listenForChatUpdates } from './firestore.js';
 import { USER_TYPE_ARTIST } from './app-constants.js';
 
 const params = new URLSearchParams(window.location.search);
@@ -52,8 +52,6 @@ async function initUI() {
             otherUser.addEventListener('click', () => {
                 // alert('userItem clicked!'+chat);
                 console.log('Chat is clicked: ' + chat);
-                // TODO: load chat template here
-                // fetchAndLoadChatTemplate();
                 loadConversation(chat);
             })
             chatListDiv.appendChild(otherUser);
@@ -150,22 +148,12 @@ async function loadConversation(chatId) {
     console.log("I've got some data: " + messages);
     if (messages) {
         isNewChat = false;
-
-        messages.forEach(item => {
-            const messageItem = document.createElement('p');
-            messageItem.textContent = item.text;
-            if (item.senderId === loggedInUser.uid) {
-                // Right align the message
-                messageItem.id = 'sender-view';
-                console.log('Message id is: ' + messageItem.id);
-            } else {
-                messageItem.id = 'receiver-view';
-                console.log('Message id is: ' + messageItem.id);
-                // left align the message
-            }
-            chatScreen.appendChild(messageItem);
-        });
+        showMessagesOnUI(messages, chatScreen);
     }
+
+    listenForChatUpdates(chatId, (updatedMessages) => {
+        showMessagesOnUI(updatedMessages, chatScreen)
+    });
 
     sendButton.addEventListener('click', () => {
         console.log('event listener added')
@@ -188,4 +176,22 @@ async function loadConversation(chatId) {
     });
 
     chatScreenDiv.appendChild(clone);
+}
+
+function showMessagesOnUI(messages, chatScreen) {
+    chatScreen.innerHTML = '';
+    messages.forEach(item => {
+        const messageItem = document.createElement('p');
+        messageItem.textContent = item.text;
+        if (item.senderId === loggedInUser.uid) {
+            // Right align the message
+            messageItem.id = 'sender-view';
+            console.log('Message id is: ' + messageItem.id);
+        } else {
+            messageItem.id = 'receiver-view';
+            console.log('Message id is: ' + messageItem.id);
+            // left align the message
+        }
+        chatScreen.appendChild(messageItem);
+    });
 }

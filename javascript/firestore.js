@@ -11,7 +11,8 @@ import {
     updateDoc,
     addDoc,
     getDoc,
-    arrayUnion
+    arrayUnion,
+    onSnapshot
 } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
 import {
@@ -153,6 +154,24 @@ async function updateChatItem(chatItem, chatId) {
     }
 }
 
+function listenForChatUpdates(chatId, onUpdate) {
+    const chatRef = doc(firestore, TABLE_CHAT, chatId);
+
+    // Set up real-time listener
+    const unsubscribe = onSnapshot(chatRef, snapshot => {
+        if (snapshot.exists()) {
+            const messages = snapshot.data().messages;
+            console.log('Data updated!');
+            onUpdate(messages); // Call callback with updated messages
+        } else {
+            console.log('Chat document does not exist');
+        }
+    });
+
+    // Return the unsubscribe function to detach the listener when needed
+    return unsubscribe;
+}
+
 export {
     saveUserDataInDb,
     saveBookingInDb,
@@ -161,5 +180,6 @@ export {
     getBookingsFromDb,
     getChatData,
     saveChatItem,
-    updateChatItem
+    updateChatItem,
+    listenForChatUpdates
 }
