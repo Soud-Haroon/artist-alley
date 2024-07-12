@@ -55,6 +55,8 @@ makeOfferBtn.addEventListener('click', (event) => {
 
 chatBtn.addEventListener('click', (event) => {
     event.preventDefault();
+    let url = `../html/demo_chat.html?artist_id=${artist_id}`;
+    window.location = url;
 
 })
 

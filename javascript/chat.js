@@ -1,243 +1,197 @@
-import { db } from '../app.js';
-import { collection, addDoc, getDocs, getDoc, updateDoc, deleteDoc, doc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-import { query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-// by soud
-var currentUser = "24";
-const chatId = "h5Ely2RkaZWInosjDwY9";
+import { loggedInUser } from './utilities.js';
+import { getUserDataById, saveUserDataInDb, getChatData, saveChatItem, updateChatItem, listenForChatUpdates } from './firestore.js';
+import { USER_TYPE_ARTIST } from './app-constants.js';
+
+const params = new URLSearchParams(window.location.search);
+const artist_id = params.get('artist_id');
+
+const chatListDiv = document.getElementById('chat-list');
+const chatScreenDiv = document.getElementById('chat-view');
 
 
-class ChatModel {
-    constructor(chat_id, person_one_id, person_two_id, time, messages) {
-        this.chat_id = chat_id;
-        this.person_one_id = person_one_id;
-        this.person_two_id = person_two_id;
-        this.time = time;
-        this.messages = messages;
-    }
+// Load the previous chat on the left panel, if exist
+await initUI();
 
-    addMessage(message) {
-        this.messages.push(message);
-    }
+// If the user is coming from the artists profile then create a chatId, compare it with existing chats for the loggedInUser
+// if found, open the chat box of that particular id
+// else add that id to myChat and also to the artist's myChat and then open the chat box
+if (artist_id) {
+    // let artist_data = await getArtistData(artist_id, USER_TYPE_ARTIST);
+    // console.log("Arrived through user profile of: " + artist_data.fName);
 
-    getMessages() {
-        return this.messages;
-    }
-
-    getChatDetails() {
-        return {
-            chat_id: this.chat_id,
-            person_one_id: this.person_one_id,
-            person_two_id: this.person_two_id,
-            msg_time: this.msg_time,
-            messages: this.messages
-        };
-    }
-}
-
-class Message {
-    constructor(message, message_id, user_id, msg_time) {
-        this.message = message;
-        this.message_id = message_id;
-        this.msg_time = msg_time;
-        this.user_id = user_id;
-    }
-
-    getMessageDetails() {
-        return {
-            message: this.message,
-            message_id: this.message_id,
-            user_id: this.user_id,
-            msg_time: this.msg_time
-        };
-    }
-
-    // Optional: Format message for display
-    formatMessage() {
-        return `${this.user_id}: ${this.message} (${this.msg_time.toDate().toLocaleString()})`;
-    }
-}
-
-// DOM elements
-const chatList = document.getElementById('chat-list');
-const chatScreen = document.getElementById('chat-screen');
-const messageInput = document.getElementById('message-input');
-const sendButton = document.getElementById('send-button');
-
-// Function to fetch and render chat messages when a chat is selected
-async function renderChatView(chat_id) {
-    // Clear previous chat messages
-    chatScreen.innerHTML = '';
-
-    // Fetch the chat document using chat_id
-    const chatDocRef = doc(db, 'chat', chat_id);
-    await getDoc(chatDocRef)
-        .then(docSnap => {
-            if (docSnap.exists()) {
-                console.log("Document found!");
-                const chatData = docSnap.data();
-                console.log("chatData.messages: ", chatData.messages);
-
-                // Check if messages array exists and has items
-                if (chatData.messages && chatData.messages.length > 0) {
-                    // Render messages in chat view
-                    chatData.messages.forEach(msgData => {
-                        // Create a Message object
-                        const message = new Message(
-                            msgData.message,
-                            msgData.message_id,
-                            msgData.msg_time.toDate(), // Convert Firestore msg_time to Date object
-                            msgData.user_id,
-                        );
-
-                        // Create message element
-                        const messageElement = document.createElement('div');
-                        messageElement.className = `message ${msgData.user_id === chatData.person_one_id ? 'sender' : 'receiver'}`;
-                        messageElement.textContent = message.message;
-                        chatScreen.appendChild(messageElement);
-                    });
-                } else {
-                    console.log('No valid messages found for this chat or messages array is empty.');
-                }
-            } else {
-                console.log('No such document!');
+    const chatId = `${loggedInUser.uid}_${artist_id}`;
+    let chatExists = false;
+    if (loggedInUser.myChat) {
+        console.log('myChat exists for the loggedin user');
+        loggedInUser.myChat.forEach(id => {
+            if (id === chatId) {
+                chatExists = true
             }
-        })
-        .catch(error => {
-            console.error('Error fetching document:', error);
         });
+        if (chatExists) {
+            // displayChatMessages(chatId, artist_id);
+            loadConversation(chatId);
+            // TODO: highlight the selected chat on the left panel
+        } else {
+            console.log('The key is there, but no data is inside the myChat array!');
+            await startANewChat(chatId, artist_id);
+        }
+    } else {
+        console.log('No chat found. Go ahead create a new one with this id: ' + chatId);
+        await startANewChat(chatId, artist_id);
+    }
+
 }
 
-// Event listener for chat list items
-document.addEventListener('DOMContentLoaded', () => {
-    // Event delegation for chat box click
-    chatList.addEventListener('click', event => {
-        if (event.target && event.target.matches('.chat-box')) {
-            // Remove 'active' class from previously active chat box
-            const currentActiveChat = document.querySelector('.chat-box.active');
-            if (currentActiveChat) {
-                currentActiveChat.classList.remove('active');
-            }
+async function initUI() {
+    if (loggedInUser.myChat) {
+        loggedInUser.myChat.forEach(chat => {
+            const otherUser = document.createElement('p');
+            // TODO: make this chat type as key value and find out who is on the other side of the chat and replace the below name with it.
+            otherUser.textContent = chat;
+            otherUser.addEventListener('click', () => {
+                // alert('userItem clicked!'+chat);
+                console.log('Chat is clicked: ' + chat);
+                loadConversation(chat);
+            })
+            chatListDiv.appendChild(otherUser);
+            console.log('chat id: ' + chat);
+        });
+    } else {
+        console.log("No prev chat for you!");
+    }
+}
 
-            // Add 'active' class to clicked chat box
-            event.target.classList.add('active');
+async function startANewChat(chatId, artist_id) {
+    // TODO: change the below updateUserData in such way that it updates both the users with a single query
+    let prevChat;
+    if (loggedInUser.myChat) {
+        prevChat = loggedInUser.myChat;
+    } else {
+        prevChat = [];
+    }
+    prevChat.push(chatId);
+    loggedInUser.myChat = prevChat;
+    await updateUserData(loggedInUser);
+    localStorage.setItem('user', JSON.stringify(loggedInUser));
 
-            // Get the chat ID of the clicked chat box
-            const chat_id = event.target.dataset.chatId;
-            renderChatView(chat_id); // Render chat view for the selected chat
-        }
+
+    // Update the same chatId to the other user's data
+    let artistAllChat;
+    let artist_data = await getArtistData(artist_id, USER_TYPE_ARTIST);
+    if (artist_data.myChat) {
+        artistAllChat = artist_data.myChat;
+    } else {
+        artistAllChat = [];
+    }
+    artistAllChat.push(chatId);
+    artist_data.myChat = artistAllChat;
+    await updateUserData(artist_data);
+
+    const otherUser = document.createElement('p');
+    // TODO: make this chat type as key value and find out who is on the other side of the chat and replace the below name with it.
+    otherUser.textContent = chatId;
+    otherUser.addEventListener('click', () => {
+        // alert('userItem clicked!'+chat);
+        console.log('Chat is clicked: ' + chatId);
+        // TODO: load chat template here
+        // fetchAndLoadChatTemplate();
+        loadConversation(chatId);
+    })
+    chatListDiv.appendChild(otherUser);
+}
+
+async function updateUserData(user) {
+    await saveUserDataInDb(user);
+}
+
+async function getArtistData(userId, userType) {
+    return await getUserDataById(userId, userType);
+}
+
+async function saveNewConversation(chatItem, chatId) {
+    await saveChatItem(chatItem, chatId);
+    loadConversation(chatId);
+
+    console.log('message sent successfully!');
+}
+
+async function updateConversation(chatItem, chatId) {
+    await updateChatItem(chatItem, chatId);
+    loadConversation(chatId);
+
+    console.log('message sent successfully!');
+}
+
+async function loadConversation(chatId) {
+    chatScreenDiv.innerHTML = '';
+
+    let isNewChat = true;
+
+    // LOAD THE CHAT TEMPLATE
+    const response = await fetch('../templates/chat-template.html');
+    const html = await response.text();
+
+    // Create a temporary element to hold the HTML content
+    const temp = document.createElement('div');
+    temp.innerHTML = html;
+
+    // Extract the template content
+    const chatTemplate = temp.querySelector('#chatTemplate');
+    const clone = document.importNode(chatTemplate.content, true);
+
+    const chatScreen = clone.querySelector('#chat-screen');
+    const messageInput = clone.querySelector('#message-input');
+    const sendButton = clone.querySelector('#send-button');
+
+    let messages = await getChatData(chatId);
+    console.log("I've got some data: " + messages);
+    if (messages) {
+        isNewChat = false;
+        showMessagesOnUI(messages, chatScreen);
+    }
+
+    listenForChatUpdates(chatId, (updatedMessages) => {
+        showMessagesOnUI(updatedMessages, chatScreen)
     });
-
 
     sendButton.addEventListener('click', () => {
-        const messageText = messageInput.value.trim();
-        if (messageText !== '') {
-            const activeChatId = document.querySelector('.chat-box.active')?.dataset.chatId;
-            if (activeChatId) {
-                sendMessage(activeChatId, messageText); // Ensure activeChatId is defined and valid
-                messageInput.value = ''; // Clear the input field
-            } else {
-                console.log('No active chat selected.');
+        console.log('event listener added')
+
+        let msg = messageInput.value.trim();
+        if (msg !== '') {
+            let chatItem = {
+                id: chatId,
+                senderId: loggedInUser.uid,
+                receiverId: artist_id,
+                text: msg
             }
+            if (isNewChat) {
+                saveNewConversation(chatItem, chatId);
+            } else {
+                updateConversation(chatItem, chatId);
+            }
+            messageInput.value = '';
         }
     });
 
-});
-// Example usage: Fetch and render chat list for user with ID
-async function fetchChats(userId) {
-    try {
-        const q1 = query(collection(db, 'chat'), where('person_one_id', '==', userId));
-        const querySnapshot1 = await getDocs(q1);
-        querySnapshot1.forEach(doc => {
-            const chatData = doc.data();
-            renderChatList(doc.id, chatData.person_two_id);
-        });
-
-        const q2 = query(collection(db, 'chat'), where('person_two_id', '==', userId));
-        const querySnapshot2 = await getDocs(q2);
-        querySnapshot2.forEach(doc => {
-            const chatData = doc.data();
-            renderChatList(doc.id, chatData.person_one_id);
-        });
-    } catch (error) {
-        console.log("Error fetching chats:", error);
-    }
+    chatScreenDiv.appendChild(clone);
 }
 
-// Function to render chat list in the sidebar
-function renderChatList(chat_id, partner_id) {
-    console.log(`Rendering chat box for chat_id: ${chat_id}, partner_id: ${partner_id}`);
-    const chatBox = document.createElement('div');
-    chatBox.className = 'chat-box';
-    chatBox.textContent = `Chat with ${partner_id}`;
-    chatBox.dataset.chatId = chat_id; // Store chat_id as data attribute
-    chatList.appendChild(chatBox);
-    // console.log(chatBox);
-}
-
-// Function to send a message
-async function sendMessage() {
-    const messageInput = document.getElementById('message-input');
-    const message = messageInput.value.trim();
-
-    if (!message) {
-        console.log('Message is empty, cannot send.');
-        return;
-    }
-
-    const activeChatId = document.querySelector('.chat-box.active')?.dataset.chatId;
-
-    if (!activeChatId) {
-        console.log('No active chat selected.');
-        return;
-    }
-
-    try {
-        // Fetch the current chat document
-        const chatRef = doc(db, 'chat', activeChatId);
-        const chatSnap = await getDoc(chatRef);
-
-        if (!chatSnap.exists()) {
-            console.log('Chat document does not exist.');
-            return;
+function showMessagesOnUI(messages, chatScreen) {
+    chatScreen.innerHTML = '';
+    messages.forEach(item => {
+        const messageItem = document.createElement('p');
+        messageItem.textContent = item.text;
+        if (item.senderId === loggedInUser.uid) {
+            // Right align the message
+            messageItem.id = 'sender-view';
+            console.log('Message id is: ' + messageItem.id);
+        } else {
+            messageItem.id = 'receiver-view';
+            console.log('Message id is: ' + messageItem.id);
+            // left align the message
         }
-
-        const chatData = chatSnap.data();
-
-        // Prepare message data
-        const messageData = {
-            message: message,
-            message_id: `${Date.now()}`, // Generate your own message ID function
-            user_id: currentUser,
-            msg_time: new Date(), // Assuming msg_time is now, adjust if needed
-        };
-
-        // Update chat document with new message
-        await updateDoc(chatRef, {
-            messages: [...chatData.messages, messageData], // Append new message to existing messages array
-            msg_time: serverTimestamp(), // Update msg_time with server timestamp
-        });
-
-        // Clear message input after sending
-        messageInput.value = '';
-
-        // Render the new message in the chat view
-        renderMessage(messageData);
-    } catch (error) {
-        console.error('Error sending message:', error);
-    }
+        chatScreen.appendChild(messageItem);
+    });
 }
-
-// Function to render a single message in the chat view
-function renderMessage(message) {
-    const messageElement = document.createElement('div');
-    messageElement.className = `message ${message.user_id === currentUser ? 'sender' : 'receiver'}`;
-    messageElement.textContent = `${message.message}`;
-
-    // Append the message element to the chat screen
-    chatScreen.appendChild(messageElement);
-}
-
-// Example usage: Fetch and render all chats for user with ID '24'
-fetchChats(currentUser);
-
-

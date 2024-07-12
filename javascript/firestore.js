@@ -8,8 +8,11 @@ import {
     getFirestore,
     doc,
     setDoc,
+    updateDoc,
     addDoc,
-    getDoc
+    getDoc,
+    arrayUnion,
+    onSnapshot
 } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
 import {
@@ -18,7 +21,8 @@ import {
     ARTIST_TABLE,
     ORGANISER_TABLE,
     TABLE_USER_TYPE,
-    TABLE_BOOKINGS
+    TABLE_BOOKINGS,
+    TABLE_CHAT
 } from '../javascript/app-constants.js';
 
 const firestore = getFirestore(firebase);
@@ -35,7 +39,7 @@ async function saveUserDataInDb(user) {
         if (table) {
             const ref = doc(firestore, table, user.uid);
             await setDoc(ref, user);
-            localStorage.setItem('user', JSON.stringify(user));
+            // localStorage.setItem('user', JSON.stringify(user));
         }
     } catch (error) {
         console.error(error);
@@ -114,7 +118,58 @@ async function getBookingsFromDb(uid, userType) {
         bookings.push(doc.data());
     });
     return bookings;
+}
 
+async function getChatData(chatId) {
+    const chatRef = doc(firestore, TABLE_CHAT, chatId);
+    const chatDoc = await getDoc(chatRef);
+    if (chatDoc.exists()) {
+        return chatDoc.data().messages;
+    }
+}
+
+async function saveChatItem(chatItem, chatId) {
+    try {
+        const ref = doc(firestore, TABLE_CHAT, chatId);
+        // await setDoc(ref, chatItem);
+        await setDoc(ref, {
+            messages: arrayUnion(chatItem)
+        });
+        console.log('============= Chat added successfully! ============');
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+async function updateChatItem(chatItem, chatId) {
+    try {
+        const ref = doc(firestore, TABLE_CHAT, chatId);
+        // await setDoc(ref, chatItem);
+        await updateDoc(ref, {
+            messages: arrayUnion(chatItem)
+        });
+        console.log('============= Chat updated successfully! ============');
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+function listenForChatUpdates(chatId, onUpdate) {
+    const chatRef = doc(firestore, TABLE_CHAT, chatId);
+
+    // Set up real-time listener
+    const unsubscribe = onSnapshot(chatRef, snapshot => {
+        if (snapshot.exists()) {
+            const messages = snapshot.data().messages;
+            console.log('Data updated!');
+            onUpdate(messages); // Call callback with updated messages
+        } else {
+            console.log('Chat document does not exist');
+        }
+    });
+
+    // Return the unsubscribe function to detach the listener when needed
+    return unsubscribe;
 }
 
 export {
@@ -122,5 +177,9 @@ export {
     saveBookingInDb,
     getUserDataById,
     getUserTypeDataById,
-    getBookingsFromDb
+    getBookingsFromDb,
+    getChatData,
+    saveChatItem,
+    updateChatItem,
+    listenForChatUpdates
 }

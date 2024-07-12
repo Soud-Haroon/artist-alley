@@ -123,3 +123,27 @@ header nav ul li a {
 #send-button:hover {
     background-color: darkgrey;
 }
+
+/* CHAT Related =========================== */
+
+#sender-view {
+    padding: 10px;
+    background-color: aqua;
+    color: black;
+    text-align: right;
+    padding: 10px 20px;
+    margin: 0;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+#receiver-view {
+    padding: 10px;
+    background-color: darkkhaki;
+    color: white;
+    text-align: start;
+    padding: 10px 20px;
+    margin: 0;
+    border-radius: 10px;
+    display: inline-block;
+}
