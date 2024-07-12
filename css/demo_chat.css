@@ -131,8 +131,9 @@ header nav ul li a {
     background-color: aqua;
     color: black;
     text-align: right;
-    padding: 5px;
+    padding: 10px 20px;
     margin: 0;
+    border-radius: 10px;
     display: inline-block;
 }
 
@@ -141,7 +142,8 @@ header nav ul li a {
     background-color: darkkhaki;
     color: white;
     text-align: start;
-    padding: 5px;
+    padding: 10px 20px;
     margin: 0;
+    border-radius: 10px;
     display: inline-block;
 }
