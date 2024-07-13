@@ -1,11 +1,13 @@
-import { dataUrlToFile, loggedInUser } from "./utilities.js";
+import { loggedInUser, includeHeaderFooter, gotoMyAccount, logoutUser } from "./utilities.js";
+
 import { uploadProfileImage } from "./firebase-storage.js";
 import { saveUserDataInDb } from "./firestore.js";
 
-// const cameraDiv = document.getElementById('camera');
-// cameraDiv.style.display = 'none';
 
-// const startCameraBtn = document.getElementById('start-camera');
+const headerElement = document.querySelector('header');
+const footerElement = document.querySelector('footer');
+setupHeaderFooter();
+
 
 const userAvatar = document.getElementById('profile-image');
 const firstName = document.getElementById('fName');
@@ -105,5 +107,35 @@ function setUserDataOnUI() {
         if (loggedInUser.summary) {
             address.textContent = loggedInUser.address;
         }
+    }
+}
+
+// HEADER & FOOTER DATA =========================================================================================
+
+function setupHeaderFooter() {
+    includeHeaderFooter(setHeader, setFooter);
+}
+
+function setHeader(data) {
+    if (headerElement) {
+        headerElement.innerHTML = data;
+        const myProfileBtn = document.getElementById('myProfile');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        myProfileBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            gotoMyAccount();
+        })
+
+        logoutBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            logoutUser();
+        })
+    }
+}
+
+function setFooter(data) {
+    if (footerElement) {
+        footerElement.innerHTML = data;
     }
 }

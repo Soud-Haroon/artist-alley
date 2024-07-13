@@ -1,4 +1,4 @@
-import { loggedInUser } from './utilities.js';
+import { loggedInUser, includeHeaderFooter, gotoMyAccount, logoutUser } from "./utilities.js";
 import { getUserDataById, saveUserDataInDb, getChatData, saveChatItem, updateChatItem, listenForChatUpdates } from './firestore.js';
 import { USER_TYPE_ARTIST } from './app-constants.js';
 
@@ -7,6 +7,10 @@ const artist_id = params.get('artist_id');
 
 const chatListDiv = document.getElementById('chat-list');
 const chatScreenDiv = document.getElementById('chat-view');
+const headerElement = document.querySelector('header');
+const footerElement = document.querySelector('footer');
+
+setupHeaderFooter();
 
 
 // Load the previous chat on the left panel, if exist
@@ -16,8 +20,6 @@ await initUI();
 // if found, open the chat box of that particular id
 // else add that id to myChat and also to the artist's myChat and then open the chat box
 if (artist_id) {
-    // let artist_data = await getArtistData(artist_id, USER_TYPE_ARTIST);
-    // console.log("Arrived through user profile of: " + artist_data.fName);
 
     const chatId = `${loggedInUser.uid}_${artist_id}`;
     let chatExists = false;
@@ -29,7 +31,6 @@ if (artist_id) {
             }
         });
         if (chatExists) {
-            // displayChatMessages(chatId, artist_id);
             loadConversation(chatId);
             // TODO: highlight the selected chat on the left panel
         } else {
@@ -50,7 +51,6 @@ async function initUI() {
             // TODO: make this chat type as key value and find out who is on the other side of the chat and replace the below name with it.
             otherUser.textContent = chat;
             otherUser.addEventListener('click', () => {
-                // alert('userItem clicked!'+chat);
                 console.log('Chat is clicked: ' + chat);
                 loadConversation(chat);
             })
@@ -194,4 +194,34 @@ function showMessagesOnUI(messages, chatScreen) {
         }
         chatScreen.appendChild(messageItem);
     });
+}
+
+// HEADER & FOOTER DATA =========================================================================================
+
+function setupHeaderFooter() {
+    includeHeaderFooter(setHeader, setFooter);
+}
+
+function setHeader(data) {
+    if (headerElement) {
+        headerElement.innerHTML = data;
+        const myProfileBtn = document.getElementById('myProfile');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        myProfileBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            gotoMyAccount();
+        })
+
+        logoutBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            logoutUser();
+        })
+    }
+}
+
+function setFooter(data) {
+    if (footerElement) {
+        footerElement.innerHTML = data;
+    }
 }

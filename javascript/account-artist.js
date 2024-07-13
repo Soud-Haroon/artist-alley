@@ -3,8 +3,11 @@ import {
 } from './firestore.js';
 
 import { uploadProfileImage, uploadPortfolioImages } from './firebase-storage.js';
-import { loggedInUser } from "./utilities.js";
+import { loggedInUser, includeHeaderFooter, gotoMyAccount, logoutUser } from "./utilities.js";
 
+const headerElement = document.querySelector('header');
+const footerElement = document.querySelector('footer');
+setupHeaderFooter();
 
 const imageInput = document.getElementById('imageInput');
 const uploadImageBtn = document.getElementById('uploadImageBtn');
@@ -137,5 +140,35 @@ function setUserDataOnUI() {
                 imagePreviewDiv.appendChild(img);
             });
         }
+    }
+}
+
+// HEADER & FOOTER DATA =========================================================================================
+
+function setupHeaderFooter() {
+    includeHeaderFooter(setHeader, setFooter);
+}
+
+function setHeader(data) {
+    if (headerElement) {
+        headerElement.innerHTML = data;
+        const myProfileBtn = document.getElementById('myProfile');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        myProfileBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            gotoMyAccount();
+        })
+
+        logoutBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            logoutUser();
+        })
+    }
+}
+
+function setFooter(data) {
+    if (footerElement) {
+        footerElement.innerHTML = data;
     }
 }

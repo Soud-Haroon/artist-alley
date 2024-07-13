@@ -1,19 +1,7 @@
-const loggedInUser = JSON.parse(localStorage.getItem("user"));
 import { logout } from "./firebase-auth.js";
 import { USER_TYPE_ARTIST } from "./app-constants.js";
 
-const logoutBtn = document.getElementById('logoutBtn');
-logoutBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    console.log('logout button clicked!');
-    logoutUser();
-});
-
-const profileBtn = document.getElementById('myProfile');
-profileBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    gotoMyAccount();
-});
+const loggedInUser = JSON.parse(localStorage.getItem("user"));
 
 function dataUrlToFile(dataUrl, fileName) {
     const arr = dataUrl.split(',');
@@ -32,10 +20,8 @@ function dataUrlToFile(dataUrl, fileName) {
 function gotoMyAccount() {
     if (loggedInUser.userType == USER_TYPE_ARTIST) {
         window.location.replace('../html/account-artist.html');
-        console.log(`User email is: ${loggedInUser.email}`);
 
     } else {
-        console.log('went to my account');
         window.location.replace('../html/account-organiser.html');
     }
 }
@@ -47,4 +33,20 @@ function logoutUser() {
     });
 }
 
-export { loggedInUser, dataUrlToFile, logoutUser };
+async function includeHeaderFooter(setHeader, setFooter) {
+    fetch('../html/header.html')
+        .then(response => response.text())
+        .then(data => {
+            setHeader(data);
+        })
+        .catch(error => console.error("Error fetching header: ", error));
+
+    fetch('../html/footer.html')
+        .then(response => response.text())
+        .then(data => {
+            setFooter(data);
+        })
+        .catch(error => console.error("Error fetching footer: ", error));
+}
+
+export { loggedInUser, dataUrlToFile, gotoMyAccount, logoutUser, includeHeaderFooter };

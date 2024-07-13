@@ -1,17 +1,19 @@
 import { STATUS_PENDING, STATUS_DECLINED, getStatus, STATUS_ACCEPTED, USER_TYPE_ARTIST } from './app-constants.js';
 import { getBookingsFromDb, saveBookingInDb } from './firestore.js';
-import { loggedInUser } from './utilities.js';
+import { loggedInUser, includeHeaderFooter, gotoMyAccount, logoutUser } from "./utilities.js";
 
 // import { bookingPendingTemplate } from '../templates/booking-cards-template.html'
+
+
+const headerElement = document.querySelector('header');
+const footerElement = document.querySelector('footer');
+
+setupHeaderFooter();
 
 let bookings = await getBookings();
 
 const bookingsPendingContainer = document.getElementById('bookings-pending');
 const bookingsAcceptedContainer = document.getElementById('bookings-accepted');
-
-
-// let pendinBookings = [];
-// let acceptedBookings = [];
 
 bookings.forEach(booking => {
     if (booking.status === STATUS_PENDING) {
@@ -104,4 +106,32 @@ async function fetchAndUseAcceptedTemplate(acceptedBooking) {
     requestStatus.textContent = getStatus(acceptedBooking.status);
 
     bookingsAcceptedContainer.appendChild(clone);
+}
+
+function setupHeaderFooter() {
+    includeHeaderFooter(setHeader, setFooter);
+}
+
+function setHeader(data) {
+    if (headerElement) {
+        headerElement.innerHTML = data;
+        const myProfileBtn = document.getElementById('myProfile');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        myProfileBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            gotoMyAccount();
+        })
+
+        logoutBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            logoutUser();
+        })
+    }
+}
+
+function setFooter(data) {
+    if (footerElement) {
+        footerElement.innerHTML = data;
+    }
 }

@@ -3,23 +3,6 @@ body {
     margin: 0;
     padding: 0;
 }
-
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 2rem;
-    background-color: grey;
-}
-
-header nav ul {
-    list-style: none;
-}
-
-header nav ul li a {
-    text-decoration: none;
-}
-
 /* ========================= */
 .chat-content-wrapper {
     height: 90vh;
