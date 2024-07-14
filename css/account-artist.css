@@ -135,37 +135,43 @@ main .mainContent {
 }
 
 main .mainContent .artist-descp {
-    border: 1px solid rgb(213, 213, 213);
-    box-shadow: #797979 2px 5px 10px;
     border-radius: 25px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
 }
 
-main .mainContent .artist-descp .artist-briefing img {
+.mainContent .about-artist {
+    box-shadow: grey 2px 2px 10px;
+    border-radius: 25px;
+    padding: 2rem 1rem;
+    align-content: flex-start;
+}
+
+main .mainContent .artist-briefing img {
     width: 80px;
     height: 80px;
     object-fit: cover;
     border-radius: 50%;
 }
 
-.mainContent .artist-descp .artist-briefing {
+.mainContent .artist-briefing {
     display: flex;
     flex-flow: row nowrap;
     gap: 1rem;
     align-items: center;
 }
 
-main .mainContent .artist-descp .icons-grp {
+main .mainContent .icons-grp {
     text-align: end;
     color: var(--secondary-clr);
 }
 
-main .mainContent .artist-descp .about-artist ul li {
+main .mainContent .about-artist ul li {
     font-family: oswald;
 }
 
-main .mainContent .artist-descp .about-artist ul li span {
+main .mainContent .about-artist ul li span {
     font-family: 'Nunito Sans';
 }
 
@@ -174,12 +180,12 @@ main .mainContent .artist-descp .artist-perf h3 {
     font-weight: normal;
 }
 
-main .mainContent .artist-descp .artist-perf p {
+main .mainContent .artist-perf p {
     border-bottom: 1px solid var(--accent-clr);
     padding-bottom: 1rem;
 }
 
-main .mainContent .artist-descp .artist-perf a {
+main .mainContent .artist-perf a {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -192,7 +198,7 @@ main .mainContent .artist-descp .artist-perf a {
     border-radius: 25px;
 }
 
-.mainContent .artist-descp .artist-perf a.check {
+.mainContent .artist-perf a.edit {
     background-color: var(--accent-clr);
     color: var(--white-clr);
     padding: .5rem;
@@ -211,10 +217,12 @@ main .mainContent .artist-descp .artist-perf a {
 
 .mainContent .artist-work .images img {
     border-radius: 20px;
+    width: 100%;
+    height: auto;
+    border: 1px solid black;
 }
 
-.mainContent .artist-work .images img:nth-of-type(1),
-.mainContent .artist-work .images img:nth-of-type(2) {
+.mainContent .artist-work .images img:nth-of-type(1) {
     grid-column: 1/-1;
 }
 
@@ -537,21 +545,9 @@ main .calendar-main .table-content {
     .mainContent .artist-work {
         grid-column: 1;
         grid-row: 1;
-        min-height: 610px;
     }
 
-    .mainContent .artist-descp {
-        min-height: 610px;
-    }
-
-    main .mainContent .artist-descp {
-        margin-bottom: 0;
-        display: flex;
-        flex-flow: column wrap;
-        justify-content: space-around;
-    }
-
-    main .mainContent .artist-descp .about-artist ul li {
+    main .mainContent .about-artist ul li {
         margin-bottom: 1rem;
     }
 
@@ -562,30 +558,28 @@ main .calendar-main .table-content {
         margin: 2rem;
     }
 
-    .mainContent .artist-descp .artist-perf {
+    .mainContent .artist-perf {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
     }
 
-    .mainContent .artist-descp .artist-perf h3,
-    .mainContent .artist-descp .artist-perf p {
+    .mainContent .artist-perf h3,
+    .mainContent .artist-perf p {
         grid-column: 1/-1;
     }
 
-    .mainContent .artist-descp .artist-perf h3 {
+    .mainContent .artist-perf h3 {
         margin-bottom: 0;
     }
 
-    .mainContent .artist-descp .artist-perf a.check {
+    .mainContent .artist-perf a.edit {
         margin-bottom: 0;
         margin-top: 0;
     }
 
-    .mainContent .artist-descp .artist-perf a.check,
-    .mainContent .artist-descp .artist-perf a.book-artist {
-        width: 140px;
-
+    .mainContent .artist-perf a.edit {
+        grid-column: 1/-1;
     }
 
     main .artist-reviews {
@@ -601,20 +595,6 @@ main .calendar-main .table-content {
     main .artist-reviews .review-list {
         margin: 0;
         width: 100%;
-    }
-
-    main .mainContent .artist-descp {
-        box-shadow: 0px 0px 0px;
-        border: transparent;
-    }
-
-    .mainContent .artist-descp .about-artist {
-        box-shadow: grey 2px 2px 10px;
-        border-radius: 25px;
-        padding: 2rem 1rem;
-        margin-top: -4rem;
-        /* min-height: 320px; */
-        align-content: flex-start;
     }
 
 

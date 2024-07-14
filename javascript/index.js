@@ -6,7 +6,7 @@ const signupBtn = document.getElementById('signupBtn');
 const headerElement = document.querySelector('header');
 const footerElement = document.querySelector('footer');
 
-includeHeaderFooter(headerElement, footerElement);
+// includeHeaderFooter(headerElement, footerElement);
 
 signupBtn.addEventListener('click', gotoSignupFlow);
 
