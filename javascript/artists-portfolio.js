@@ -1,109 +1,86 @@
 import {
-    getUserDataById,
-    saveBookingInDb
-} from '../javascript/firestore.js';
+    saveUserDataInDb,
+    getUserDataById
+} from './firestore.js';
 
-import { loggedInUser, includeHeaderFooter, gotoMyAccount } from './utilities.js';
-
-import { USER_TYPE_ARTIST, STATUS_PENDING } from './app-constants.js';
+import { uploadProfileImage, uploadPortfolioImages } from './firebase-storage.js';
+import { loggedInUser, includeHeaderFooter, gotoMyAccount, logoutUser } from "./utilities.js";
+import { USER_TYPE_ARTIST } from './app-constants.js';
 
 const headerElement = document.querySelector('header');
 const footerElement = document.querySelector('footer');
-
 setupHeaderFooter();
-
-// const cameraDiv = document.getElementById('camera');
-// cameraDiv.style.display = 'none';
-
 
 const params = new URLSearchParams(window.location.search);
 const artist_id = params.get('artist_id');
-console.log('Artist id: '+artist_id)
-let artist_data = await getArtistData(artist_id, USER_TYPE_ARTIST);
 
-
-const userAvatar = document.getElementById('profile-pic');
-const name = document.getElementById('name');
-const stageName = document.getElementById('stage-name');
-const genre = document.getElementById('genre');
-const phone = document.getElementById('phone');
-const website = document.getElementById('website');
-const summary = document.getElementById('summary');
-
-const address = document.getElementById('address');
-const date = document.getElementById('date');
-const offerPrice = document.getElementById('offer');
-
-const makeOfferBtn = document.getElementById('makeOfferBtn');
-const chatBtn = document.getElementById('chatBtn');
-
-setUserDataOnUI(artist_data);
-
-
-makeOfferBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    console.log("====================");
-    try {
-        let booking = {
-            booking_id: loggedInUser.uid+artist_data.uid,
-            host_id: loggedInUser.uid,
-            artist_id: artist_data.uid,
-            artist_name: artist_data.fName,
-            event_address: address.value,
-            event_date: date.value,
-            offer_price: offerPrice.value,
-            status: STATUS_PENDING
-        }
-        makeAnOffer(booking);
-    } catch (error) {
-        console.log("on send offer click: " + error);
-    }
-
-})
-
-chatBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    let url = `../html/demo_chat.html?artist_id=${artist_id}`;
-    window.location = url;
-
-})
-
-async function getArtistData(userId, userType) {
-    return await getUserDataById(userId, userType);
+if(artist_id) {
+    setUserDataOnUI(artist_id);
 }
 
-async function makeAnOffer(booking) {
-    return await saveBookingInDb(booking);
-}
+async function setUserDataOnUI(artist_id) {
+    const user = await getUserDataById(artist_id, USER_TYPE_ARTIST);
+    console.log("Artist Data arrived: "+user.fName)
+    if (user) {
+        const profilePic = document.getElementById('profile-pic');
+        const summary = document.getElementById('summary');
+        const pricing = document.getElementById('pricing');
+        const category = document.getElementById('category');
+        const location = document.getElementById('address');
 
-function setUserDataOnUI(artist) {
-    if (artist) {
-        if (artist.profile_image) {
-            userAvatar.src = artist.profile_image;
+        const bookBtn = document.getElementById('bookBtn');
+        const chatBtn = document.getElementById('chatBtn');
+        const ctaDiv = document.getElementById('ctaDiv');
+
+        const gallery = document.querySelector('.images');
+        if(loggedInUser.userType == USER_TYPE_ARTIST) {
+            ctaDiv.style.display = 'none';
+        } else {
+            ctaDiv.style.display = 'inline';
         }
-        if (artist.fName) {
-            name.textContent = artist.fName;
+        if (user.profile_image) {
+            profilePic.src = user.profile_image;
         }
-        if (artist.stageName) {
-            stageName.textContent = artist.stageName;
+        if (user.summary) {
+            summary.textContent = user.summary
         }
-        if (artist.genre) {
-            genre.textContent = artist.genre;
+
+        if (user.pricing) {
+            pricing.textContent = user.pricing;
         }
-        if (artist.phone) {
-            phone.textContent = artist.phone;
+
+        if (user.category) {
+            category.textContent = user.category;
         }
-        if (artist.website) {
-            website.textContent = artist.website;
+
+        if (user.location) {
+            location.textContent = user.location;
         }
-        if (artist.summary) {
-            summary.textContent = artist.summary;
+        if (user.portfolio_images) {
+            gallery.innerHTML = '';
+            user.portfolio_images.forEach(link => {
+                let img = document.createElement('img');
+                img.src = link
+                gallery.appendChild(img);
+            });
         }
+
+        bookBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            window.location = "../html/edit-account-artist.html";
+        })
+
+        chatBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            window.location = `../html/chat.html?artist_id=${user.uid}`;
+        })
     }
 }
 
+// HEADER & FOOTER DATA =========================================================================================
 
-// HEADER AND FOOTER ===========================================
 function setupHeaderFooter() {
     includeHeaderFooter(setHeader, setFooter);
 }
