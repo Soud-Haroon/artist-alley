@@ -16,7 +16,8 @@ setUserDataOnUI();
 
 async function setUserDataOnUI() {
     const user = await getUserDataById(loggedInUser.uid, loggedInUser.userType);
-    const summary = document.getElementById('summary');
+    if(user) {
+        const summary = document.getElementById('summary');
     const pricing = document.getElementById('pricing');
     const category = document.getElementById('category');
     const location = document.getElementById('address');
@@ -56,6 +57,7 @@ async function setUserDataOnUI() {
 
         window.location = "../html/edit-account-artist.html";
     })
+    }
 }
 
 // HEADER & FOOTER DATA =========================================================================================

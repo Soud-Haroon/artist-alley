@@ -1,21 +1,83 @@
 import { loggedInUser, includeHeaderFooter, gotoMyAccount, logoutUser } from "./utilities.js";
 
 import { uploadProfileImage } from "./firebase-storage.js";
-import { saveUserDataInDb } from "./firestore.js";
+import { saveUserDataInDb, getUserDataById } from "./firestore.js";
 
 
 const headerElement = document.querySelector('header');
 const footerElement = document.querySelector('footer');
 setupHeaderFooter();
 
-
-const userAvatar = document.getElementById('profile-image');
-const firstName = document.getElementById('fName');
-const lastName = document.getElementById('lName');
-const orgName = document.getElementById('orgName');
-const role = document.getElementById('role');
-const address = document.getElementById('address');
+const editBtn = document.getElementById('editProfile');
+const profilePic = document.getElementById('profile-image');
 const summary = document.getElementById('summary');
+const phone = document.getElementById('phone');
+const address = document.getElementById('address');
+
+setUserDataOnUI();
+
+async function setUserDataOnUI() {
+    const user = await getUserDataById(loggedInUser.uid, loggedInUser.userType);
+
+    if (user) {
+        if(user.profile_image) {
+            profilePic.src = user.profile_image;
+        }
+        if(user.summary) {
+            summary.textContent = user.summary;
+        }
+        if(user.phone) {
+            phone.textContent = user.phone;
+        }
+        if(user.address) {
+            address.textContent = user.address;
+        }
+    }
+
+    editBtn.addEventListener('click', (event)=> {
+        event.preventDefault();
+        window.location = '../html/edit-account-organiser.html';
+    })
+}
+
+// HEADER & FOOTER DATA =========================================================================================
+
+function setupHeaderFooter() {
+    includeHeaderFooter(setHeader, setFooter);
+}
+
+function setHeader(data) {
+    if (headerElement) {
+        headerElement.innerHTML = data;
+        const myProfileBtn = document.getElementById('myProfile');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        myProfileBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            gotoMyAccount();
+        })
+
+        logoutBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            logoutUser();
+        })
+    }
+}
+
+function setFooter(data) {
+    if (footerElement) {
+        footerElement.innerHTML = data;
+    }
+}
+
+
+// const userAvatar = document.getElementById('profile-image');
+// const firstName = document.getElementById('fName');
+// const lastName = document.getElementById('lName');
+// const orgName = document.getElementById('orgName');
+// const role = document.getElementById('role');
+// const address = document.getElementById('address');
+// const summary = document.getElementById('summary');
 
 // const saveBtn = document.getElementById('saveBtn');
 
@@ -24,7 +86,7 @@ const summary = document.getElementById('summary');
 // const captureButton = document.getElementById('capture');
 // let stream;
 
-setUserDataOnUI();
+
 
 // // Capture the image
 // captureButton.addEventListener('click', () => {
@@ -83,59 +145,3 @@ setUserDataOnUI();
 //     stream = null;
 
 // }
-
-function setUserDataOnUI() {
-    if (loggedInUser) {
-        if (loggedInUser.profile_image) {
-            userAvatar.src = loggedInUser.profile_image;
-        }
-        // if(loggedInUser.fName) {
-        //     firstName.value = loggedInUser.fName;
-        // }
-        // if(loggedInUser.lName) {
-        //     lastName.value = loggedInUser.lName;
-        // }
-        // if(loggedInUser.org_name) {
-        //     orgName.value = loggedInUser.org_name;
-        // }
-        // if(loggedInUser.role) {
-        //     role.value = loggedInUser.role;
-        // }
-        if (loggedInUser.summary) {
-            summary.textContent = loggedInUser.summary;
-        }
-        if (loggedInUser.summary) {
-            address.textContent = loggedInUser.address;
-        }
-    }
-}
-
-// HEADER & FOOTER DATA =========================================================================================
-
-function setupHeaderFooter() {
-    includeHeaderFooter(setHeader, setFooter);
-}
-
-function setHeader(data) {
-    if (headerElement) {
-        headerElement.innerHTML = data;
-        const myProfileBtn = document.getElementById('myProfile');
-        const logoutBtn = document.getElementById('logoutBtn');
-
-        myProfileBtn.addEventListener('click', (event) => {
-            event.preventDefault();
-            gotoMyAccount();
-        })
-
-        logoutBtn.addEventListener('click', (event) => {
-            event.preventDefault();
-            logoutUser();
-        })
-    }
-}
-
-function setFooter(data) {
-    if (footerElement) {
-        footerElement.innerHTML = data;
-    }
-}
