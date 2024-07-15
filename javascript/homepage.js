@@ -13,6 +13,25 @@ const footerElement = document.querySelector('footer');
 
 includeHeaderFooter(setHeader, setFooter);
 
+setDataOnUI();
+
+
+
+function setDataOnUI() {
+    const searchButton = document.getElementById('searchButton');
+
+    searchButton.addEventListener('click', async function () {
+        const searchInput = document.getElementById('searchInput').value.trim();
+
+        if (searchInput !== '') {
+            let url = `../html/search-result.html?query=${searchInput}`;
+            window.location = url;
+        } else {
+            alert('Please enter something in the search box!');
+        }
+    });
+}
+
 async function getUserData(userId, userType) {
     return await getUserDataById(userId, userType);
 }

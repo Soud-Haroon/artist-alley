@@ -113,8 +113,6 @@ async function getBookingsFromDb(uid, userType) {
 
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        // console.log(doc.id, " => ", doc.data());
         bookings.push(doc.data());
     });
     return bookings;
@@ -172,6 +170,17 @@ function listenForChatUpdates(chatId, onUpdate) {
     return unsubscribe;
 }
 
+async function getSearchResults(searchInput) {
+    let filteredArtists = [];
+    const q = query(collection(firestore, ARTIST_TABLE), where('genre','==', 'pop'));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((artist) => {
+        filteredArtists.push(artist.data());
+    })
+    return filteredArtists;
+}
+
+
 export {
     saveUserDataInDb,
     saveBookingInDb,
@@ -181,5 +190,6 @@ export {
     getChatData,
     saveChatItem,
     updateChatItem,
-    listenForChatUpdates
+    listenForChatUpdates,
+    getSearchResults
 }

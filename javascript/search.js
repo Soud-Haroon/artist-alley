@@ -127,17 +127,3 @@ export async function sendOffer(artist_id, address, date, offerPrice) {
 window.sendUserOffer = sendOffer;
 window.veiwPortfolio = veiwPortfolio;
 loadTemplates();
-
-
-// function displayResults(results) {
-//     let array = results;
-//     var results = document.getElementById('searchResults');
-//     results.innerHTML = '';
-//     array.forEach((doc) => {
-//         var data = doc;
-//         results.innerHTML += `<div class="homepage-result-user">
-//         <h3>Name: ${data.fName} + ${data.lName}</h3>
-//         <span>phone: ${data.phone}</span>
-//         </div>`;
-//     });
-// }

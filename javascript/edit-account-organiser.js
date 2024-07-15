@@ -60,7 +60,7 @@ saveBtn.addEventListener('click', (event) => {
 
 async function updateUserData(user) {
     await saveUserDataInDb(user);
-    window.location.replace("homepage.html");
+    window.location.replace("account-organiser.html");
 }
 
 function startCamera() {

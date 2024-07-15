@@ -33,7 +33,7 @@ setUserDataOnUI();
 
 async function updateUserData(user) {
     await saveUserDataInDb(user);
-    window.location.replace("homepage.html");
+    window.location.replace("account-artist.html");
 }
 
 // preview the selected profile picture of the user

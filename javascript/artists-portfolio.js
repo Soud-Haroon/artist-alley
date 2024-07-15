@@ -3,14 +3,22 @@ import {
     saveBookingInDb
 } from '../javascript/firestore.js';
 
-import { loggedInUser } from './utilities.js';
+import { loggedInUser, includeHeaderFooter, gotoMyAccount } from './utilities.js';
 
 import { USER_TYPE_ARTIST, STATUS_PENDING } from './app-constants.js';
 
-// import { sendOffer } from './search.js';
+const headerElement = document.querySelector('header');
+const footerElement = document.querySelector('footer');
+
+setupHeaderFooter();
+
+// const cameraDiv = document.getElementById('camera');
+// cameraDiv.style.display = 'none';
+
 
 const params = new URLSearchParams(window.location.search);
 const artist_id = params.get('artist_id');
+console.log('Artist id: '+artist_id)
 let artist_data = await getArtistData(artist_id, USER_TYPE_ARTIST);
 
 
@@ -91,5 +99,35 @@ function setUserDataOnUI(artist) {
         if (artist.summary) {
             summary.textContent = artist.summary;
         }
+    }
+}
+
+
+// HEADER AND FOOTER ===========================================
+function setupHeaderFooter() {
+    includeHeaderFooter(setHeader, setFooter);
+}
+
+function setHeader(data) {
+    if (headerElement) {
+        headerElement.innerHTML = data;
+        const myProfileBtn = document.getElementById('myProfile');
+        const logoutBtn = document.getElementById('logoutBtn');
+
+        myProfileBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            gotoMyAccount();
+        })
+
+        logoutBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            logoutUser();
+        })
+    }
+}
+
+function setFooter(data) {
+    if (footerElement) {
+        footerElement.innerHTML = data;
     }
 }
