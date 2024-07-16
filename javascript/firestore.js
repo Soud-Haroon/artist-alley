@@ -63,8 +63,10 @@ async function saveBookingInDb(booking) {
         const ref = doc(firestore, TABLE_BOOKINGS, booking.booking_id);
         await setDoc(ref, booking);
         console.log('============= Booking added successfully! ============');
+        return true
     } catch (error) {
         console.error(error)
+        return false
     }
 }
 

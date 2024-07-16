@@ -21,169 +21,86 @@ body {
     line-height: 1.4;
 }
 
-.headerContent,
-.footerContent{
-    max-width: 1000px;
-    margin: auto;
-}
-
-.mainCenter{
-    max-width: 1015px;
-    margin: auto;
-}
-
-h1,
-h2,
-h3 {
-    font-family: Oswald;
-    font-weight: normal;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-}
-
-header .site-heading img {
-    width: 50px;
-    height: auto;
-}
-.headerContent .navbar{
-    position: relative;
-}
-
-
-nav{
-    display: none;
-}
-
-nav ul li a:hover{
-    color: var(--accent-clr);
-    border-bottom: 1px solid var(--accent-clr);
-    transition: all .5s;
-}
-
-
-.headerContent .navbar .search a,
-.headerContent .navbar .menuBtn a {
-    color: var(--white-clr);
-}
-
-.headerContent .navbar .menuBtn a {
-    color: var(--accent-clr);
-}
-
-header {
-    background: linear-gradient(to bottom, #111415, #363a47);
-    border-radius: 0 0 20px 20px;
-
-    padding: 1rem;
-    color: var(--white-clr);
-}
-
-header .headerContent .site-heading {
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-}
-
-header .headerContent .site-heading img,
-header .headerContent .site-heading h1 {
-    grid-row: 1;
-    grid-column: 1;
-}
-
-header .headerContent .site-heading h1 {
-    margin-left: 3.5rem;
-    align-items: center;
-    font-size: 32px;
-    font-weight: normal;
-}
-
-.headerContent h2 {
-    font-weight: normal;
-}
-
-.headerContent h2 span {
-    color: var(--accent-clr);
-}
-
-.headerContent {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-}
-
-.headerContent .navbar {
-    display: flex;
-    gap: 1rem;
-    justify-content: end;
-    align-items: center;
-}
-
 /* main--------------------- */
 
-main .mainContent {
+.mainContent {
     padding: 1rem;
-    border: 1px solid rgb(213, 213, 213);
-    box-shadow: #797979 2px 5px 10px;
-    border-radius: 25px;
     margin: 1.5rem 1rem;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 1rem;
 }
 
-main .mainContent .artist-descp {
-    margin-bottom: 1.5rem;
+.search-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    flex-direction: row-reverse;
+    gap: 1rem;
 }
 
-main .mainContent .artist-descp .artist-briefing img {
-    width: 80px;
-    height: 80px;
+.artist-descp {
+    align-self: flex-start;
+    flex: 1;
+}
+
+.artist-work {
+    flex: 1;
+}
+
+.images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    flex: 1;
+}
+
+.images img:nth-of-type(1) {
+    grid-column: 1/-1;
+    grid-row: 1/3;
+    width: auto;
+}
+.image {
+    display: grid;
+    grid-template-columns: subgrid;
+}
+
+.artist-descp img {
+    width: 100px;
+    height: auto;
     object-fit: cover;
     border-radius: 50%;
 }
-
-.mainContent .artist-descp .artist-briefing {
+/* ------------------------------------------ */
+.artist-descp .artist-briefing {
     display: flex;
     flex-flow: row nowrap;
     gap: 1rem;
     align-items: center;
 }
 
-main .mainContent .artist-descp .icons-grp {
+.artist-descp .icons-grp {
     text-align: end;
     color: var(--secondary-clr);
 }
 
-main .mainContent .artist-descp .about-artist ul li {
+.artist-descp .about-artist ul li {
     font-family: oswald;
 }
 
-main .mainContent .artist-descp .about-artist ul li span {
+.artist-descp .about-artist ul li span {
     font-family: 'Nunito Sans';
 }
 
-main .mainContent .artist-descp .artist-perf h3 {
+.artist-descp .artist-perf h3 {
     font-size: 1.1rem;
     font-weight: normal;
 }
 
-main .mainContent .artist-descp .artist-perf p {
+.artist-descp .artist-perf p {
     border-bottom: 1px solid var(--accent-clr);
     padding-bottom: 1rem;
 }
 
-main .mainContent .artist-descp .artist-perf a {
+.artist-descp .artist-perf a {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
@@ -196,7 +113,7 @@ main .mainContent .artist-descp .artist-perf a {
     border-radius: 25px;
 }
 
-.mainContent .artist-descp .artist-perf a.check {
+.artist-descp .artist-perf a.check {
     background-color: var(--accent-clr);
     color: var(--white-clr);
     padding: .5rem;
@@ -207,50 +124,20 @@ main .mainContent .artist-descp .artist-perf a {
     margin-top: 2rem;
 }
 
-.mainContent .artist-work .images {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    gap: .3rem;
-}
-
-.mainContent .artist-work .images img {
+.artist-work .images img {
     border-radius: 20px;
+    border: 1px solid black;
 }
 
-.mainContent .artist-work .images img:nth-of-type(1){
-    grid-column: 1/3;
-    grid-row: 1/-1;
-    height: 100%;
-}
 
-.mainContent .artist-work .images img:nth-of-type(2){
-    grid-column: 3/4;
-    grid-row: 1/2;
-} 
-
-.mainContent .artist-work .images img:nth-of-type(3){
-    grid-column: 4/5;
-    grid-row: 1/2;
-} 
-
-.mainContent .artist-work .images img:nth-of-type(4){
-    grid-column: 3/5;
-    grid-row: 2/-1;
-} 
-
-.artist-work{
-    position: relative;
-}
-
-.mainContent .albumBtn {
+.albumBtn {
     text-align: center;
     position: absolute;
     bottom: 15px;
     right: 15px;
 }
 
-.mainContent .albumBtn a {
+.albumBtn a {
     background-color: var(--white-clr);
     color: var(--blacl-clr);
     border-radius: 25px;
@@ -270,56 +157,13 @@ main .top-btn img {
     height: auto;
 }
 
-/* footer------------ */
-footer {
-    background: linear-gradient(to bottom, #111415, #363a47);
-    color: var(--white-clr);
-    padding: 1rem;
+.artist-perf {
+    margin-top: 1rem;
 }
 
-.footerContent {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    row-gap: 2rem;
-}
-
-.footerContent a {
-    color: var(--white-clr);
-}
-
-.footerContent .footer-head {
-    text-align: center;
-    grid-column: span 2;
-}
-
-.footerContent .footer-head img {
-    margin: auto;
-    width: 70px;
-}
-
-.footerContent .footer-head .icons ul li {
-    display: inline;
-    margin: .3rem;
-}
-
-.footerContent .copyright {
-    grid-column: span 2;
-    text-align: center;
-}
-
-.footerContent .quick-links p,
-.footerContent .contact-us p {
-    font-weight: 700;
-}
-
-.footerContent .quick-links ul li,
-.footerContent .contact-us ul li {
-    margin-bottom: .5rem;
-}
-
-@media screen and (min-width: 900px) {
+@media screen and (min-width: 700px) {
     .headerContent .navbar .menuBtn {
-        display: none;     
+        display: none;
     }
 
     nav {
@@ -341,100 +185,30 @@ footer {
         margin-left: 1rem;
     }
 
-    main{
+    main {
         padding: 0.5rem;
     }
 
-    main .mainContent {
-        display: grid;
-        grid-template-columns: 2fr 3fr;
-        gap: 1rem;
-        border: unset;
-        box-shadow: unset;
-        margin: 0;
-        padding: 0.5rem;
+    .mainContent {
+        grid-template-columns: 1fr;
     }
 
-    main .artist-descp,
-    main .artist-work{
+    .artist-descp,
+    .artist-work {
         border: 1px solid rgb(213, 213, 213);
         box-shadow: #797979 2px 5px 10px;
         border-radius: 25px;
         padding: 1rem;
     }
 
-    main .mainContent .artist-descp {
+    .artist-descp {
         margin-bottom: 0;
     }
-
-    .mainContent .artist-work {
-        min-height: 540px;
-    }
-
-    .mainContent .artist-descp {
-        min-height: 549px;
-    }
-
-    main .images{
-        min-height: 549px;
-    }
-
-    .mainContent .artist-work .images {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
-        gap: .3rem;
-    }
-    
-    .mainContent .artist-work .images img {
+    .artist-work .images img {
         border-radius: 20px;
     }
-    
-    .mainContent .artist-work .images img:nth-of-type(1){
-        min-height: 554px;
-        height: unset;
-    }
-    
-    .mainContent .artist-work .images img:nth-of-type(2){
-        min-height: 183px;
-    } 
-    
-    .mainContent .artist-work .images img:nth-of-type(3){
-        min-height: 183px;
-    } 
-    
-    .mainContent .artist-work .images img:nth-of-type(4){
-        min-height: 366px;
-    } 
-
-    .mainContent .albumBtn {
+    .albumBtn {
         bottom: 40px;
         right: 30px;
     }
-
-    /* footer-------------------- */
-    footer .footerContent {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 2rem;
-    }
-
-    footer .footerContent .footer-head {
-        /* grid-column: 1/2; */
-        text-align: left;
-        display: grid;
-        gap: 1rem;
-    }
-
-    footer .footerContent .footer-head img {
-        margin: 0;
-
-    }
-
-    footer .footerContent .copyright {
-        grid-column: 1/ span 4;
-        text-align: center;
-
-        margin-top: 2rem;
-    }
-
 }

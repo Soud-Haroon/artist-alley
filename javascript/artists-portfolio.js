@@ -1,11 +1,11 @@
 import {
-    saveUserDataInDb,
-    getUserDataById
+    getUserDataById,
+    saveBookingInDb
 } from './firestore.js';
 
 import { uploadProfileImage, uploadPortfolioImages } from './firebase-storage.js';
 import { loggedInUser, includeHeaderFooter, gotoMyAccount, logoutUser } from "./utilities.js";
-import { USER_TYPE_ARTIST } from './app-constants.js';
+import { USER_TYPE_ARTIST, STATUS_PENDING } from './app-constants.js';
 
 const headerElement = document.querySelector('header');
 const footerElement = document.querySelector('footer');
@@ -14,13 +14,13 @@ setupHeaderFooter();
 const params = new URLSearchParams(window.location.search);
 const artist_id = params.get('artist_id');
 
-if(artist_id) {
+if (artist_id) {
     setUserDataOnUI(artist_id);
 }
 
 async function setUserDataOnUI(artist_id) {
     const user = await getUserDataById(artist_id, USER_TYPE_ARTIST);
-    console.log("Artist Data arrived: "+user.fName)
+    console.log("Artist Data arrived: " + user.fName)
     if (user) {
         const profilePic = document.getElementById('profile-pic');
         const summary = document.getElementById('summary');
@@ -32,8 +32,18 @@ async function setUserDataOnUI(artist_id) {
         const chatBtn = document.getElementById('chatBtn');
         const ctaDiv = document.getElementById('ctaDiv');
 
+        const closePopupButton = document.getElementById('close-popup');
+        const popupContainer = document.getElementById('popup-container');
+        const eventAddress = document.getElementById('address');
+        const eventDate = document.getElementById('date');
+        const offerPrice = document.getElementById('offer');
+
+
+
+        const makeOfferBtn = document.getElementById('makeOfferBtn');
+
         const gallery = document.querySelector('.images');
-        if(loggedInUser.userType == USER_TYPE_ARTIST) {
+        if (loggedInUser.userType == USER_TYPE_ARTIST) {
             ctaDiv.style.display = 'none';
         } else {
             ctaDiv.style.display = 'inline';
@@ -67,8 +77,12 @@ async function setUserDataOnUI(artist_id) {
 
         bookBtn.addEventListener('click', (event) => {
             event.preventDefault();
+            popupContainer.style.display = 'block';
+        })
 
-            window.location = "../html/edit-account-artist.html";
+        closePopupButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            popupContainer.style.display = 'none';
         })
 
         chatBtn.addEventListener('click', (event) => {
@@ -76,7 +90,37 @@ async function setUserDataOnUI(artist_id) {
 
             window.location = `../html/chat.html?artist_id=${user.uid}`;
         })
+
+        makeOfferBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            try {
+                let booking = {
+                    booking_id: loggedInUser.uid + user.uid,
+                    host_id: loggedInUser.uid,
+                    artist_id: user.uid,
+                    artist_name: user.fName,
+                    event_address: eventAddress.value,
+                    event_date: eventDate.value,
+                    offer_price: offerPrice.value,
+                    status: STATUS_PENDING
+                }
+                const isRequestSent = makeAnOffer(booking);
+                if(isRequestSent) {
+                    popupContainer.style.display = 'none';
+                    alert("Request sent successfully!");
+                } else {
+                    alert('Oops, something went wrong!');
+                }
+            } catch (error) {
+                console.log("on send offer click: " + error);
+                alert('Oops, something went wrong!');
+            }
+        })
     }
+}
+
+async function makeAnOffer(booking) {
+    return await saveBookingInDb(booking);
 }
 
 // HEADER & FOOTER DATA =========================================================================================
