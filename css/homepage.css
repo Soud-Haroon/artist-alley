@@ -15,14 +15,26 @@ body {
     flex-flow: column nowrap;
 }
 
+.main-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    min-width: 60%;
+    gap: 1.2rem;
+    align-items: center;
+    justify-content: center;
+}
+
 
 main {
     max-width: 1200px;
-    min-width: 60%;
     margin: auto;
     text-align: center;
-    flex: 1;
     padding: 1rem;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
 }
 
 #logoutBtn {
@@ -54,6 +66,7 @@ main {
     flex-flow: row wrap;
     gap: 0.5rem;
     margin-top: 2rem;
+    min-width: 60%;
 }
 
 .search-container input[type=text] {
@@ -65,7 +78,7 @@ main {
 
 .search-container button {
     padding: 8px 12px;
-    background: #4CAF50;
+    background: var(--accent-clr);
     color: white;
     border: none;
     border-radius: 4px;
@@ -75,7 +88,15 @@ main {
 }
 
 .search-container button:hover {
-    background: #45a049;
+    background: var(--secondary-clr);
+
+}
+
+.search-suggestions {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
 
 .search-suggestions ul {
@@ -85,10 +106,11 @@ main {
     align-items: center;
     margin: 0 2rem;
     justify-content: center;
+    max-width: 60%;
 }
 
 .search-suggestions ul li {
-    border: 1px solid black;
+    border: 1px solid rgb(157, 152, 152);
     padding: 0.5rem 1rem;
     border-radius: 30px;
 }

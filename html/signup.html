@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,16 @@
     <link rel="stylesheet" href="../css/signup.css">
     <script type="module" src="../javascript/signup.js" defer></script>
 </head>
+
 <body>
 
-    <main> 
-        <h1>Join Artist Alley!</h1>
-        
-        <form id="signupForm">
+    <main>
+        <div id="signupForm">
+            <div class="logo">
+                <img src="../src/logo2.png" alt="">
+                <h1> Just a few more steps!</h1>
+            </div>
+
             <label class="label" for="fName">First Name</label>
             <input type="text" id="fName" class="inputField" required>
 
@@ -36,13 +41,19 @@
             <input type="password" id="confirmPass" class="inputField" required>
 
 
-            <input id="submitBtn" type="submit" value="SignUp">
-
-            <div id="status" >
+            <div class="submit">
+                <input id="submitBtn" type="submit" value="SignUp">
+            </div>
+            
+            <div id="status">
 
             </div>
-        </form>
+        </div>
+        <!-- <form id="signupForm">
+            
+        </form> -->
     </main>
-    
+
 </body>
+
 </html>

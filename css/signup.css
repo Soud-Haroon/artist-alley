@@ -1,12 +1,23 @@
+:root {
+    --primary-clr: rgb(56, 56, 56);
+    --secondary-clr: #89023E;
+    --accent-clr: #F37F81;
+}
 body {
     margin: 0;
     padding: 0;
 }
 
 main {
-    max-width: 450px;
     margin: auto;
     text-align: center;
+    background-image: url("../src/annie-spratt-g5DkG2ZF7ZY-unsplash.jpg");
+    background-color: rgba(37, 35, 31, 0.148);
+    mask-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #signupForm {
@@ -14,19 +25,51 @@ main {
     grid-template-columns: 1fr;
     gap: 0.75rem;
     text-align: start;
-    margin-top: 5rem;
+    width: 450px;
+    margin: auto;
+    box-shadow: grey 1px 1px 8px;
+    border-radius: 25px;
+    padding: 2rem 1rem;
+    background-color: rgba(62, 41, 41, 0.389);
+    color: white;
 }
 
 .inputField {
     padding: 10px;
+    background-color: rgba(62, 41, 41, 0.509);
+    border: 1px solid white;
+    color: white;
+    border-radius: 10px;
 }
+.logo {
+    text-align: center;
+}
+.logo img{
+    max-width: 100px;
+    height: 100px;
+    background-color: black;
+    border-radius: 20px;
+}
+
 
 #submitBtn {
     padding: 10px;
-    margin-top: 20px;
     cursor: pointer;
     font-weight: bold;
+    background-color: var(--secondary-clr);
+    border-radius: 15px;
+    border: 1px solid white;
+    color: white;
+    width: 50%;
 }
+.submit {
+    text-align: center;
+}
+
+#confirmPass {
+    margin-bottom: 1.2rem;
+}
+
 
 .label {
     font-weight: bold;
@@ -36,9 +79,9 @@ main {
     width: 100%;
     padding: 10px 0;
     text-align: center;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 10px;
-    background-color: red;
+    background-color: var(--accent-clr);
     color: white;
     display: none;
 }
