@@ -3,11 +3,6 @@ import { includeHeaderFooter } from "./utilities.js";
 const loginBtn = document.getElementById('loginBtn');
 const signupBtn = document.getElementById('signupBtn');
 
-const headerElement = document.querySelector('header');
-const footerElement = document.querySelector('footer');
-
-// includeHeaderFooter(headerElement, footerElement);
-
 signupBtn.addEventListener('click', gotoSignupFlow);
 
 loginBtn.addEventListener('click', gotoLoginFlow);

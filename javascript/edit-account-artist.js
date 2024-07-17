@@ -3,7 +3,7 @@ import {
 } from './firestore.js';
 
 import { uploadProfileImage, uploadPortfolioImages } from './firebase-storage.js';
-import { loggedInUser, includeHeaderFooter } from "./utilities.js";
+import { loggedInUser, includeHeaderFooter, logoutUser } from "./utilities.js";
 
 const headerElement = document.querySelector('header');
 const footerElement = document.querySelector('footer');

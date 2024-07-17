@@ -1,12 +1,44 @@
+:root {
+    --primary-clr: rgb(56, 56, 56);
+    --secondary-clr: #89023E;
+    --accent-clr: #F37F81;
+}
+
+html {
+    font-family: 'Nunito Sans';
+}
 body {
     margin: 0;
     padding: 0;
 }
 
 main {
-    max-width: 450px;
+    height: 100vh;
     margin: auto;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../src/annie-spratt-g5DkG2ZF7ZY-unsplash.jpg");
+    background-color: rgba(37, 35, 31, 0.148);
+    mask-repeat: no-repeat;
+}
+
+.login-wrapper {
+    box-shadow: grey 1px 1px 8px;
+    border-radius: 25px;
+    padding: 2rem 1rem;
+    width: 450px;
+    z-index: 100;
+    background-color: rgba(62, 41, 41, 0.389);
+    color: white;
+}
+
+.logo img{
+    max-width: 100px;
+    height: 100px;
+    background-color: black;
+    border-radius: 20px;
 }
 
 .login-form {
@@ -14,22 +46,45 @@ main {
     grid-template-columns: 1fr;
     gap: 0.75rem;
     text-align: start;
-    margin-top: 5rem;
+}
+#or {
+    text-align: center;
+    font-weight: bold;
 }
 
 .inputField {
     padding: 10px;
+    background-color: rgba(62, 41, 41, 0.509);
+    border: 1px solid white;
+    color: white;
+    border-radius: 10px;
 }
 
-#loginBtn {
+#password {
+    margin-bottom: 1.2rem;
+}
+
+#loginBtn, #signupBtn {
     padding: 10px;
-    margin-top: 20px;
     cursor: pointer;
     font-weight: bold;
+    background-color: var(--secondary-clr);
+    border-radius: 15px;
+    border: 1px solid white;
+    color: white;
+    min-width: 50%;
+    justify-content: center;
 }
 
 .label {
     font-weight: bold;
+}
+
+.buttons {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: 1rem;
 }
 
 #status {

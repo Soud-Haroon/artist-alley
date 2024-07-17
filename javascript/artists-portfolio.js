@@ -46,7 +46,7 @@ async function setUserDataOnUI(artist_id) {
         if (loggedInUser.userType == USER_TYPE_ARTIST) {
             ctaDiv.style.display = 'none';
         } else {
-            ctaDiv.style.display = 'inline';
+            ctaDiv.style.display = 'grid';
         }
         if (user.profile_image) {
             profilePic.src = user.profile_image;

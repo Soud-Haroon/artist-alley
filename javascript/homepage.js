@@ -30,6 +30,46 @@ function setDataOnUI() {
             alert('Please enter something in the search box!');
         }
     });
+
+    const rock = document.getElementById('rock');
+    const rb = document.getElementById('r&b');;
+    const indie = document.getElementById('indie');
+    const guitar = document.getElementById('guitar');
+    const comedy = document.getElementById('comedy');
+    const pop = document.getElementById('pop');
+    const dj = document.getElementById('dj');
+    const dance = document.getElementById('dance');
+    const country = document.getElementById('country');
+    const sing = document.getElementById('sing');
+
+    rock.addEventListener('click', () => {
+        let url = `../html/search-result.html?query=rock}`;
+        window.location = url;
+    })
+    guitar.addEventListener('click', () => {
+        let url = `../html/search-result.html?query=guitar}`;
+        window.location = url;
+    })
+    comedy.addEventListener('click', () => {
+        let url = `../html/search-result.html?query=comedy}`;
+        window.location = url;
+    })
+    dj.addEventListener('click', () => {
+        let url = `../html/search-result.html?query=dj}`;
+        window.location = url;
+    })
+    country.addEventListener('click', () => {
+        let url = `../html/search-result.html?query=country}`;
+        window.location = url;
+    })
+    sing.addEventListener('click', () => {
+        let url = `../html/search-result.html?query=sing}`;
+        window.location = url;
+    })
+    pop.addEventListener('click', () => {
+        let url = `../html/search-result.html?query=pop}`;
+        window.location = url;
+    })
 }
 
 async function getUserData(userId, userType) {
