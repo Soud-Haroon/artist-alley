@@ -61,13 +61,15 @@ async function fetchAndUsePendingTemplate(pendingBooking) {
         clone = document.importNode(bookingPendingTemplate.content, true);
     }
 
-    // const hostName = clone.querySelector('#host-name');
+    const hostName = clone.querySelector('#host-name');
     const eventAddress = clone.querySelector('#event-address');
     const eventDate = clone.querySelector('#event-date');
     const requestOffer = clone.querySelector('#request-offer');
     const requestStatus = clone.querySelector('#request-status');
 
-    // hostName.innerHTML = pendingBooking.hostName;
+    if(pendingBooking.host_name) {
+        hostName.innerHTML = pendingBooking.host_name;
+    }
     eventAddress.innerHTML = pendingBooking.event_address;
     eventDate.innerHTML = pendingBooking.event_date;
     requestOffer.textContent = pendingBooking.offer_price;
@@ -93,13 +95,15 @@ async function fetchAndUseAcceptedTemplate(acceptedBooking) {
     const bookingAcceptedTemplate = temp.querySelector('#bookingAcceptedTemplate');
     const clone = document.importNode(bookingAcceptedTemplate.content, true);
 
-    // const hostName = clone.querySelector('#host-name');
+    const hostName = clone.querySelector('#host-name');
     const eventAddress = clone.querySelector('#event-address');
     const eventDate = clone.querySelector('#event-date');
     const requestOffer = clone.querySelector('#request-offer');
     const requestStatus = clone.querySelector('#request-status');
 
-    // hostName.innerHTML = pendingBooking.hostName;
+    if(acceptedBooking.host_name) {
+        hostName.innerHTML = acceptedBooking.host_name;
+    }
     eventAddress.innerHTML = acceptedBooking.event_address;
     eventDate.innerHTML = acceptedBooking.event_date;
     requestOffer.textContent = acceptedBooking.offer_price;

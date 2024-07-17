@@ -97,6 +97,7 @@ async function setUserDataOnUI(artist_id) {
                 let booking = {
                     booking_id: loggedInUser.uid + user.uid,
                     host_id: loggedInUser.uid,
+                    host_name: loggedInUser.fName,
                     artist_id: user.uid,
                     artist_name: user.fName,
                     event_address: eventAddress.value,
