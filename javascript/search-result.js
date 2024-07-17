@@ -56,11 +56,17 @@ async function displayArtistCard(artist, artistContainer) {
 
     const profilePic = clone.querySelector('#profile_pic');
     const summary = clone.querySelector('#summary');
+    const pricing = clone.querySelector('#pricing');
+    const category = clone.querySelector('#category');
+    const location = clone.querySelector('#location');
     const portfolioImages = clone.querySelector(".images");
     const viewProfile = clone.querySelector('#view-profile');
 
     profilePic.src = artist.profile_image;
     summary.textContent = artist.summary;
+    pricing.textContent = artist.pricing;
+    category.textContent = artist.category;
+    location.textContent = artist.location;
     viewProfile.addEventListener('click', (event) => {
         event.preventDefault();
         let url = `../html/artist-portfolio.html?artist_id=${artist.uid}`;
