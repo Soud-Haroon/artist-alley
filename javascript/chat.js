@@ -20,7 +20,6 @@ await initUI();
 // if found, open the chat box of that particular id
 // else add that id to myChat and also to the artist's myChat and then open the chat box
 if (artist_id) {
-
     const chatId = `${loggedInUser.uid}_${artist_id}`;
     let chatExists = false;
     if (loggedInUser.myChat) {

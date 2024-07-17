@@ -11,13 +11,25 @@ body {
 }
 
 .chatSideBar {
-    background-color: lightslategray;
+    background-color: white;
     padding: 10px;
     overflow-y: auto;
 }
 
+#chat-list p {
+    cursor: pointer;
+    border-bottom: 1px solid black;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+#chat-list p:hover {
+    background-color: #999;
+    border-radius: 10px;
+}
+
 .chat-view {
-    background-color: beige;
+    background-color: rgba(255, 192, 203, 0.549);
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -35,6 +47,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    padding: 1rem;
     overflow-y: auto;
 }
 
@@ -96,37 +109,43 @@ body {
 
 #send-button {
     padding: 10px 20px;
-    background-color: grey;
+    background-color: rgba(0, 128, 0, 0.891);
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
-
 #send-button:hover {
-    background-color: darkgrey;
+    background-color: green;
 }
 
 /* CHAT Related =========================== */
 
 #sender-view {
     padding: 10px;
-    background-color: aqua;
     color: black;
-    text-align: right;
+    background-color: rgb(178, 209, 167);
+
+    text-align: start;
     padding: 10px 20px;
     margin: 0;
-    border-radius: 10px;
+    min-width: 5%;
+    max-width: 80%;
+    border-radius: 15px;
     display: inline-block;
+    align-self: flex-end;
 }
 
 #receiver-view {
     padding: 10px;
-    background-color: darkkhaki;
-    color: white;
+    color: black;
     text-align: start;
+    background-color: white;
     padding: 10px 20px;
     margin: 0;
-    border-radius: 10px;
+    min-width: 5%;
+    max-width: 80%;
+    border-radius: 15px;
     display: inline-block;
+    align-self: flex-start;
 }
