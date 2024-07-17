@@ -43,31 +43,31 @@ function setDataOnUI() {
     const sing = document.getElementById('sing');
 
     rock.addEventListener('click', () => {
-        let url = `../html/search-result.html?query=rock}`;
+        let url = `../html/search-result.html?query=rock`;
         window.location = url;
     })
     guitar.addEventListener('click', () => {
-        let url = `../html/search-result.html?query=guitar}`;
+        let url = `../html/search-result.html?query=guitar`;
         window.location = url;
     })
     comedy.addEventListener('click', () => {
-        let url = `../html/search-result.html?query=comedy}`;
+        let url = `../html/search-result.html?query=comedy`;
         window.location = url;
     })
     dj.addEventListener('click', () => {
-        let url = `../html/search-result.html?query=dj}`;
+        let url = `../html/search-result.html?query=dj`;
         window.location = url;
     })
     country.addEventListener('click', () => {
-        let url = `../html/search-result.html?query=country}`;
+        let url = `../html/search-result.html?query=country`;
         window.location = url;
     })
     sing.addEventListener('click', () => {
-        let url = `../html/search-result.html?query=sing}`;
+        let url = `../html/search-result.html?query=sing`;
         window.location = url;
     })
     pop.addEventListener('click', () => {
-        let url = `../html/search-result.html?query=pop}`;
+        let url = `../html/search-result.html?query=pop`;
         window.location = url;
     })
 }

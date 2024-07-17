@@ -19,6 +19,14 @@ main {
 
 #saveBtn {
     grid-column: 1/-1;
+    margin-bottom: 1rem;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: var(--secondary-clr);
+    border-radius: 10px;
+    color: white;
+    justify-content: center;
 }
 
 .label {

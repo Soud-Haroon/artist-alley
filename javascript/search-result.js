@@ -1,4 +1,4 @@
-import { includeHeaderFooter, gotoMyAccount, logoutUser } from "./utilities.js";
+import { includeHeaderFooter, gotoMyAccount, logoutUser, loggedInUser } from "./utilities.js";
 
 import { getSearchResults } from "./firestore.js";
 
@@ -10,21 +10,32 @@ setupHeaderFooter();
 
 
 const params = new URLSearchParams(window.location.search);
-const query = params.get('query');
+const searchInput = params.get('query');
 
-searchAndDisplayArtists(query);
+searchAndDisplayArtists(searchInput);
 
-async function searchAndDisplayArtists(query) {
-    if (query !== '') {
-        const result = await getSearchResults(query);
-        console.log(`${result.length} artists found!`);
-        if (result.length > 0) {
-            const artistContainer = document.getElementById('container');
+async function searchAndDisplayArtists(searchInput) {
+    if (searchInput !== '') {
+        const result = await getSearchResults(searchInput);
+        let filteredResult = [];
+        result.forEach(artist => {
+            if (loggedInUser.uid !== artist.uid) {
+                filteredResult.push(artist);
+            }
+        })
+        console.log(`${filteredResult.length} artists found!`);
+        const artistContainer = document.getElementById('container');
+        if (filteredResult.length > 0) {
             artistContainer.innerHTML = '';
             result.forEach(artist => {
                 displayArtistCard(artist, artistContainer);
             })
 
+        } else {
+            const noArtist = document.createElement('div');
+            noArtist.textContent = 'No artist found!';
+            noArtist.id = 'no-artist'
+            artistContainer.appendChild(noArtist);
         }
     }
 
@@ -55,8 +66,8 @@ async function displayArtistCard(artist, artistContainer) {
         let url = `../html/artist-portfolio.html?artist_id=${artist.uid}`;
         window.location = url;
     });
-    
-    if(artist.portfolio_images) {
+
+    if (artist.portfolio_images) {
         portfolioImages.innerHTML = '';
 
         artist.portfolio_images.forEach(imageLink => {

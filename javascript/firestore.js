@@ -174,7 +174,7 @@ function listenForChatUpdates(chatId, onUpdate) {
 
 async function getSearchResults(searchInput) {
     let filteredArtists = [];
-    const q = query(collection(firestore, ARTIST_TABLE), where('genre','==', 'pop'));
+    const q = query(collection(firestore, ARTIST_TABLE), where('category','==', searchInput));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((artist) => {
         filteredArtists.push(artist.data());

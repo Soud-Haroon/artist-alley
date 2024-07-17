@@ -1,4 +1,5 @@
 import {
+    getUserDataById,
     saveUserDataInDb
 } from './firestore.js';
 
@@ -29,7 +30,8 @@ const imagePreviewDiv = document.getElementById('portfolio-images');
 const saveBtn = document.getElementById('saveBtn');
 
 console.log('setting userdata on UI')
-setUserDataOnUI();
+const user = await getUserDataById(loggedInUser.uid, loggedInUser.userType);
+setUserDataOnUI(user);
 
 async function updateUserData(user) {
     await saveUserDataInDb(user);
@@ -113,37 +115,37 @@ saveBtn.addEventListener('click', function (event) {
 });
 
 
-function setUserDataOnUI() {
-    if (loggedInUser) {
-        if (loggedInUser.profile_image) {
-            profilePic.src = loggedInUser.profile_image;
+function setUserDataOnUI(user) {
+    if (user) {
+        if (user.profile_image) {
+            profilePic.src = user.profile_image;
         }
-        if (loggedInUser.stageName) {
-            stageName.value = loggedInUser.stageName;
+        if (user.stageName) {
+            stageName.value = user.stageName;
         }
-        if (loggedInUser.category) {
+        if (user.category) {
             for (let i = 0; i < category.options.length; i++) {
-                if (category.options[i].value == loggedInUser.category) {
+                if (category.options[i].value == user.category) {
                     category.selectedIndex = i;
                 }
             }
         }
         console.log('about to set the pricing value')
-        if(loggedInUser.pricing) {
-            pricing.value = loggedInUser.pricing;
+        if(user.pricing) {
+            pricing.value = user.pricing;
         }
-        if(loggedInUser.location) {
-            location.value = loggedInUser.location;
+        if(user.location) {
+            location.value = user.location;
         }
-        if (loggedInUser.website) {
-            website.value = loggedInUser.website;
+        if (user.website) {
+            website.value = user.website;
         }
-        if (loggedInUser.summary) {
-            summary.value = loggedInUser.summary;
+        if (user.summary) {
+            summary.value = user.summary;
         }
-        if (loggedInUser.portfolio_images) {
+        if (user.portfolio_images) {
             imagePreviewDiv.innerHTML = '';
-            loggedInUser.portfolio_images.forEach(imageUrl => {
+            user.portfolio_images.forEach(imageUrl => {
                 const img = document.createElement('img');
                 img.src = imageUrl;
                 imagePreviewDiv.appendChild(img);

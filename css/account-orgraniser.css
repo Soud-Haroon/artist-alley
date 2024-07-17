@@ -22,6 +22,7 @@ body {
 
 main {
     text-align: center;
+    padding: 1rem;
 }
 
 
@@ -52,6 +53,13 @@ main {
     height: 150px;
     border-radius: 150px;
     margin-right: .5rem;
+}
+
+#summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
 }
 
 .addressSec {

@@ -113,6 +113,39 @@ header nav ul {
     background: #45a049;
 }
 
+#accept-request, #decline-request {
+    padding: 10px 2rem;
+    border: 1px solid white;
+    background-color: #45a049;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+#decline-request {
+    background-color: rgb(165, 47, 47);
+}
+
+.response-div {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.pending-view, .aceepted-view {
+    text-align: center;
+}
+.pending-item, .booking-item {
+    padding: 1rem;
+}
+.pending-body {
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: white;
+    padding: 1rem;
+
+}
+
 /* Responsive adjustments for search bar */
 @media (max-width: 600px) {
     .search-container input[type=text] {

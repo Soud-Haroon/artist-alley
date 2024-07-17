@@ -1,6 +1,6 @@
 import { dataUrlToFile, loggedInUser, gotoMyAccount, includeHeaderFooter, logoutUser } from "./utilities.js";
 import { uploadProfileImage } from "./firebase-storage.js";
-import { saveUserDataInDb } from "./firestore.js";
+import { getUserDataById, saveUserDataInDb } from "./firestore.js";
 
 const headerElement = document.querySelector('header');
 const footerElement = document.querySelector('footer');
@@ -28,7 +28,8 @@ const canvas = document.getElementById('canvas');
 const captureButton = document.getElementById('capture');
 let stream;
 
-setUserDataOnUI();
+const user = await getUserDataById(loggedInUser.uid, loggedInUser.userType);
+setUserDataOnUI(user);
 
 // Capture the image
 captureButton.addEventListener('click', () => {
@@ -90,31 +91,31 @@ function stopCamera() {
 
 }
 
-function setUserDataOnUI() {
-    if (loggedInUser) {
-        if(loggedInUser.profile_image) {
-            userAvatar.src = loggedInUser.profile_image;
+function setUserDataOnUI(user) {
+    if (user) {
+        if(user.profile_image) {
+            userAvatar.src = user.profile_image;
         }
-        if(loggedInUser.fName) {
-            firstName.value = loggedInUser.fName;
+        if(user.fName) {
+            firstName.value = user.fName;
         }
-        if(loggedInUser.lName) {
-            lastName.value = loggedInUser.lName;
+        if(user.lName) {
+            lastName.value = user.lName;
         }
-        if(loggedInUser.org_name) {
-            orgName.value = loggedInUser.org_name;
+        if(user.org_name) {
+            orgName.value = user.org_name;
         }
-        if(loggedInUser.role) {
-            role.value = loggedInUser.role;
+        if(user.role) {
+            role.value = user.role;
         }
-        if(loggedInUser.phone) {
-            phone.value = loggedInUser.phone;
+        if(user.phone) {
+            phone.value = user.phone;
         }
-        if(loggedInUser.address) {
-            address.value = loggedInUser.address;
+        if(user.address) {
+            address.value = user.address;
         }
-        if(loggedInUser.summary) {
-            summary.value = `${loggedInUser.summary}`;
+        if(user.summary) {
+            summary.value = `${user.summary}`;
         }
     }
 }

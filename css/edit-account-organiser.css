@@ -22,6 +22,12 @@ main {
     text-align: center;
 }
 
+.user-avatar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
 .portfolio-images {
     display: flex;
     flex-flow: row wrap;
@@ -46,6 +52,14 @@ main {
     margin-top: 20px;
     cursor: pointer;
     font-weight: bold;
+    margin-bottom: 1rem;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: var(--secondary-clr);
+    border-radius: 10px;
+    color: white;
+    justify-content: center;
 }
 
 .user-info {
@@ -54,4 +68,18 @@ main {
     gap: 0.75rem;
     text-align: start;
     margin-top: 5rem;
+}
+
+#start-camera {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: var(--accent-clr);
+    border-radius: 10px;
+    color: white;
+    border: 1px solid white;
+    justify-content: center;
+    margin: 0 10rem;
 }

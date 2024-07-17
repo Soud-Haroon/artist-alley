@@ -19,9 +19,16 @@ body {
     font-family: 'Nunito Sans';
     margin: 0;
     line-height: 1.4;
+    display: flex;
+    flex-flow: column nowrap;
+    min-height: 100vh;
 }
 
 /* main--------------------- */
+
+main {
+    flex: 1;
+}
 
 .mainContent {
     padding: 1rem;
@@ -39,6 +46,11 @@ body {
     box-shadow: #797979 2px 5px 10px;
     border-radius: 25px;
     padding: 1rem;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(213, 213, 213);
+        box-shadow: #797979 2px 5px 10px;
+        border-radius: 25px;
 }
 
 .artist-descp {
@@ -53,7 +65,7 @@ body {
 .images {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    flex: 1;
+    gap: 1rem;    
 }
 
 .images img:nth-of-type(1) {
@@ -64,6 +76,11 @@ body {
 .image {
     display: grid;
     grid-template-columns: subgrid;
+}
+
+#no-artist {
+    font-size: 1.8rem;
+    text-align: center;
 }
 
 .artist-descp img {
@@ -194,14 +211,12 @@ main .top-btn img {
 
     .artist-descp,
     .artist-work {
-        border: 1px solid rgb(213, 213, 213);
-        box-shadow: #797979 2px 5px 10px;
-        border-radius: 25px;
         padding: 1rem;
     }
 
     .artist-descp {
         margin-bottom: 0;
+        align-self: center;
     }
     .artist-work .images img {
         border-radius: 20px;
@@ -212,9 +227,6 @@ main .top-btn img {
     }
 
     .search-wrapper {
-        border: unset;
-        box-shadow: unset;
-        border-radius: unset;
         grid-template-columns: 2fr 3fr;
         gap: 1rem;
         grid-template-rows: 1fr;
