@@ -1,4 +1,4 @@
-import { dataUrlToFile, loggedInUser, gotoMyAccount, includeHeaderFooter } from "./utilities.js";
+import { dataUrlToFile, loggedInUser, gotoMyAccount, includeHeaderFooter, logoutUser } from "./utilities.js";
 import { uploadProfileImage } from "./firebase-storage.js";
 import { saveUserDataInDb } from "./firestore.js";
 

@@ -63,9 +63,9 @@ async function gotoHomepage(loggedInUser, firstName, lastName, userType) {
     localStorage.setItem("user", JSON.stringify(user));
     // go to the appropriate user type profile page
     if(user.userType == USER_TYPE_ARTIST) {
-        window.location.replace("account-artist.html");
+        window.location.replace("edit-account-artist.html");
     } else {
-        window.location.replace("account-organiser.html");
+        window.location.replace("edit-account-organiser.html");
     }
 }
 
