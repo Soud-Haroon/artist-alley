@@ -7,6 +7,7 @@ import {
 } from '../javascript/firestore.js';
 
 const loginBtn = document.getElementById('loginBtn');
+const signupBtn = document.getElementById('signupBtn');
 
 loginBtn.addEventListener('click', async function (event) {
     try {
@@ -14,7 +15,7 @@ loginBtn.addEventListener('click', async function (event) {
         const password = document.getElementById("password").value;
 
         let result = await loginWithEmailAndPassword(email, password);
-        if(result) {
+        if (result) {
             gotoHomepage(result);
         } else {
             alert("wrong credentials!");
@@ -25,13 +26,22 @@ loginBtn.addEventListener('click', async function (event) {
     }
 });
 
+signupBtn.addEventListener('click', async function (event) {
+    try {
+        console.log('inside signup flow')
+        window.location.href = '../html/signup.html';
+    } catch (error) {
+        console.error(error);
+    }
+})
+
 async function gotoHomepage(result) {
     await setUserType(result);
     window.location.replace("homepage.html");
 }
 
 async function setUserType(result) {
-    let userData =  await getUserTypeDataById(result.user.uid);
+    let userData = await getUserTypeDataById(result.user.uid);
     let user = {
         uid: result.user.uid,
         email: result.user.email
