@@ -3,7 +3,7 @@ import {
     getUserDataById
 } from '../javascript/firestore.js';
 
-import { loggedInUser, includeHeaderFooter, gotoMyAccount, logoutUser } from "./utilities.js";
+import { loggedInUser, includeHeaderFooter, gotoMyAccount, logoutUser, includeHomePageHeader } from "./utilities.js";
 
 let userData = await getUserData(loggedInUser.uid, loggedInUser.userType);
 localStorage.setItem("user", JSON.stringify(userData));
@@ -11,7 +11,9 @@ localStorage.setItem("user", JSON.stringify(userData));
 const headerElement = document.querySelector('header');
 const footerElement = document.querySelector('footer');
 
-includeHeaderFooter(setHeader, setFooter);
+// includeHeaderFooter(setHeader, setFooter);
+
+includeHomePageHeader(setHeader);
 
 setDataOnUI();
 

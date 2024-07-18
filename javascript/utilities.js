@@ -49,4 +49,13 @@ async function includeHeaderFooter(setHeader, setFooter) {
         .catch(error => console.error("Error fetching footer: ", error));
 }
 
-export { loggedInUser, dataUrlToFile, gotoMyAccount, logoutUser, includeHeaderFooter };
+async function includeHomePageHeader(setHeader) {
+    fetch('../html/header-log-homepage.html')
+        .then(response => response.text())
+        .then(data => {
+            setHeader(data);
+        })
+        .catch(error => console.error("Error fetching header: ", error));
+}
+
+export { loggedInUser, dataUrlToFile, gotoMyAccount, logoutUser, includeHeaderFooter, includeHomePageHeader };
