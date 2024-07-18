@@ -13,8 +13,10 @@ const footerElement = document.querySelector('footer');
 
 // includeHeaderFooter(setHeader, setFooter);
 
-includeHomePageHeader(setHeader);
-
+if (loggedInUser.uid) {
+    console.log("================================");
+    includeHomePageHeader(setHeader);
+}
 setDataOnUI();
 
 
@@ -80,12 +82,13 @@ async function getUserData(userId, userType) {
 
 function setHeader(data) {
     if (headerElement) {
+        headerElement.innerHTML = "";
         headerElement.innerHTML = data;
         const title = document.getElementById('title');
         const myProfileBtn = document.getElementById('myProfile');
         const logoutBtn = document.getElementById('logoutBtn');
 
-        title.textContent = `Welcome ${loggedInUser.fName}!`;
+        // title.textContent = `Welcome ${loggedInUser.fName}!`;
         myProfileBtn.addEventListener('click', (event) => {
             event.preventDefault();
             gotoMyAccount();

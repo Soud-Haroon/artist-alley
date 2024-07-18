@@ -29,6 +29,7 @@ function gotoMyAccount() {
 function logoutUser() {
     logout(() => {
         console.log("logout successful");
+        console.log("----------------------------------------------------");
         window.location.replace('../html/login.html');
     });
 }
@@ -50,6 +51,7 @@ async function includeHeaderFooter(setHeader, setFooter) {
 }
 
 async function includeHomePageHeader(setHeader) {
+    console.log("]]]]]]]]]]]]]]]]]]]");
     fetch('../html/header-log-homepage.html')
         .then(response => response.text())
         .then(data => {
