@@ -29,8 +29,7 @@ function gotoMyAccount() {
 function logoutUser() {
     logout(() => {
         console.log("logout successful");
-        console.log("----------------------------------------------------");
-        window.location.replace('../html/login.html');
+        window.location.replace('../html/homepage.html');
     });
 }
 
