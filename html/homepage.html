@@ -8,6 +8,9 @@
     <title>Artist Alley</title>
     <link rel="stylesheet" href="../css/homepage.css">
     <script type="module" src="../javascript/homepage.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -24,12 +27,27 @@
                 <li><a href="#">About us</a></li>
                 <li><a href="#">Book an artist</a></li>
                 <li><a href="#">Join our artists</a></li>
-                <li><a href="#">Search</a></li>
+                <li><a id="search-toggle">Search</a></li>
+                <!-- <li><button>Search</button></li> -->
                 <li><a href="../html/login.html">Log In</a></li>
             </ul>
         </nav>
 
     </header>
+
+    <div class="search-container">
+        <form action="#">
+            <label for="search">Search</label>
+            <div class="search-bar">
+
+                <input type="search" name="search" id="search">
+                <button class="get-search" id="getSearch">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <!-- <span class="fa-solid fa-rectangle-xmark"></span> -->
+                </button>
+            </div>
+        </form>
+    </div>
 
     <main>
         <section style="background-color: #1a1a1a;">
