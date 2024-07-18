@@ -7,7 +7,6 @@
     --blacl-clr: black;
 }
 
-
 body {
     font-family: Arial, sans-serif;
     background-color: white;
@@ -265,9 +264,6 @@ nav ul li a:hover {
 }
 
 /* banner section */
-
-.container {}
-
 .header {
     background-color: #ffffff;
     text-align: center;
@@ -572,3 +568,57 @@ footer {
 }
 
 /* ================================== */
+
+.search-container {
+    background-color: black;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+
+    transform: translateY(calc(-100% - 50px));
+    transition: transform .75s ease-in-out;
+}
+
+.search-active .search-container {
+    transform: translateY(0);
+}
+
+
+
+.search-container {
+    font-size: 6rem;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.search-container label {
+    color: #F37F9A;
+    font-family: Arial, sans-serif;
+}
+
+.search-container button {
+    border: none;
+}
+
+.search-container form {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 600px;
+}
+
+.search-bar {
+    display: flex;
+    flex-flow: row;
+    max-height: 100px;
+}
+
+.search-container input {
+    width: 100%;
+    height: 100%;
+}

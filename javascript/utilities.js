@@ -50,7 +50,6 @@ async function includeHeaderFooter(setHeader, setFooter) {
 }
 
 async function includeHomePageHeader(setHeader) {
-    console.log("]]]]]]]]]]]]]]]]]]]");
     fetch('../html/header-log-homepage.html')
         .then(response => response.text())
         .then(data => {
