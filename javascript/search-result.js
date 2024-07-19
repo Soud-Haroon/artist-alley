@@ -10,6 +10,7 @@ setupHeaderFooter();
 
 
 const params = new URLSearchParams(window.location.search);
+
 const searchInput = params.get('query');
 
 searchAndDisplayArtists(searchInput);

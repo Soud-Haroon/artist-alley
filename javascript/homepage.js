@@ -11,6 +11,30 @@ const footerElement = document.querySelector('footer');
 // includeHeaderFooter(setHeader, setFooter);
 let userData;
 
+// const toggleSearch = document.getElementById('search-toggle');
+// const searchInput = document.getElementById('search');
+
+// toggleSearch.addEventListener('click', (event) => {
+//     event.preventDefault();
+//     console.log('THIISIHGIHSI')
+//     console.log('button clicked!')
+//     document.body.classList.toggle("search-active");
+// })
+// const searchButton = document.getElementById('searchBtn');
+
+// searchButton.addEventListener('click', async function () {
+//     const query = searchInput.value.trim();
+//     if (query !== '') {
+//         let url = `../html/search-result.html?query=${query}`;
+//         console.log(`url is: ${url}`)
+//         alert(`query is: ${query}`)
+//         document.body.classList.toggle("search-active");
+//         window.location = '../html/search-result.html?query=' + query;
+//     } else {
+//         alert('Please enter something in the search box!');
+//     }
+// });
+
 if (loggedInUser) {
     includeHomePageHeader(setHeader);
     userData = await getUserData(loggedInUser.uid, loggedInUser.userType);
@@ -18,21 +42,35 @@ if (loggedInUser) {
     setDataOnUI();
 }
 
-
-
 function setDataOnUI() {
-    const searchButton = document.getElementById('searchButton');
 
-    searchButton.addEventListener('click', async function () {
-        const searchInput = document.getElementById('searchInput').value.trim();
 
-        if (searchInput !== '') {
-            let url = `../html/search-result.html?query=${searchInput}`;
+    const searchInput = document.getElementById('search');
+    const searchButton = document.getElementById('searchBtn');
+
+    const navSearch = document.getElementById('nav-search');
+
+    navSearch.addEventListener('click', (event) => {
+        event.preventDefault();
+        document.body.classList.toggle("search-active");
+        // alert("Welcom from inside!")
+    })
+
+
+    searchButton.addEventListener('click', (event) => {
+        event.preventDefault();
+        const query = searchInput.value.trim();
+        if (query !== '') {
+            let url = `../html/search-result.html?query=${query}`;
+            
+
+            document.body.classList.toggle("searchactive");
+            console.log(`url is: ${url}`)
             window.location = url;
         } else {
             alert('Please enter something in the search box!');
         }
-    });
+    })
 
     // const rock = document.getElementById('rock');
     // const rb = document.getElementById('r&b');;
@@ -75,6 +113,8 @@ function setDataOnUI() {
     // })
 }
 
+
+
 async function getUserData(userId, userType) {
     return await getUserDataById(userId, userType);
 }
@@ -107,36 +147,5 @@ function setFooter(data) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('search-toggle').addEventListener('click', function (event) {
-        const body = document.body;
-        // event.preventDefault(); // Prevent the default link behavior
-        // alert('Search clicked!');
-        body.classList.toggle("search-active");
-        // You can add more functionality here
-    });
-});
 
-var inputField = document.getElementById("search");
-
-document.addEventListener('DOMContentLoaded', function () {
-    // document.getElementById('getSearch').addEventListener('click', function (event) {
-    // alert("hi");
-    // const searchInput = inputField.value;
-    // const url = `../html/search-result.html`;
-    // console.log(`uuuuuuuuuuuu` + url);
-    // window.location.replace = url;
-
-    // });
-    const searchButton = document.getElementById('getSearch');
-
-    searchButton.addEventListener('click', async function () {
-        const searchInput = document.getElementById('search').value.trim();
-
-        if (searchInput !== '') {
-            let url = `../html/search-result.html?query=${searchInput}`;
-            window.location = url;
-        } else {
-            alert('Please enter something in the search box!');
-        }
-    });
 });
