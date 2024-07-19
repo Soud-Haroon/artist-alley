@@ -569,6 +569,12 @@ footer {
 
 /* ================================== */
 
+
+
+.search-active .search-container {
+    transform: translateY(0);
+}
+
 .search-container {
     background-color: black;
     color: white;
@@ -581,21 +587,15 @@ footer {
 
     transform: translateY(calc(-100% - 50px));
     transition: transform .75s ease-in-out;
-}
-
-.search-active .search-container {
-    transform: translateY(0);
-}
-
-
-
-.search-container {
     font-size: 6rem;
-    display: grid;
-    justify-content: center;
+    height: 100vh;
+    display: flex;
+    flex-flow: row nowrap;
     align-items: center;
     text-align: center;
+    justify-content: center;
 }
+
 
 .search-container label {
     color: #F37F9A;
@@ -604,12 +604,15 @@ footer {
 
 .search-container button {
     border: none;
+    min-width: 50px;
+    cursor: pointer;
 }
 
 .search-container form {
     display: grid;
     grid-template-columns: 1fr;
     width: 600px;
+    height: 180px;
 }
 
 .search-bar {
