@@ -105,13 +105,7 @@ async function setUserDataOnUI(artist_id) {
                     offer_price: offerPrice.value,
                     status: STATUS_PENDING
                 }
-                const isRequestSent = makeAnOffer(booking);
-                if(isRequestSent) {
-                    popupContainer.style.display = 'none';
-                    alert("Request sent successfully!");
-                } else {
-                    alert('Oops, something went wrong!');
-                }
+                makeAnOffer(booking, popupContainer);
             } catch (error) {
                 console.log("on send offer click: " + error);
                 alert('Oops, something went wrong!');
@@ -120,8 +114,15 @@ async function setUserDataOnUI(artist_id) {
     }
 }
 
-async function makeAnOffer(booking) {
-    return await saveBookingInDb(booking);
+async function makeAnOffer(booking, popupContainer) {
+    const isRequestSent = await saveBookingInDb(booking);
+    if(isRequestSent) {
+        popupContainer.style.display = 'none';
+        alert("Request sent successfully!");
+        window.location = '../html/bookings.html';
+    } else {
+        alert('Oops! Something went wrong.')
+    }
 }
 
 // HEADER & FOOTER DATA =========================================================================================
