@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --primary-clr: rgb(56, 56, 56);
     --secondary-clr: #89023E;
     --accent-clr: #F37F81;
@@ -84,4 +84,11 @@ main {
     background-color: var(--accent-clr);
     color: white;
     display: none;
+} */
+img {
+max-width: 100%;
+height: auto;
+display: block;
+width: 100px;
+height: auto;
 }
