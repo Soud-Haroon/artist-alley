@@ -3,7 +3,6 @@ import {
     saveBookingInDb
 } from './firestore.js';
 
-import { uploadProfileImage, uploadPortfolioImages } from './firebase-storage.js';
 import { loggedInUser, includeHeaderFooter, gotoMyAccount, logoutUser } from "./utilities.js";
 import { USER_TYPE_ARTIST, STATUS_PENDING } from './app-constants.js';
 
@@ -32,8 +31,12 @@ async function setUserDataOnUI(artist_id) {
         const chatBtn = document.getElementById('chatBtn');
         const ctaDiv = document.getElementById('ctaDiv');
 
-        const closePopupButton = document.getElementById('close-popup');
-        const popupContainer = document.getElementById('popup-container');
+        const closeBookPopupButton = document.getElementById('close-popup-book');
+        const bookPopupContainer = document.getElementById('popup-container-book');
+
+        const successPopupContainer = document.getElementById('popup-container-success');
+        const closeSuccessPopupButton = document.getElementById('close-popup-success');
+
         const eventAddress = document.getElementById('address');
         const eventDate = document.getElementById('date');
         const offerPrice = document.getElementById('offer');
@@ -77,12 +80,19 @@ async function setUserDataOnUI(artist_id) {
 
         bookBtn.addEventListener('click', (event) => {
             event.preventDefault();
-            popupContainer.style.display = 'block';
+            bookPopupContainer.style.display = 'block';
         })
 
-        closePopupButton.addEventListener('click', (event) => {
+        closeBookPopupButton.addEventListener('click', (event) => {
             event.preventDefault();
-            popupContainer.style.display = 'none';
+            bookPopupContainer.style.display = 'none';
+        })
+
+        closeSuccessPopupButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            successPopupContainer.style.display = 'none';
+            window.location = '../html/bookings.html';
+
         })
 
         chatBtn.addEventListener('click', (event) => {
@@ -105,7 +115,7 @@ async function setUserDataOnUI(artist_id) {
                     offer_price: offerPrice.value,
                     status: STATUS_PENDING
                 }
-                makeAnOffer(booking, popupContainer);
+                makeAnOffer(booking, bookPopupContainer, successPopupContainer);
             } catch (error) {
                 console.log("on send offer click: " + error);
                 alert('Oops, something went wrong!');
@@ -114,12 +124,11 @@ async function setUserDataOnUI(artist_id) {
     }
 }
 
-async function makeAnOffer(booking, popupContainer) {
+async function makeAnOffer(booking, bookPopupContainer, successPopupContainer) {
     const isRequestSent = await saveBookingInDb(booking);
-    if(isRequestSent) {
-        popupContainer.style.display = 'none';
-        alert("Request sent successfully!");
-        window.location = '../html/bookings.html';
+    if (isRequestSent) {
+        bookPopupContainer.style.display = 'none';
+        successPopupContainer.style.display = 'block'
     } else {
         alert('Oops! Something went wrong.')
     }

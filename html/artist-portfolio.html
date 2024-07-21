@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="../css/headerstyle.css">
     <link rel="stylesheet" href="../css/main-footer.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="module" src="../javascript/utilities.js" defer></script>
     <script type="module" src="../javascript/artists-portfolio.js" defer></script>
 </head>
@@ -18,11 +21,10 @@
 
     </header>
     <main>
-        <div id="popup-container" class="popup">
-
+        <div id="popup-container-book" class="popup">
 
             <div class="popup-content">
-                <span class="close" id="close-popup">&times;</span>
+                <span class="close" id="close-popup-book">&times;</span>
                 <h2> Just few more steps: </h2>
                 <div class="event-data">
                     <label class="label" for="address">Event Address:</label>
@@ -33,6 +35,22 @@
                     <input type="text" id="offer" class="inputField" required>
 
                     <input id="makeOfferBtn" type="submit" value="Send">
+                </div>
+
+            </div>
+        </div>
+        <div id="popup-container-success" class="popup">
+            <div class="popup-content-success">
+                <div class="success-main">
+                    <div class="book-success">
+                        <h3>Booking Successfully Completed!</h3>
+                        <p>We are happy to help you with the best management for your event!</p>
+                    </div>
+            
+                    <div class="new-search">
+                        <!-- <a href="#" class="button-search">New search</a> -->
+                        <a id="close-popup-success" class="close-icon"><i class="fa-solid fa-xmark"></i></a>
+                    </div>
                 </div>
 
             </div>
