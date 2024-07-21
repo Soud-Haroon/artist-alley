@@ -252,6 +252,7 @@ footer {
     display: grid;
     padding: 1rem;
     grid-template-columns: 1fr;
+    gap: 1rem;
     margin: 2rem;
     /* border: 1px solid black; */
     border-radius: 15px;
