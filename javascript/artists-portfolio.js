@@ -12,6 +12,7 @@ setupHeaderFooter();
 
 const params = new URLSearchParams(window.location.search);
 const artist_id = params.get('artist_id');
+console.log('artist id: '+artist_id)
 
 if (artist_id) {
     setUserDataOnUI(artist_id);
