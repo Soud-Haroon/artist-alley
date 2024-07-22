@@ -39,16 +39,17 @@ if (artist_id) {
         await startANewChat(chatId, artist_id);
     }
 
-} else {
-    
 }
 
 async function initUI() {
     if (loggedInUser.myChat) {
         loggedInUser.myChat.forEach(chat => {
             const otherUser = document.createElement('p');
-            // TODO: make this chat type as key value and find out who is on the other side of the chat and replace the below name with it.
-            otherUser.textContent = chat.chatName;
+            if(loggedInUser.userType == USER_TYPE_ARTIST) {
+                otherUser.textContent = chat.organiser_name;
+            } else {
+                otherUser.textContent = chat.artist_name;
+            }
             otherUser.addEventListener('click', () => {
                 loadConversation(chat.id);
             })
@@ -60,8 +61,8 @@ async function initUI() {
 }
 
 async function startANewChat(chatId, artist_id) {
-    // TODO: change the below updateUserData in such way that it updates both the users with a single query
     let prevChat;
+    let artist_data = await getArtistData(artist_id, USER_TYPE_ARTIST);
     if (loggedInUser.myChat) {
         prevChat = loggedInUser.myChat;
     } else {
@@ -69,7 +70,8 @@ async function startANewChat(chatId, artist_id) {
     }
     const newChat = {
         id: chatId,
-        chatName: 'Static Name'
+        organiser_name: `${loggedInUser.fName} ${loggedInUser.lName}`,
+        artist_name: `${artist_data.fName} ${artist_data.lName}`
     }
     prevChat.push(newChat);
     loggedInUser.myChat = prevChat;
@@ -80,7 +82,6 @@ async function startANewChat(chatId, artist_id) {
 
     // Update the same for the Artist User
     let artistAllChat;
-    let artist_data = await getArtistData(artist_id, USER_TYPE_ARTIST);
     if (artist_data.myChat) {
         artistAllChat = artist_data.myChat;
     } else {
@@ -91,10 +92,13 @@ async function startANewChat(chatId, artist_id) {
     await updateUserData(artist_data);
 
     const newChatWrapper = document.createElement('p');
-    // TODO: make this chat type as key value and find out who is on the other side of the chat and replace the below name with it.
     newChatWrapper.textContent = newChat.chatName;
+    if(loggedInUser.userType == USER_TYPE_ARTIST) {
+        newChatWrapper.textContent = newChat.organiser_name;
+    } else {
+        newChatWrapper.textContent = newChat.artist_name;
+    }
     newChatWrapper.addEventListener('click', () => {
-        console.log('Chat is clicked: ' + chatId);
         loadConversation(chatId);
     })
     chatListDiv.appendChild(newChatWrapper);
