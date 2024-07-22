@@ -146,7 +146,7 @@ async function updateChatItem(chatItem, chatId) {
         const ref = doc(firestore, TABLE_CHAT, chatId);
         // await setDoc(ref, chatItem);
         await updateDoc(ref, {
-            messages: arrayUnion(chatItem)
+            messages: arrayUnion(chatItem),
         });
         console.log('============= Chat updated successfully! ============');
     } catch (error) {
