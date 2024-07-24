@@ -248,6 +248,8 @@ footer {
 
 .booking-content-wrapper {
     /* background-color: var(--white-clr); */
+    max-width: 1000px;
+
     min-height: 400px;
     display: grid;
     padding: 1rem;
@@ -292,13 +294,14 @@ footer {
 /* styling for booking */
 .booking-item {
     max-height: 250px;
-    font-size: 14px;
-    background-color: var();
-    border: 1px solid #ccc;
+    /* font-size: 14px; */
     border-radius: 4px;
     padding: 10px;
     margin-bottom: 20px;
     margin-right: 20px;
+
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 15px;
 }
 
 .booking-item h2 {
@@ -310,6 +313,10 @@ footer {
 .booking-item p {
     margin: 5px 0;
 }
+
+#bookings-pending {
+    margin-top: -2rem;
+  }
 
 /* ============================= */
 .myButtonDiv {
@@ -375,6 +382,7 @@ footer {
 .pending-body {
     text-align: center;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 15px;
     background-color: white;
     padding: 1rem;
 
@@ -388,7 +396,6 @@ footer {
     }
 
     .booking-content-wrapper{
-        max-width: 1000px;
     margin: 2rem auto;
     grid-template-columns: 1fr 1fr;
     }
