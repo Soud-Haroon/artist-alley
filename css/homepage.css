@@ -625,3 +625,10 @@ footer {
     width: 100%;
     height: 100%;
 }
+
+.close-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 20px;
+}
