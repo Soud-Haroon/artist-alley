@@ -39,8 +39,11 @@ main {
     justify-content: center;
 }
 
-.inputField {
+.inputField:not(:last-child) {
     padding: 10px;
+    margin-bottom: 8px;
+    border: 1px solid black;
+    border-radius: 50px;
 }
 
 #summary {
@@ -60,6 +63,12 @@ main {
     border-radius: 10px;
     color: white;
     justify-content: center;
+    margin-bottom: 3rem;
+}
+
+#saveBtn:hover {
+    background-color: var(--accent-clr);
+    border: none;
 }
 
 .user-info {
@@ -82,4 +91,41 @@ main {
     border: 1px solid white;
     justify-content: center;
     margin: 0 10rem;
+}
+
+#start-camera:hover {
+    background-color: var(--secondary-clr);
+}
+
+#camera {
+    flex-flow: column;
+    place-self: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-radius: 20px;
+    background-color: var(--primary-clr);
+}
+
+#camera button {
+    margin-top: 1rem;
+    width: 150px;
+    height: 30px;
+    place-self: center;
+    /*  */
+    cursor: pointer;
+    font-weight: bold;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: var(--accent-clr);
+    border-radius: 10px;
+    color: white;
+}
+
+#webcam {
+    border-radius: 10px;
+}
+
+#summary {
+    padding: 10px;
+    border-radius: 10px;
 }

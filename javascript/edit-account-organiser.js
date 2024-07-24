@@ -65,8 +65,8 @@ async function updateUserData(user) {
 }
 
 function startCamera() {
-    cameraDiv.style.display = 'block';
-    video.style.display = 'block';
+    cameraDiv.style.display = 'flex';
+    video.style.display = 'flex';
     captureButton.style.display = 'block';
     navigator.mediaDevices.getUserMedia({ video: true })
         .then(mediaStream => {
@@ -93,28 +93,28 @@ function stopCamera() {
 
 function setUserDataOnUI(user) {
     if (user) {
-        if(user.profile_image) {
+        if (user.profile_image) {
             userAvatar.src = user.profile_image;
         }
-        if(user.fName) {
+        if (user.fName) {
             firstName.value = user.fName;
         }
-        if(user.lName) {
+        if (user.lName) {
             lastName.value = user.lName;
         }
-        if(user.org_name) {
+        if (user.org_name) {
             orgName.value = user.org_name;
         }
-        if(user.role) {
+        if (user.role) {
             role.value = user.role;
         }
-        if(user.phone) {
+        if (user.phone) {
             phone.value = user.phone;
         }
-        if(user.address) {
+        if (user.address) {
             address.value = user.address;
         }
-        if(user.summary) {
+        if (user.summary) {
             summary.value = `${user.summary}`;
         }
     }
