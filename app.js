@@ -1,12 +1,12 @@
-require('dotenv').config;
+// require('dotenv').config;
 
 // Import Firebase modules from the CDN
-import { firebaseConfig } from "./firebase_api.js";
+import { firebase_ApiKey } from "./firebase_api.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getFirestore } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 import { getAuth } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 
-// const firebaseConfig = firebaseConfig;
+// const firebaseConfig = firebase_ApiKey;
 
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
