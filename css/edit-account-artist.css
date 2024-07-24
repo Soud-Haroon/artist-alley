@@ -36,6 +36,37 @@ main {
 
 .inputField {
     padding: 10px;
+    margin-bottom: 8px;
+    border: 1px solid black;
+    border-radius: 50px;
+}
+
+.inputTextArea {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+input[type="file" i] {
+    align-self: center;
+}
+
+input[type="button" i] {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    justify-self: center;
+    min-width: 40%;
+    padding: 5px 0;
+    margin-top: 2rem;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    background-color: var(--accent-clr);
+    border-radius: 10px;
+    color: white;
+}
+
+input[type="button" i]:hover {
+    background-color: var(--secondary-clr);
 }
 
 #summary {
@@ -47,6 +78,13 @@ main {
     margin-top: 20px;
     cursor: pointer;
     font-weight: bold;
+    border: none;
+    margin-bottom: 3rem;
+}
+
+#saveBtn:hover {
+    background-color: var(--accent-clr);
+    border: none;
 }
 
 .user-avatar {
