@@ -1,4 +1,4 @@
-require('.env').config;
+// require('dotenv').config;
 
 // Import Firebase modules from the CDN
 // import { firebase_ApiKey } from "./firebase_api.js";
