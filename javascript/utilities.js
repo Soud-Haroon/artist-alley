@@ -1,7 +1,14 @@
 import { logout } from "./firebase-auth.js";
 import { USER_TYPE_ARTIST } from "./app-constants.js";
+import { getUserDataById } from "./firestore.js";
 
-const loggedInUser = JSON.parse(localStorage.getItem("user"));
+var loggedInUser = await getLoggedInUserData();
+
+
+async function getLoggedInUserData() {
+    let currentUser = JSON.parse(localStorage.getItem("user"));
+    return await getUserDataById(currentUser.uid, currentUser.userType);
+}
 
 function dataUrlToFile(dataUrl, fileName) {
     const arr = dataUrl.split(',');

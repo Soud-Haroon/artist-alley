@@ -11,8 +11,6 @@ const headerElement = document.querySelector('header');
 const footerElement = document.querySelector('footer');
 
 setupHeaderFooter();
-
-
 // Load the previous chat on the left panel, if exist
 await initUI();
 
@@ -24,8 +22,8 @@ if (artist_id) {
     let chatExists = false;
     if (loggedInUser.myChat) {
         console.log('myChat exists for the loggedin user');
-        loggedInUser.myChat.forEach(id => {
-            if (id === chatId) {
+        loggedInUser.myChat.forEach(chat => {
+            if (chat.id === chatId) {
                 chatExists = true
             }
         });
@@ -47,14 +45,15 @@ async function initUI() {
     if (loggedInUser.myChat) {
         loggedInUser.myChat.forEach(chat => {
             const otherUser = document.createElement('p');
-            // TODO: make this chat type as key value and find out who is on the other side of the chat and replace the below name with it.
-            otherUser.textContent = chat;
+            if(loggedInUser.userType == USER_TYPE_ARTIST) {
+                otherUser.textContent = chat.organiser_name;
+            } else {
+                otherUser.textContent = chat.artist_name;
+            }
             otherUser.addEventListener('click', () => {
-                console.log('Chat is clicked: ' + chat);
-                loadConversation(chat);
+                loadConversation(chat.id);
             })
             chatListDiv.appendChild(otherUser);
-            console.log('chat id: ' + chat);
         });
     } else {
         console.log("No prev chat for you!");
@@ -62,42 +61,47 @@ async function initUI() {
 }
 
 async function startANewChat(chatId, artist_id) {
-    // TODO: change the below updateUserData in such way that it updates both the users with a single query
     let prevChat;
+    let artist_data = await getArtistData(artist_id, USER_TYPE_ARTIST);
     if (loggedInUser.myChat) {
         prevChat = loggedInUser.myChat;
     } else {
         prevChat = [];
     }
-    prevChat.push(chatId);
+    const newChat = {
+        id: chatId,
+        organiser_name: `${loggedInUser.fName} ${loggedInUser.lName}`,
+        artist_name: `${artist_data.fName} ${artist_data.lName}`
+    }
+    prevChat.push(newChat);
     loggedInUser.myChat = prevChat;
+    // Update chat data for Organiser User
     await updateUserData(loggedInUser);
     localStorage.setItem('user', JSON.stringify(loggedInUser));
 
 
-    // Update the same chatId to the other user's data
+    // Update the same for the Artist User
     let artistAllChat;
-    let artist_data = await getArtistData(artist_id, USER_TYPE_ARTIST);
     if (artist_data.myChat) {
         artistAllChat = artist_data.myChat;
     } else {
         artistAllChat = [];
     }
-    artistAllChat.push(chatId);
+    artistAllChat.push(newChat);
     artist_data.myChat = artistAllChat;
     await updateUserData(artist_data);
 
-    const otherUser = document.createElement('p');
-    // TODO: make this chat type as key value and find out who is on the other side of the chat and replace the below name with it.
-    otherUser.textContent = chatId;
-    otherUser.addEventListener('click', () => {
-        // alert('userItem clicked!'+chat);
-        console.log('Chat is clicked: ' + chatId);
-        // TODO: load chat template here
-        // fetchAndLoadChatTemplate();
+    const newChatWrapper = document.createElement('p');
+    newChatWrapper.textContent = newChat.chatName;
+    if(loggedInUser.userType == USER_TYPE_ARTIST) {
+        newChatWrapper.textContent = newChat.organiser_name;
+    } else {
+        newChatWrapper.textContent = newChat.artist_name;
+    }
+    newChatWrapper.addEventListener('click', () => {
         loadConversation(chatId);
     })
-    chatListDiv.appendChild(otherUser);
+    chatListDiv.appendChild(newChatWrapper);
 }
 
 async function updateUserData(user) {
@@ -106,20 +110,6 @@ async function updateUserData(user) {
 
 async function getArtistData(userId, userType) {
     return await getUserDataById(userId, userType);
-}
-
-async function saveNewConversation(chatItem, chatId) {
-    await saveChatItem(chatItem, chatId);
-    loadConversation(chatId);
-
-    console.log('message sent successfully!');
-}
-
-async function updateConversation(chatItem, chatId) {
-    await updateChatItem(chatItem, chatId);
-    loadConversation(chatId);
-
-    console.log('message sent successfully!');
 }
 
 async function loadConversation(chatId) {
@@ -177,19 +167,29 @@ async function loadConversation(chatId) {
     chatScreenDiv.appendChild(clone);
 }
 
+async function saveNewConversation(chatItem, chatId) {
+    await saveChatItem(chatItem, chatId);
+    loadConversation(chatId);
+
+    console.log('message sent successfully!');
+}
+
+async function updateConversation(chatItem, chatId) {
+    await updateChatItem(chatItem, chatId);
+    loadConversation(chatId);
+
+    console.log('message sent successfully!');
+}
+
 function showMessagesOnUI(messages, chatScreen) {
     chatScreen.innerHTML = '';
     messages.forEach(item => {
         const messageItem = document.createElement('p');
         messageItem.textContent = item.text;
         if (item.senderId === loggedInUser.uid) {
-            // Right align the message
             messageItem.id = 'sender-view';
-            console.log('Message id is: ' + messageItem.id);
         } else {
             messageItem.id = 'receiver-view';
-            console.log('Message id is: ' + messageItem.id);
-            // left align the message
         }
         chatScreen.appendChild(messageItem);
     });

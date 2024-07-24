@@ -18,6 +18,8 @@ const portfolioImageInput = document.getElementById('portfolioImageInput');
 const uploadPortfolioImageBtn = document.getElementById('uploadPortfolioImageBtn');
 
 const profilePic = document.getElementById('profile-pic');
+const firstName = document.getElementById('first-name');
+const lastName = document.getElementById('last-name');
 const stageName = document.getElementById('stage-name');
 const category = document.getElementById('category');
 const pricing = document.getElementById('pricing');
@@ -105,6 +107,8 @@ saveBtn.addEventListener('click', function (event) {
     event.preventDefault();
 
     loggedInUser.stageName = stageName.value;
+    loggedInUser.fName = firstName.value;
+    loggedInUser.lName = lastName.value;
     loggedInUser.category = category.value;
     loggedInUser.pricing = '$'+pricing.value;
     loggedInUser.location = location.value;
@@ -120,6 +124,12 @@ function setUserDataOnUI(user) {
         if (user.profile_image) {
             profilePic.src = user.profile_image;
         }
+        if(user.fName) {
+            firstName.value = user.fName;
+        }
+        if(user.lName) {
+            lastName.value = user.lName;
+        }
         if (user.stageName) {
             stageName.value = user.stageName;
         }
@@ -130,7 +140,6 @@ function setUserDataOnUI(user) {
                 }
             }
         }
-        console.log('about to set the pricing value')
         if(user.pricing) {
             pricing.value = user.pricing;
         }

@@ -58,21 +58,6 @@ main {
     flex: 1;
 }
 
-.artist-work {
-    flex: 1;
-}
-
-.images {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;    
-}
-
-.images img:nth-of-type(1) {
-    grid-column: 1/3;
-    grid-row: 1/3;
-    width: auto;
-}
 .image {
     display: grid;
     grid-template-columns: subgrid;
@@ -81,6 +66,10 @@ main {
 #no-artist {
     font-size: 1.8rem;
     text-align: center;
+}
+
+.artist-descp{
+    padding-bottom: 2rem;
 }
 
 .artist-descp img {
@@ -100,6 +89,11 @@ main {
 .artist-descp .icons-grp {
     text-align: end;
     color: var(--secondary-clr);
+}
+
+.about-artist{
+    border-bottom: 2px solid var(--accent-clr);
+    padding-bottom: 1rem;
 }
 
 .artist-descp .about-artist ul li {
@@ -126,7 +120,7 @@ main {
     align-items: center;
     justify-items: center;
     background-color: var(--secondary-clr);
-    width: 250px;
+    width: 160px;
     margin: auto;
     color: var(--white-clr);
     padding: .5rem;
@@ -138,17 +132,40 @@ main {
     color: var(--white-clr);
     padding: .5rem;
     border-radius: 25px;
-    width: 250px;
+    width: 160px;
     margin: auto;
     margin-bottom: 8px;
     margin-top: 2rem;
+}
+
+.artist-work {
+    height: 100%;
+    width: 100%;
+}
+
+.images {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+
+.images img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center; 
+}
+
+.images img:nth-of-type(1) {
+    grid-column: 1/3;
+    grid-row: 1/3;
+    width: auto;
 }
 
 .artist-work .images img {
     border-radius: 20px;
     border: 1px solid black;
 }
-
 
 .albumBtn {
     text-align: center;
@@ -178,7 +195,7 @@ main .top-btn img {
 }
 
 .artist-perf {
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 @media screen and (min-width: 700px) {
@@ -206,18 +223,15 @@ main .top-btn img {
     }
 
     main {
-        padding: 0.5rem;
+        padding: 1rem 0;
+        margin: 0;
     }
 
-    .artist-descp,
-    .artist-work {
-        padding: 1rem;
+    .mainContent{
+        gap: 0;
+        padding: 0;
     }
 
-    .artist-descp {
-        margin-bottom: 0;
-        align-self: center;
-    }
     .artist-work .images img {
         border-radius: 20px;
     }
@@ -228,7 +242,25 @@ main .top-btn img {
 
     .search-wrapper {
         grid-template-columns: 2fr 3fr;
-        gap: 1rem;
+        gap: 1.5rem;
         grid-template-rows: 1fr;
+        box-shadow: unset;
+        border-radius: unset;
+        border: unset;
     }
+
+    .artist-descp,
+    .artist-work{
+        box-shadow: #797979 2px 5px 10px;
+        border-radius: 25px;
+        padding: 1rem;
+        width: 95%;
+        height: 92%;
+        object-fit: cover; 
+    }
+
+    .artist-descp {
+        align-self: center;
+    }
+
 }

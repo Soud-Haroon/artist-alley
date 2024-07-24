@@ -99,9 +99,11 @@ function setupHeaderFooter() {
 function setHeader(data) {
     if (headerElement) {
         headerElement.innerHTML = data;
+        const title = document.getElementById('title');
         const myProfileBtn = document.getElementById('myProfile');
         const logoutBtn = document.getElementById('logoutBtn');
 
+        title.textContent = "Results for: "+searchInput;
         myProfileBtn.addEventListener('click', (event) => {
             event.preventDefault();
             gotoMyAccount();

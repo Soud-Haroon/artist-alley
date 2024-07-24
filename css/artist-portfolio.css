@@ -507,6 +507,7 @@ main .calendar-main .table-content {
     border-radius: 50%;
     margin: auto;
     padding: .5rem 1rem;
+    cursor: pointer;
 }
 
 .mainContent .artist-perf {
@@ -515,22 +516,26 @@ main .calendar-main .table-content {
     gap: 1rem;
 }
 
- /* Pop-up ----------------- */
- .popup {
-    display: none; /* Hide the pop-up by default */
-    position: fixed; /* Fixed position to overlay the page */
+/* Pop-up ----------------- */
+.popup {
+    display: none;
+    /* Hide the pop-up by default */
+    position: fixed;
+    /* Fixed position to overlay the page */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5); /* Semi-transparent background */
-    z-index: 999; /* Higher z-index to overlay everything */
-  }
-  
-  .popup-content {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
+    z-index: 999;
+    /* Higher z-index to overlay everything */
+}
+
+.popup-content {
     background-color: white;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 80%;
     max-height: 80%;
     min-width: 50%;
@@ -540,16 +545,31 @@ main .calendar-main .table-content {
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
-  }
-  
-  .close {
+}
+
+.popup-content-success {
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 80%;
+    max-height: 80%;
+    min-width: 50%;
+    overflow: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+}
+
+.close {
     position: absolute;
     top: 10px;
     right: 15px;
     font-size: 24px;
     cursor: pointer;
-  }
-  .event-data {
+}
+
+.event-data {
     display: grid;
     grid-template-columns: 20% 1fr;
     gap: 0.75rem;

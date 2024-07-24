@@ -9,8 +9,10 @@ const footerElement = document.querySelector('footer');
 setupHeaderFooter();
 
 const editBtn = document.getElementById('editProfile');
+const name = document.getElementById('name');
 const profilePic = document.getElementById('profile-image');
 const summary = document.getElementById('summary');
+const role = document.getElementById('role');
 const phone = document.getElementById('phone');
 const address = document.getElementById('address');
 
@@ -23,8 +25,18 @@ async function setUserDataOnUI() {
         if(user.profile_image) {
             profilePic.src = user.profile_image;
         }
+        if(user.fName) {
+            if(user.lName) {
+                name.textContent = `${user.fName} ${user.lName}`;
+            } else {
+                name.textContent = user.fName;
+            }
+        }
         if(user.summary) {
             summary.textContent = user.summary;
+        }
+        if(user.role) {
+            role.textContent = user.role;
         }
         if(user.phone) {
             phone.textContent = user.phone;
@@ -49,8 +61,14 @@ function setupHeaderFooter() {
 function setHeader(data) {
     if (headerElement) {
         headerElement.innerHTML = data;
+        const title = document.getElementById('title');
         const myProfileBtn = document.getElementById('myProfile');
         const logoutBtn = document.getElementById('logoutBtn');
+        try {
+            title.textContent = `${loggedInUser.fName} ${loggedInUser.lName}`
+        } catch(error) {
+            console.error(error);
+        }
 
         myProfileBtn.addEventListener('click', (event) => {
             event.preventDefault();

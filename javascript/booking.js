@@ -59,6 +59,13 @@ async function fetchAndUsePendingTemplate(pendingBooking) {
     } else {
         bookingPendingTemplate = temp.querySelector('#bookingPendingTemplateOrganiser');
         clone = document.importNode(bookingPendingTemplate.content, true);
+        const bookingItem = clone.querySelector('.pending-body');
+        bookingItem.style.cursor = 'pointer';
+        bookingItem.addEventListener('click', () => {
+            console.log(pendingBooking.artist_id);
+            let artistId = pendingBooking.artist_id;
+            window.location.href = `../html/artist-portfolio.html?artist_id=${artistId}`;
+        });
     }
 
     const hostName = clone.querySelector('#host-name');
@@ -67,7 +74,7 @@ async function fetchAndUsePendingTemplate(pendingBooking) {
     const requestOffer = clone.querySelector('#request-offer');
     const requestStatus = clone.querySelector('#request-status');
 
-    if(pendingBooking.host_name) {
+    if (pendingBooking.host_name) {
         hostName.innerHTML = pendingBooking.host_name;
     }
     eventAddress.innerHTML = pendingBooking.event_address;
@@ -101,7 +108,7 @@ async function fetchAndUseAcceptedTemplate(acceptedBooking) {
     const requestOffer = clone.querySelector('#request-offer');
     const requestStatus = clone.querySelector('#request-status');
 
-    if(acceptedBooking.host_name) {
+    if (acceptedBooking.host_name) {
         hostName.innerHTML = acceptedBooking.host_name;
     }
     eventAddress.innerHTML = acceptedBooking.event_address;
@@ -119,9 +126,11 @@ function setupHeaderFooter() {
 function setHeader(data) {
     if (headerElement) {
         headerElement.innerHTML = data;
+        const title = document.getElementById('title');
         const myProfileBtn = document.getElementById('myProfile');
         const logoutBtn = document.getElementById('logoutBtn');
 
+        title.textContent = 'Bookings'
         myProfileBtn.addEventListener('click', (event) => {
             event.preventDefault();
             gotoMyAccount();
