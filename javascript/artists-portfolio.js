@@ -12,7 +12,7 @@ setupHeaderFooter();
 
 const params = new URLSearchParams(window.location.search);
 const artist_id = params.get('artist_id');
-console.log('artist id: '+artist_id)
+console.log('artist id: ' + artist_id)
 
 if (artist_id) {
     setUserDataOnUI(artist_id);
@@ -72,10 +72,14 @@ async function setUserDataOnUI(artist_id) {
         }
         if (user.portfolio_images) {
             gallery.innerHTML = '';
+            let i = 0
             user.portfolio_images.forEach(link => {
-                let img = document.createElement('img');
-                img.src = link
-                gallery.appendChild(img);
+                if (i < 3) {
+                    let img = document.createElement('img');
+                    img.src = link
+                    gallery.appendChild(img);
+                }
+                i++;
             });
         }
 
