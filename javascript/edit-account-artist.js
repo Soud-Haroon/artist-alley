@@ -110,7 +110,7 @@ saveBtn.addEventListener('click', function (event) {
     loggedInUser.fName = firstName.value;
     loggedInUser.lName = lastName.value;
     loggedInUser.category = category.value;
-    loggedInUser.pricing = '$'+pricing.value;
+    loggedInUser.pricing = pricing.value;
     loggedInUser.location = location.value;
     loggedInUser.website = website.value;
     loggedInUser.summary = summary.value;
