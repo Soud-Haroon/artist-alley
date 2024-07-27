@@ -1,3 +1,16 @@
+:root {
+
+    --gradient: linear-gradient(to bottom, #111415, #363a47);
+    --banner-gradient: linear-gradient(to right, #30343F, #7E88A5);
+    --primary-clr: rgb(56, 56, 56);
+    --secondary-clr: #89023E;
+    --accent-clr: #F37F81;
+    --white-clr: white;
+    --blacl-clr: black;
+
+    scroll-behavior: smooth;
+
+}
 /* by soud */
 body {
     margin: 0;
@@ -27,6 +40,10 @@ main {
     /* padding-top: 0; */
     overflow-y: auto;
     margin-top: 0;
+}
+
+.chatSideBar .highlight {
+    background-color: var(--secondary-clr);
 }
 
 #chat-list p {

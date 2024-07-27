@@ -41,6 +41,18 @@ if (artist_id) {
 
 }
 
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('../sw.js')
+        .then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        })
+        .catch(error => {
+            console.error('ServiceWorker registration failed: ', error);
+        });
+} else {
+console.log('Service worker is not in the navigator!');
+}
+
 async function initUI() {
     if (loggedInUser.myChat) {
         loggedInUser.myChat.forEach(chat => {
@@ -91,6 +103,7 @@ async function startANewChat(chatId, artist_id) {
     artist_data.myChat = artistAllChat;
     await updateUserData(artist_data);
 
+    const itemDiv = document.createElement('div');
     const newChatWrapper = document.createElement('p');
     newChatWrapper.textContent = newChat.chatName;
     if(loggedInUser.userType == USER_TYPE_ARTIST) {
@@ -98,10 +111,12 @@ async function startANewChat(chatId, artist_id) {
     } else {
         newChatWrapper.textContent = newChat.artist_name;
     }
-    newChatWrapper.addEventListener('click', () => {
+    itemDiv.appendChild(newChatWrapper);
+    itemDiv.addEventListener('click', () => {
         loadConversation(chatId);
+        itemDiv.classList.toggle('highlight');
     })
-    chatListDiv.appendChild(newChatWrapper);
+    chatListDiv.appendChild(itemDiv);
 }
 
 async function updateUserData(user) {

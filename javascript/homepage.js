@@ -8,38 +8,25 @@ import { loggedInUser, includeHeaderFooter, gotoMyAccount, logoutUser, includeHo
 const headerElement = document.querySelector('header');
 const footerElement = document.querySelector('footer');
 
-// includeHeaderFooter(setHeader, setFooter);
 let userData;
-
-// const toggleSearch = document.getElementById('search-toggle');
-// const searchInput = document.getElementById('search');
-
-// toggleSearch.addEventListener('click', (event) => {
-//     event.preventDefault();
-//     console.log('THIISIHGIHSI')
-//     console.log('button clicked!')
-//     document.body.classList.toggle("search-active");
-// })
-// const searchButton = document.getElementById('searchBtn');
-
-// searchButton.addEventListener('click', async function () {
-//     const query = searchInput.value.trim();
-//     if (query !== '') {
-//         let url = `../html/search-result.html?query=${query}`;
-//         console.log(`url is: ${url}`)
-//         alert(`query is: ${query}`)
-//         document.body.classList.toggle("search-active");
-//         window.location = '../html/search-result.html?query=' + query;
-//     } else {
-//         alert('Please enter something in the search box!');
-//     }
-// });
 
 if (loggedInUser) {
     includeHomePageHeader(setHeader);
     userData = await getUserData(loggedInUser.uid, loggedInUser.userType);
     localStorage.setItem("user", JSON.stringify(userData));
     setDataOnUI();
+}
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('../sw.js')
+        .then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        })
+        .catch(error => {
+            console.error('ServiceWorker registration failed: ', error);
+        });
+} else {
+console.log('Service worker is not in the navigator!');
 }
 
 function setDataOnUI() {

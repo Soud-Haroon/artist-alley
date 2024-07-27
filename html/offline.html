@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@200..700&display=swap');
+
+        body {
+            font-family: 'Nunito Sans';
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: Oswald;
+            font-weight: normal;
+        }
+
+        main {
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .offline-content {
+            padding: 1rem;
+            margin: 1rem;
+        }
+
+        #reload {
+            background-color: #89023E;
+            padding: .5rem 1rem;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+
+    </header>
+
+    <main>
+        <div class="offline-content">
+            <!-- <img src="../src/Untitled-9.png" alt="Logo"> -->
+            <h1>OOPS! You lost your internet connection.</h1>
+            <p>Try to re-connect to a network or reload the page</p>
+            <button onclick="location.reload()" id="reload" type="button">Reload</button>
+        </div>
+
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>
