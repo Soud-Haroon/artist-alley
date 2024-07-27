@@ -29,7 +29,6 @@ if (artist_id) {
         });
         if (chatExists) {
             loadConversation(chatId);
-            // TODO: highlight the selected chat on the left panel
         } else {
             console.log('The key is there, but no data is inside the myChat array!');
             await startANewChat(chatId, artist_id);
@@ -55,6 +54,7 @@ console.log('Service worker is not in the navigator!');
 
 async function initUI() {
     if (loggedInUser.myChat) {
+        let currentHighlight = null;
         loggedInUser.myChat.forEach(chat => {
             const otherUser = document.createElement('p');
             if(loggedInUser.userType == USER_TYPE_ARTIST) {
@@ -62,7 +62,13 @@ async function initUI() {
             } else {
                 otherUser.textContent = chat.artist_name;
             }
-            otherUser.addEventListener('click', () => {
+            otherUser.addEventListener('click', ()=> {
+                if (currentHighlight) {
+                    console.log('highlight removing...')
+                    currentHighlight.classList.remove('highlight');
+                }
+                otherUser.classList.add('highlight');
+                currentHighlight = otherUser;
                 loadConversation(chat.id);
             })
             chatListDiv.appendChild(otherUser);
@@ -114,7 +120,7 @@ async function startANewChat(chatId, artist_id) {
     itemDiv.appendChild(newChatWrapper);
     itemDiv.addEventListener('click', () => {
         loadConversation(chatId);
-        itemDiv.classList.toggle('highlight');
+        newChatWrapper.classList.toggle('highlight');
     })
     chatListDiv.appendChild(itemDiv);
 }
