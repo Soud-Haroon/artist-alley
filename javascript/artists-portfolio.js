@@ -8,20 +8,29 @@ import { USER_TYPE_ARTIST, STATUS_PENDING } from './app-constants.js';
 
 const headerElement = document.querySelector('header');
 const footerElement = document.querySelector('footer');
-setupHeaderFooter();
 
 const params = new URLSearchParams(window.location.search);
 const artist_id = params.get('artist_id');
 console.log('artist id: ' + artist_id)
+let artistName = null;
 
 if (artist_id) {
-    setUserDataOnUI(artist_id);
+    await setUserDataOnUI(artist_id);
 }
+setupHeaderFooter();
+
 
 async function setUserDataOnUI(artist_id) {
     const user = await getUserDataById(artist_id, USER_TYPE_ARTIST);
     console.log("Artist Data arrived: " + user.fName)
     if (user) {
+        if(user.fName) {
+            if(user.lName) {
+                artistName = user.fName+' '+user.lName;
+            } else {
+                artistName = user.fName;
+            }
+        }
         const profilePic = document.getElementById('profile-pic');
         const summary = document.getElementById('summary');
         const pricing = document.getElementById('pricing');
@@ -152,7 +161,11 @@ function setHeader(data) {
         const myProfileBtn = document.getElementById('myProfile');
         const logoutBtn = document.getElementById('logoutBtn');
 
-        title.textContent = 'Artist Profile';
+        if(artistName) {
+            title.textContent = artistName;
+        } else {
+            alert('artist name empty')
+        }
         myProfileBtn.addEventListener('click', (event) => {
             event.preventDefault();
             gotoMyAccount();
