@@ -1,3 +1,16 @@
+:root {
+
+    --gradient: linear-gradient(to bottom, #111415, #363a47);
+    --banner-gradient: linear-gradient(to right, #30343F, #7E88A5);
+    --primary-clr: rgb(56, 56, 56);
+    --secondary-clr: #89023E;
+    --accent-clr: #F37F81;
+    --white-clr: white;
+    --blacl-clr: black;
+
+    scroll-behavior: smooth;
+
+}
 /* by soud */
 body {
     margin: 0;
@@ -29,10 +42,15 @@ main {
     margin-top: 0;
 }
 
+#chat-list .highlight {
+    background-color: var(--secondary-clr);
+    color: white;
+}
+
 #chat-list p {
     cursor: pointer;
-    border-bottom: 1px solid black;
-    /* border-radius: 10px; */
+    border-bottom: 1px solid white;
+    border-radius: 5px;
     background-color: rgb(240, 240, 240);
     padding: .5rem;
     overflow: hidden;

@@ -208,6 +208,10 @@ main .mainContent .artist-perf a {
     margin-bottom: 8px;
 }
 
+.mainContent .artist-perf #bookBtn {
+    background-color: var(--secondary-clr);
+}
+
 .mainContent .artist-work .images {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -228,7 +232,6 @@ main .mainContent .artist-perf a {
 .mainContent .chatBtn {
     margin-top: 1.5rem;
     text-align: center;
-
 }
 
 .mainContent .chatBtn a {

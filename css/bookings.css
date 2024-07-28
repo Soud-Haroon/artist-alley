@@ -258,6 +258,7 @@ footer {
     margin: 2rem;
     /* border: 1px solid black; */
     border-radius: 15px;
+    background-color: #ccc;
     box-shadow: 2px 2px 4px  rgb(196, 194, 194, .9);
     padding: 1rem;
 }
@@ -299,6 +300,7 @@ footer {
     padding: 10px;
     margin-bottom: 20px;
     margin-right: 20px;
+    background-color: white;
 
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     border-radius: 15px;

@@ -29,7 +29,6 @@ if (artist_id) {
         });
         if (chatExists) {
             loadConversation(chatId);
-            // TODO: highlight the selected chat on the left panel
         } else {
             console.log('The key is there, but no data is inside the myChat array!');
             await startANewChat(chatId, artist_id);
@@ -41,8 +40,21 @@ if (artist_id) {
 
 }
 
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('../sw.js')
+        .then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        })
+        .catch(error => {
+            console.error('ServiceWorker registration failed: ', error);
+        });
+} else {
+console.log('Service worker is not in the navigator!');
+}
+
 async function initUI() {
     if (loggedInUser.myChat) {
+        let currentHighlight = null;
         loggedInUser.myChat.forEach(chat => {
             const otherUser = document.createElement('p');
             if(loggedInUser.userType == USER_TYPE_ARTIST) {
@@ -50,7 +62,13 @@ async function initUI() {
             } else {
                 otherUser.textContent = chat.artist_name;
             }
-            otherUser.addEventListener('click', () => {
+            otherUser.addEventListener('click', ()=> {
+                if (currentHighlight) {
+                    console.log('highlight removing...')
+                    currentHighlight.classList.remove('highlight');
+                }
+                otherUser.classList.add('highlight');
+                currentHighlight = otherUser;
                 loadConversation(chat.id);
             })
             chatListDiv.appendChild(otherUser);
@@ -91,6 +109,7 @@ async function startANewChat(chatId, artist_id) {
     artist_data.myChat = artistAllChat;
     await updateUserData(artist_data);
 
+    const itemDiv = document.createElement('div');
     const newChatWrapper = document.createElement('p');
     newChatWrapper.textContent = newChat.chatName;
     if(loggedInUser.userType == USER_TYPE_ARTIST) {
@@ -98,10 +117,12 @@ async function startANewChat(chatId, artist_id) {
     } else {
         newChatWrapper.textContent = newChat.artist_name;
     }
-    newChatWrapper.addEventListener('click', () => {
+    itemDiv.appendChild(newChatWrapper);
+    itemDiv.addEventListener('click', () => {
         loadConversation(chatId);
+        newChatWrapper.classList.toggle('highlight');
     })
-    chatListDiv.appendChild(newChatWrapper);
+    chatListDiv.appendChild(itemDiv);
 }
 
 async function updateUserData(user) {

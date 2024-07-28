@@ -70,13 +70,11 @@ main {
 #summary {
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 1rem;
+    padding: 0 1rem;
 }
 
 .addressSec {
     display: grid;
-    gap: 0.5rem;
     text-align: left;
     margin: 0 0 0 1rem;
 }
@@ -95,8 +93,9 @@ main {
     width: 150px;
     padding: .4rem 2rem;
     border-radius: 15px;
-    background-color: var(--accent-clr);
-    color: var(--blacl-clr);
+    background-color: var(--secondary-clr);
+    color: var(--white-clr);
+    cursor: pointer;
     border: none;
 }
 

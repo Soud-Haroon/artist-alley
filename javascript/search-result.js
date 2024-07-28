@@ -57,6 +57,7 @@ async function displayArtistCard(artist, artistContainer) {
 
     const profilePic = clone.querySelector('#profile_pic');
     const summary = clone.querySelector('#summary');
+    const name = clone.querySelector('#name');
     const pricing = clone.querySelector('#pricing');
     const category = clone.querySelector('#category');
     const location = clone.querySelector('#location');
@@ -65,6 +66,13 @@ async function displayArtistCard(artist, artistContainer) {
 
     profilePic.src = artist.profile_image;
     summary.textContent = artist.summary;
+    if(artist.fName) {
+        if(artist.lName) {
+            name.textContent = artist.fName+' '+artist.lName;
+        } else {
+            name.textContent = artist.fName;
+        }
+    }
     pricing.textContent = artist.pricing;
     category.textContent = artist.category;
     location.textContent = artist.location;
@@ -77,10 +85,14 @@ async function displayArtistCard(artist, artistContainer) {
     if (artist.portfolio_images) {
         portfolioImages.innerHTML = '';
 
+        let i = 0;
         artist.portfolio_images.forEach(imageLink => {
-            const img = document.createElement('img');
-            img.src = imageLink;
-            portfolioImages.appendChild(img);
+            if (i < 5) {
+                const img = document.createElement('img');
+                img.src = imageLink;
+                portfolioImages.appendChild(img);
+            }
+            i++;
         });
     }
 
@@ -103,7 +115,7 @@ function setHeader(data) {
         const myProfileBtn = document.getElementById('myProfile');
         const logoutBtn = document.getElementById('logoutBtn');
 
-        title.textContent = "Results for: "+searchInput;
+        title.textContent = "Results for: " + searchInput;
         myProfileBtn.addEventListener('click', (event) => {
             event.preventDefault();
             gotoMyAccount();
