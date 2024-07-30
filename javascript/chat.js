@@ -49,7 +49,7 @@ if ('serviceWorker' in navigator) {
             console.error('ServiceWorker registration failed: ', error);
         });
 } else {
-console.log('Service worker is not in the navigator!');
+    console.log('Service worker is not in the navigator!');
 }
 
 async function initUI() {
@@ -57,12 +57,12 @@ async function initUI() {
         let currentHighlight = null;
         loggedInUser.myChat.forEach(chat => {
             const otherUser = document.createElement('p');
-            if(loggedInUser.userType == USER_TYPE_ARTIST) {
+            if (loggedInUser.userType == USER_TYPE_ARTIST) {
                 otherUser.textContent = chat.organiser_name;
             } else {
                 otherUser.textContent = chat.artist_name;
             }
-            otherUser.addEventListener('click', ()=> {
+            otherUser.addEventListener('click', () => {
                 if (currentHighlight) {
                     console.log('highlight removing...')
                     currentHighlight.classList.remove('highlight');
@@ -112,7 +112,7 @@ async function startANewChat(chatId, artist_id) {
     const itemDiv = document.createElement('div');
     const newChatWrapper = document.createElement('p');
     newChatWrapper.textContent = newChat.chatName;
-    if(loggedInUser.userType == USER_TYPE_ARTIST) {
+    if (loggedInUser.userType == USER_TYPE_ARTIST) {
         newChatWrapper.textContent = newChat.organiser_name;
     } else {
         newChatWrapper.textContent = newChat.artist_name;
@@ -227,6 +227,8 @@ function setHeader(data) {
         headerElement.innerHTML = data;
         const myProfileBtn = document.getElementById('myProfile');
         const logoutBtn = document.getElementById('logoutBtn');
+        const search = document.getElementById('search');
+        const searchCloseBtn = document.getElementById('searchCloseBtn');
 
         myProfileBtn.addEventListener('click', (event) => {
             event.preventDefault();
@@ -236,6 +238,35 @@ function setHeader(data) {
         logoutBtn.addEventListener('click', (event) => {
             event.preventDefault();
             logoutUser();
+        })
+
+        search.addEventListener('click', (event) => {
+            event.preventDefault();
+            document.body.classList.toggle("search-active");
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('searchBtn');
+
+            searchButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                const query = searchInput.value.trim();
+                if (query !== '') {
+                    let url = `../html/search-result.html?query=${query}`;
+
+
+                    document.body.classList.toggle("searchactive");
+                    console.log(`url is: ${url}`)
+                    window.location = url;
+                } else {
+                    alert('Please enter something in the search box!');
+                }
+            })
+        })
+
+        searchCloseBtn.addEventListener('click', (event) => {
+            console.log("1==========================");
+            event.preventDefault();
+            document.body.classList.remove("search-active")
+            console.log("==========================");
         })
     }
 }

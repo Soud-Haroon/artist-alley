@@ -23,7 +23,7 @@ if ('serviceWorker' in navigator) {
             console.error('ServiceWorker registration failed: ', error);
         });
 } else {
-console.log('Service worker is not in the navigator!');
+    console.log('Service worker is not in the navigator!');
 }
 
 async function setUserDataOnUI() {
@@ -84,10 +84,12 @@ function setHeader(data) {
         const title = document.getElementById('title');
         const myProfileBtn = document.getElementById('myProfile');
         const logoutBtn = document.getElementById('logoutBtn');
+        const search = document.getElementById('search');
+        const searchCloseBtn = document.getElementById('searchCloseBtn');
 
         try {
             title.textContent = `${loggedInUser.fName} ${loggedInUser.lName}`
-        } catch(error) {
+        } catch (error) {
             console.error(error);
         }
         myProfileBtn.addEventListener('click', (event) => {
@@ -98,6 +100,35 @@ function setHeader(data) {
         logoutBtn.addEventListener('click', (event) => {
             event.preventDefault();
             logoutUser();
+        })
+
+        search.addEventListener('click', (event) => {
+            event.preventDefault();
+            document.body.classList.toggle("search-active");
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('searchBtn');
+
+            searchButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                const query = searchInput.value.trim();
+                if (query !== '') {
+                    let url = `../html/search-result.html?query=${query}`;
+
+
+                    document.body.classList.toggle("searchactive");
+                    console.log(`url is: ${url}`)
+                    window.location = url;
+                } else {
+                    alert('Please enter something in the search box!');
+                }
+            })
+        })
+
+        searchCloseBtn.addEventListener('click', (event) => {
+            console.log("1==========================");
+            event.preventDefault();
+            document.body.classList.remove("search-active")
+            console.log("==========================");
         })
     }
 }

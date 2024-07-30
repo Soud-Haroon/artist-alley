@@ -27,38 +27,38 @@ if ('serviceWorker' in navigator) {
             console.error('ServiceWorker registration failed: ', error);
         });
 } else {
-console.log('Service worker is not in the navigator!');
+    console.log('Service worker is not in the navigator!');
 }
 
 async function setUserDataOnUI() {
     const user = await getUserDataById(loggedInUser.uid, loggedInUser.userType);
 
     if (user) {
-        if(user.profile_image) {
+        if (user.profile_image) {
             profilePic.src = user.profile_image;
         }
-        if(user.fName) {
-            if(user.lName) {
+        if (user.fName) {
+            if (user.lName) {
                 name.textContent = `${user.fName} ${user.lName}`;
             } else {
                 name.textContent = user.fName;
             }
         }
-        if(user.summary) {
+        if (user.summary) {
             summary.textContent = user.summary;
         }
-        if(user.role) {
+        if (user.role) {
             role.textContent = user.role;
         }
-        if(user.phone) {
+        if (user.phone) {
             phone.textContent = user.phone;
         }
-        if(user.address) {
+        if (user.address) {
             address.textContent = user.address;
         }
     }
 
-    editBtn.addEventListener('click', (event)=> {
+    editBtn.addEventListener('click', (event) => {
         event.preventDefault();
         window.location = '../html/edit-account-organiser.html';
     })
@@ -76,9 +76,11 @@ function setHeader(data) {
         const title = document.getElementById('title');
         const myProfileBtn = document.getElementById('myProfile');
         const logoutBtn = document.getElementById('logoutBtn');
+        const search = document.getElementById('search');
+        const searchCloseBtn = document.getElementById('searchCloseBtn');
         try {
             title.textContent = `${loggedInUser.fName} ${loggedInUser.lName}`
-        } catch(error) {
+        } catch (error) {
             console.error(error);
         }
 
@@ -90,6 +92,34 @@ function setHeader(data) {
         logoutBtn.addEventListener('click', (event) => {
             event.preventDefault();
             logoutUser();
+        })
+        search.addEventListener('click', (event) => {
+            event.preventDefault();
+            document.body.classList.toggle("search-active");
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('searchBtn');
+
+            searchButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                const query = searchInput.value.trim();
+                if (query !== '') {
+                    let url = `../html/search-result.html?query=${query}`;
+
+
+                    document.body.classList.toggle("searchactive");
+                    console.log(`url is: ${url}`)
+                    window.location = url;
+                } else {
+                    alert('Please enter something in the search box!');
+                }
+            })
+        })
+
+        searchCloseBtn.addEventListener('click', (event) => {
+            console.log("1==========================");
+            event.preventDefault();
+            document.body.classList.remove("search-active")
+            console.log("==========================");
         })
     }
 }

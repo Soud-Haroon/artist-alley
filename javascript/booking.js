@@ -18,13 +18,13 @@ const bookingsAcceptedContainer = document.getElementById('bookings-accepted');
 showAllBookings(bookings);
 
 if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('../sw.js')
-            .then(registration => {
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            })
-            .catch(error => {
-                console.error('ServiceWorker registration failed: ', error);
-            });
+    navigator.serviceWorker.register('../sw.js')
+        .then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        })
+        .catch(error => {
+            console.error('ServiceWorker registration failed: ', error);
+        });
 } else {
     console.log('Service worker is not in the navigator!');
 }
@@ -51,7 +51,7 @@ listenForBookingsUpdates(loggedInUser.uid, showNotification);
 function showNotification(text) {
     new Notification('Booking Update', {
         body: text
-      });
+    });
     console.log(text);
 }
 
@@ -155,6 +155,8 @@ function setHeader(data) {
         const title = document.getElementById('title');
         const myProfileBtn = document.getElementById('myProfile');
         const logoutBtn = document.getElementById('logoutBtn');
+        const search = document.getElementById('search');
+        const searchCloseBtn = document.getElementById('searchCloseBtn');
 
         title.textContent = 'Bookings'
         myProfileBtn.addEventListener('click', (event) => {
@@ -165,6 +167,36 @@ function setHeader(data) {
         logoutBtn.addEventListener('click', (event) => {
             event.preventDefault();
             logoutUser();
+        })
+
+
+        search.addEventListener('click', (event) => {
+            event.preventDefault();
+            document.body.classList.toggle("search-active");
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('searchBtn');
+
+            searchButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                const query = searchInput.value.trim();
+                if (query !== '') {
+                    let url = `../html/search-result.html?query=${query}`;
+
+
+                    document.body.classList.toggle("searchactive");
+                    console.log(`url is: ${url}`)
+                    window.location = url;
+                } else {
+                    alert('Please enter something in the search box!');
+                }
+            })
+        })
+
+        searchCloseBtn.addEventListener('click', (event) => {
+            console.log("1==========================");
+            event.preventDefault();
+            document.body.classList.remove("search-active")
+            console.log("==========================");
         })
     }
 }

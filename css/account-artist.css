@@ -40,6 +40,13 @@ img {
     display: block;
 }
 
+.search-container {
+    display: none;
+}
+#search {
+    cursor: pointer;
+}
+
 ul {
     padding: 0;
     margin: 0;
