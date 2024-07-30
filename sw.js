@@ -1,5 +1,5 @@
 const CACHE_NAME = 'my-cache';
-const OFFLINE_URL = './html/offline.html';
+let OFFLINE_URL = './html/offline.html';
 const URLs_TO_CACHE = [
   './src/Untitled-9.png',
   OFFLINE_URL
@@ -20,7 +20,7 @@ self.addEventListener('fetch', event => {
     fetch(event.request)
       .catch(async () => {
         const response = await caches.match(event.request);
-          return response || caches.match(OFFLINE_URL);
+          return response || caches.match(URLs_TO_CACHE);
       })
   );
 });

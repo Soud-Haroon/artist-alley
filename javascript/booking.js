@@ -1,5 +1,5 @@
 import { STATUS_PENDING, STATUS_DECLINED, getStatus, STATUS_ACCEPTED, USER_TYPE_ARTIST } from './app-constants.js';
-import { getBookingsFromDb, saveBookingInDb } from './firestore.js';
+import { getBookingsFromDb, saveBookingInDb, listenForBookingsUpdates } from './firestore.js';
 import { loggedInUser, includeHeaderFooter, gotoMyAccount, logoutUser } from "./utilities.js";
 
 // import { bookingPendingTemplate } from '../templates/booking-cards-template.html'
@@ -15,15 +15,7 @@ let bookings = await getBookings();
 const bookingsPendingContainer = document.getElementById('bookings-pending');
 const bookingsAcceptedContainer = document.getElementById('bookings-accepted');
 
-bookings.forEach(booking => {
-    if (booking.status === STATUS_PENDING) {
-        // pendinBookings.push(booking);
-        fetchAndUsePendingTemplate(booking);
-    } else {
-        // acceptedBookings.push(booking);
-        fetchAndUseAcceptedTemplate(booking);
-    }
-});
+showAllBookings(bookings);
 
 if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('../sw.js')
@@ -39,6 +31,28 @@ if ('serviceWorker' in navigator) {
 
 async function getBookings() {
     return await getBookingsFromDb(loggedInUser.uid, loggedInUser.userType);
+}
+
+function showAllBookings(bookings) {
+    bookingsPendingContainer.innerHTML = '';
+    bookingsAcceptedContainer.innerHTML = '';
+    bookings.forEach(booking => {
+        if (booking.status === STATUS_PENDING) {
+            fetchAndUsePendingTemplate(booking);
+            // listenForBookingUpdates(booking.booking_id);
+        } else {
+            fetchAndUseAcceptedTemplate(booking);
+        }
+    });
+}
+
+listenForBookingsUpdates(loggedInUser.uid, showNotification);
+
+function showNotification(text) {
+    new Notification('Booking Update', {
+        body: text
+      });
+    console.log(text);
 }
 
 async function fetchAndUsePendingTemplate(pendingBooking) {

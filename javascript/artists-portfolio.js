@@ -19,7 +19,6 @@ if (artist_id) {
 }
 setupHeaderFooter();
 
-
 async function setUserDataOnUI(artist_id) {
     const user = await getUserDataById(artist_id, USER_TYPE_ARTIST);
     console.log("Artist Data arrived: " + user.fName)

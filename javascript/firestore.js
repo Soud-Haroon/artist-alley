@@ -22,7 +22,8 @@ import {
     ORGANISER_TABLE,
     TABLE_USER_TYPE,
     TABLE_BOOKINGS,
-    TABLE_CHAT
+    TABLE_CHAT,
+    TABLE_NOTIFICATIONS
 } from '../javascript/app-constants.js';
 
 const firestore = getFirestore(firebase);
@@ -69,6 +70,19 @@ async function saveBookingInDb(booking) {
         return false
     }
 }
+
+function listenForBookingsUpdates(loggedInUserId, showNotification) {
+    const notificationRef = collection(firestore, TABLE_NOTIFICATIONS);
+  
+    onSnapshot(notificationRef, (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === 'added' || change.type === 'modified' || change.type === 'removed') {
+          let notifications = change.doc.data();
+          
+        }
+      });
+    });
+  }
 
 async function getUserDataById(userId, userType) {
     let table;
@@ -186,6 +200,7 @@ async function getSearchResults(searchInput) {
 export {
     saveUserDataInDb,
     saveBookingInDb,
+    listenForBookingsUpdates,
     getUserDataById,
     getUserTypeDataById,
     getBookingsFromDb,
