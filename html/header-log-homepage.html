@@ -6,59 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- <link rel="stylesheet" href="../css/homepage.css"> -->
-    <!-- <style>
-        .myHeader {
-            width: 100%;
-        }
 
-        header {
-            /* width: 100%; */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 20px;
-            background-color: #1A1A1A;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-
-        nav ul li a.active,
-        nav ul li a:hover {
-            background-color: #d1455d;
-        }
-    </style> -->
 </head>
 
 <body>
-    <div class="myHeader">
-        <header>
+    <header>
+        <div class="header-content">
             <div class="logo">
                 <img src="../src/Untitled-9.png" alt="Artist Alley Logo">
                 <span>artist alley</span>
@@ -71,12 +24,15 @@
                     <li><a href="../html/chat.html">Chat</a></li>
                     <li><a href="" id="myProfile">My Profile</a></li>
                     <li><a href="" id="logoutBtn">Logout</a></li>
-                    <li><a id="nav-search" href="">Search <i class="fa-solid fa-magnifying-glass"></i></a></li>
-
+                    <li><a id="nav-search" href="">Search<i class="fa-solid fa-magnifying-glass"></i></a></li>
                 </ul>
             </nav>
-        </header>
-    </div>
+
+            <div class="siderButton">
+                <button id="headerSiderButton"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
 </body>
 
 </html>

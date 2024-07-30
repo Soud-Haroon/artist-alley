@@ -31,11 +31,25 @@ body {
 
 header {
     max-width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 20px 20px;
     background-color: #1A1A1A;
+}
+
+.siderButton {
+    display: none;
+    /* height: 40px; */
+}
+
+#headerSiderButton {
+    background-color: var(--accent-clr);
+    color: white;
+    height: auto;
+    width: 60px;
+    font-size: 1rem;
+}
+
+.stat-label {
+    font-size: 1rem;
 }
 
 .logo {
@@ -64,19 +78,23 @@ nav ul li a {
     color: #fff;
     text-decoration: none;
     padding: 5px 10px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
 }
 
 nav ul li a.active,
 nav ul li a:hover {
-    background-color: #d1455d;
+    /* background-color: #d1455d; */
+    color: var(--accent-clr);
+    border-bottom: 1px solid var(--accent-clr);
+    transition: all .5s;
 }
 
 .hero {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 40px;
+    /* padding: 10px 40px; */
+    margin-top: 3rem;
 }
 
 .hero-text {
@@ -84,7 +102,7 @@ nav ul li a:hover {
 }
 
 .hero-text h1 {
-    font-size: 3em;
+    font-size: 3rem;
     color: #F37F81;
 }
 
@@ -118,11 +136,40 @@ nav ul li a:hover {
     width: 100%;
 }
 
-/* why us section */
-
-.why-us-section {
-    padding: 50px 80px;
+/* =============== */
+body {
+    position: relative;
 }
+
+.contentWrapper {
+    z-index: 2;
+    position: absolute;
+    margin-top: 5rem;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.bgColorDiv {
+    height: 750px;
+    width: 100%;
+    z-index: 0;
+    background-color: #1a1a1a;
+    /* position: fixed; */
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* why us section */
+/* .why-us-section {
+    padding: 50px 80px;
+} */
 
 .why-us-section .container {
     text-align: start;
@@ -143,13 +190,29 @@ nav ul li a:hover {
 }
 
 .card {
-    background-color: var(--accent-clr);
+    /* background-color: var(--accent-clr); */
     padding: 50px 40px;
     border-radius: 10px;
     flex: 1;
     width: 20%;
     text-align: center;
     color: "white";
+}
+
+.myCard01 {
+    background-color: #F37F9A;
+}
+
+.myCard02 {
+    background-color: #F37F81;
+}
+
+.myCard03 {
+    background-color: var(--secondary-clr);
+}
+
+.myCard04 {
+    background-color: #d1455d;
 }
 
 .card img {
@@ -180,7 +243,8 @@ nav ul li a:hover {
 }
 
 .event-cards {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
@@ -194,7 +258,7 @@ nav ul li a:hover {
     padding: 80px 0px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     flex: 1;
-    width: 20%;
+    /* width: 20%; */
     text-align: center;
     margin-bottom: 20px;
     position: relative;
@@ -217,22 +281,22 @@ nav ul li a:hover {
 }
 
 .bachelorette-card {
-    background-image: url('../src/Rectangle 23.png');
+    background-image: url('../src/Rectangle_01.png');
     /* Replace with actual image path */
 }
 
 .newyear-card {
-    background-image: url('../src/newyear.png');
+    background-image: url('../src/Rectangle_02.png');
     /* Replace with actual image path */
 }
 
 .birthday-card {
-    background-image: url('../src/birthday.png');
+    background-image: url('../src/Rectangle_03.png');
     /* Replace with actual image path */
 }
 
 .corporate-card {
-    background-image: url('../src/party.png');
+    background-image: url('../src/Rectangle_04.png');
     /* Replace with actual image path */
 }
 
@@ -322,10 +386,12 @@ nav ul li a:hover {
 .artists {
     background: linear-gradient(to right, #4a5568, #1a202c);
     color: #ffffff;
+}
+
+.artists-content {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .artist-info {
@@ -337,7 +403,8 @@ nav ul li a:hover {
 .artist-info h3 {
     font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
+    margin: 0;
 
 }
 
@@ -380,13 +447,12 @@ nav ul li a:hover {
 /* our clients */
 
 .div-container {
-    width: 90%;
-    max-width: 1200px;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    margin-bottom: 10rem;
     margin: 0 auto;
     padding: 20px;
+    gap: 1rem;
     /* Optional: Add padding to the container */
     background-color: #ffffff;
     /* Optional: Background color for demonstration */
@@ -401,10 +467,10 @@ nav ul li a:hover {
     margin-bottom: 20px;
 }
 
-.our-clients {
-    font-size: 3rem;
+.our-clients h2 {
+    font-size: 2.4rem;
     color: #F37F9A;
-    margin: 50px 80px;
+    /* margin: 50px 100px; */
 }
 
 .image-div:nth-child(1) {
@@ -436,12 +502,14 @@ nav ul li a:hover {
 
 /* testomonial section */
 .testimonial-container {
-    width: 80%;
+    /* width: 80%; */
     /* Adjust width as needed */
-    max-width: 1200px;
+    /* max-width: 1200px; */
     /* Optional: Set a max-width if desired */
-    margin: 0 auto;
+    /* margin: 0 auto; */
     /* Centering horizontally with auto margins */
+    margin-top: 3rem;
+    margin-bottom: 3rem;
     padding: 20px;
     /* Optional: Add padding to the container */
     background-color: #ffffff;
@@ -465,6 +533,8 @@ nav ul li a:hover {
     margin-bottom: 20px;
     /* Space between testimonials */
 }
+
+
 
 .testimonial-content {
     flex: 1;
@@ -538,26 +608,26 @@ footer {
     background: linear-gradient(to bottom, #111415, #363a47);
     color: var(--white-clr);
     padding: 1rem;
+    /* bottom: 0;
+    position: relative;
+    align-self: flex-end; */
 }
 
 .footerContent {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     row-gap: 2rem;
+    padding: 3rem 2rem;
 }
 
 .footerContent a {
     color: var(--white-clr);
 }
 
-.footerContent .footer-head {
-    text-align: center;
-    grid-column: span 2;
-}
 
 .footerContent .footer-head img {
     margin: auto;
-    width: 70px;
+    width: 90px;
 }
 
 .footerContent .footer-head .icons ul li {
@@ -566,7 +636,7 @@ footer {
 }
 
 .footerContent .copyright {
-    grid-column: span 2;
+    grid-column: 1/-1;
     text-align: center;
 }
 
@@ -584,79 +654,107 @@ footer {
 
 
 
-.search-active .search-container {
-    transform: translateY(0);
-}
 
-.search-container {
-    background-color: black;
-    color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 50;
-
-    transform: translateY(calc(-100% - 50px));
-    transition: transform .75s ease-in-out;
-    font-size: 6rem;
-    height: 100vh;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-}
-
-
-.search-container label {
-    color: #F37F9A;
-    font-family: Arial, sans-serif;
-}
-
-.search-container button {
-    border: none;
-    min-width: 50px;
-    cursor: pointer;
-}
-
-.search-container form {
-    display: grid;
-    grid-template-columns: 1fr;
-    width: 600px;
-    height: 180px;
-}
-
-.search-bar {
-    display: flex;
-    flex-flow: row;
-    max-height: 100px;
-}
-
-.search-container input {
-    width: 100%;
-    height: 100%;
-}
-
-.search-close-btn {
-    margin: 1rem;
-    position: absolute;
-    right: 0;
-    top: 0;
-    background-color: transparent;
-    /* padding: 20px; */
-}
-
-.search-close-btn:hover {
-    background-color: var(--secondary-clr);
-}
-
-.search-close-btn i {
-    color: white;
-    font-size: 2rem;
-}
 
 .myHeader {
     width: 100%;
+}
+
+.hero-image-in {
+    display: none;
+}
+
+@media screen and (min-width: 999px) {
+
+    section,
+    .hero,
+    .event-cards,
+    .stats,
+    .artists-content,
+    .div-container,
+    .our-clients,
+    .testimonial-container {
+        max-width: 1000px;
+        margin: auto;
+    }
+
+}
+
+@media screen and (max-width: 998px) {
+
+    section,
+    .hero,
+    .event-cards,
+    .stats,
+    .artists-content,
+    .div-container,
+    .our-clients,
+    .testimonial-container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .artist-info {
+        padding: 2rem 0;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .header-content nav {
+        display: none;
+    }
+
+    .siderButton {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .hero-text h1 {
+        font-size: 2rem;
+        margin-top: 2rem;
+    }
+
+    .hero-image {
+        display: none;
+    }
+
+    .hero-image-in {
+        display: grid;
+        height: 400px;
+        width: 100%;
+    }
+
+    .bgColorDiv {
+        height: 1250px;
+    }
+
+    .stats,
+    .div-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .div-container {
+        gap: 1rem;
+    }
+
+    .div-container .image-div {
+        width: 100%;
+    }
+
+
+
+
+
+    .footerContent {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footerContent .footer-head {
+        text-align: center;
+        grid-column: 1/-1;
+    }
+
 }
