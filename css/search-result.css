@@ -91,6 +91,7 @@ main {
     flex-flow: row nowrap;
     gap: 1rem;
     align-items: center;
+    margin-bottom: 1rem;
 }
 
 .artist-descp .icons-grp {
