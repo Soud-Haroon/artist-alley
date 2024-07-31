@@ -64,7 +64,9 @@ async function displayArtistCard(artist, artistContainer) {
     const portfolioImages = clone.querySelector(".images");
     const viewProfile = clone.querySelector('#view-profile');
 
-    profilePic.src = artist.profile_image;
+    if(artist.profile_image) {
+        profilePic.src = artist.profile_image;
+    }
     summary.textContent = artist.summary;
     if(artist.fName) {
         if(artist.lName) {

@@ -79,7 +79,7 @@ function setHeader(data) {
         const search = document.getElementById('search');
         const searchCloseBtn = document.getElementById('searchCloseBtn');
         try {
-            title.textContent = `${loggedInUser.fName} ${loggedInUser.lName}`
+            // title.textContent = `${loggedInUser.fName} ${loggedInUser.lName}`
         } catch (error) {
             console.error(error);
         }
