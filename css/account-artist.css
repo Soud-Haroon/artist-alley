@@ -149,10 +149,9 @@ main .mainContent .artist-descp {
 }
 
 main .mainContent .artist-descp .artist-briefing img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    border-radius: 150px;
 }
 
 .mainContent .artist-descp .artist-briefing {
