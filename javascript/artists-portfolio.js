@@ -19,7 +19,6 @@ if (artist_id) {
 }
 setupHeaderFooter();
 
-
 async function setUserDataOnUI(artist_id) {
     const user = await getUserDataById(artist_id, USER_TYPE_ARTIST);
     console.log("Artist Data arrived: " + user.fName)
@@ -160,6 +159,8 @@ function setHeader(data) {
         const title = document.getElementById('title');
         const myProfileBtn = document.getElementById('myProfile');
         const logoutBtn = document.getElementById('logoutBtn');
+        const search = document.getElementById('search');
+        const searchCloseBtn = document.getElementById('searchCloseBtn');
 
         if(artistName) {
             title.textContent = artistName;
@@ -174,6 +175,34 @@ function setHeader(data) {
         logoutBtn.addEventListener('click', (event) => {
             event.preventDefault();
             logoutUser();
+        })
+        search.addEventListener('click', (event) => {
+            event.preventDefault();
+            document.body.classList.toggle("search-active");
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('searchBtn');
+
+            searchButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                const query = searchInput.value.trim();
+                if (query !== '') {
+                    let url = `../html/search-result.html?query=${query}`;
+
+
+                    document.body.classList.toggle("searchactive");
+                    console.log(`url is: ${url}`)
+                    window.location = url;
+                } else {
+                    alert('Please enter something in the search box!');
+                }
+            })
+        })
+
+        searchCloseBtn.addEventListener('click', (event) => {
+            console.log("1==========================");
+            event.preventDefault();
+            document.body.classList.remove("search-active")
+            console.log("==========================");
         })
     }
 }

@@ -24,6 +24,14 @@ main {
     text-align: center;
 }
 
+.search-container {
+    display: none;
+}
+
+#search {
+    cursor: pointer;
+}
+
 
 /* ========= Section 01 */
 

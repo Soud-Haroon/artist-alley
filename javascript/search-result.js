@@ -64,7 +64,9 @@ async function displayArtistCard(artist, artistContainer) {
     const portfolioImages = clone.querySelector(".images");
     const viewProfile = clone.querySelector('#view-profile');
 
-    profilePic.src = artist.profile_image;
+    if(artist.profile_image) {
+        profilePic.src = artist.profile_image;
+    }
     summary.textContent = artist.summary;
     if(artist.fName) {
         if(artist.lName) {
@@ -114,6 +116,8 @@ function setHeader(data) {
         const title = document.getElementById('title');
         const myProfileBtn = document.getElementById('myProfile');
         const logoutBtn = document.getElementById('logoutBtn');
+        const search = document.getElementById('search');
+        const searchCloseBtn = document.getElementById('searchCloseBtn');
 
         title.textContent = "Results for: " + searchInput;
         myProfileBtn.addEventListener('click', (event) => {
@@ -124,6 +128,34 @@ function setHeader(data) {
         logoutBtn.addEventListener('click', (event) => {
             event.preventDefault();
             logoutUser();
+        })
+        search.addEventListener('click', (event) => {
+            event.preventDefault();
+            document.body.classList.toggle("search-active");
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('searchBtn');
+
+            searchButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                const query = searchInput.value.trim();
+                if (query !== '') {
+                    let url = `../html/search-result.html?query=${query}`;
+
+
+                    document.body.classList.toggle("searchactive");
+                    console.log(`url is: ${url}`)
+                    window.location = url;
+                } else {
+                    alert('Please enter something in the search box!');
+                }
+            })
+        })
+
+        searchCloseBtn.addEventListener('click', (event) => {
+            console.log("1==========================");
+            event.preventDefault();
+            document.body.classList.remove("search-active")
+            console.log("==========================");
         })
     }
 }

@@ -53,6 +53,13 @@ main {
         border-radius: 25px;
 }
 
+.search-container {
+    display: none;
+}
+#search {
+    cursor: pointer;
+}
+
 .artist-descp {
     align-self: flex-start;
     flex: 1;
@@ -84,6 +91,7 @@ main {
     flex-flow: row nowrap;
     gap: 1rem;
     align-items: center;
+    margin-bottom: 1rem;
 }
 
 .artist-descp .icons-grp {

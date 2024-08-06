@@ -284,6 +284,14 @@ main .top-btn img {
     height: auto;
 }
 
+.search-container {
+    display: none;
+}
+
+#search {
+    cursor: pointer;
+}
+
 /* footer------------ */
 footer {
     background: linear-gradient(to bottom, #111415, #363a47);

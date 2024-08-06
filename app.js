@@ -24,5 +24,9 @@ const firebase = initializeApp(firebaseConfig);
 const auth = getAuth(firebase);
 const db = getFirestore(firebase);
 
+Notification.requestPermission().then((result) => {
+    console.log('Notification permission status:', result);
+});
+
 // Export the Firebase services
 export { firebase, auth, db };

@@ -330,6 +330,10 @@ footer {
 .search-container {
     margin-bottom: 20px;
     text-align: center;
+    display: none;
+}
+#search {
+    cursor: pointer;
 }
 
 .search-container input[type=text] {

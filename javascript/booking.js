@@ -1,5 +1,5 @@
 import { STATUS_PENDING, STATUS_DECLINED, getStatus, STATUS_ACCEPTED, USER_TYPE_ARTIST } from './app-constants.js';
-import { getBookingsFromDb, saveBookingInDb } from './firestore.js';
+import { getBookingsFromDb, saveBookingInDb, listenForBookingsUpdates } from './firestore.js';
 import { loggedInUser, includeHeaderFooter, gotoMyAccount, logoutUser } from "./utilities.js";
 
 // import { bookingPendingTemplate } from '../templates/booking-cards-template.html'
@@ -15,30 +15,44 @@ let bookings = await getBookings();
 const bookingsPendingContainer = document.getElementById('bookings-pending');
 const bookingsAcceptedContainer = document.getElementById('bookings-accepted');
 
-bookings.forEach(booking => {
-    if (booking.status === STATUS_PENDING) {
-        // pendinBookings.push(booking);
-        fetchAndUsePendingTemplate(booking);
-    } else {
-        // acceptedBookings.push(booking);
-        fetchAndUseAcceptedTemplate(booking);
-    }
-});
+showAllBookings(bookings);
 
 if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('../sw.js')
-            .then(registration => {
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            })
-            .catch(error => {
-                console.error('ServiceWorker registration failed: ', error);
-            });
+    navigator.serviceWorker.register('../sw.js')
+        .then(registration => {
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        })
+        .catch(error => {
+            console.error('ServiceWorker registration failed: ', error);
+        });
 } else {
     console.log('Service worker is not in the navigator!');
 }
 
 async function getBookings() {
     return await getBookingsFromDb(loggedInUser.uid, loggedInUser.userType);
+}
+
+function showAllBookings(bookings) {
+    bookingsPendingContainer.innerHTML = '';
+    bookingsAcceptedContainer.innerHTML = '';
+    bookings.forEach(booking => {
+        if (booking.status === STATUS_PENDING) {
+            fetchAndUsePendingTemplate(booking);
+            // listenForBookingUpdates(booking.booking_id);
+        } else {
+            fetchAndUseAcceptedTemplate(booking);
+        }
+    });
+}
+
+listenForBookingsUpdates(loggedInUser.uid, showNotification);
+
+function showNotification(text) {
+    new Notification('Booking Update', {
+        body: text
+    });
+    console.log(text);
 }
 
 async function fetchAndUsePendingTemplate(pendingBooking) {
@@ -141,6 +155,8 @@ function setHeader(data) {
         const title = document.getElementById('title');
         const myProfileBtn = document.getElementById('myProfile');
         const logoutBtn = document.getElementById('logoutBtn');
+        const search = document.getElementById('search');
+        const searchCloseBtn = document.getElementById('searchCloseBtn');
 
         title.textContent = 'Bookings'
         myProfileBtn.addEventListener('click', (event) => {
@@ -151,6 +167,36 @@ function setHeader(data) {
         logoutBtn.addEventListener('click', (event) => {
             event.preventDefault();
             logoutUser();
+        })
+
+
+        search.addEventListener('click', (event) => {
+            event.preventDefault();
+            document.body.classList.toggle("search-active");
+            const searchInput = document.getElementById('search-input');
+            const searchButton = document.getElementById('searchBtn');
+
+            searchButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                const query = searchInput.value.trim();
+                if (query !== '') {
+                    let url = `../html/search-result.html?query=${query}`;
+
+
+                    document.body.classList.toggle("searchactive");
+                    console.log(`url is: ${url}`)
+                    window.location = url;
+                } else {
+                    alert('Please enter something in the search box!');
+                }
+            })
+        })
+
+        searchCloseBtn.addEventListener('click', (event) => {
+            console.log("1==========================");
+            event.preventDefault();
+            document.body.classList.remove("search-active")
+            console.log("==========================");
         })
     }
 }

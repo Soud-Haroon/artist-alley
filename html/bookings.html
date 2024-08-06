@@ -9,6 +9,7 @@
     <title>My Booking</title>
 
     <link rel="stylesheet" href="../css/bookings.css">
+    <!-- <link rel="stylesheet" href="../css/search-bar.css"> -->
     <!-- <link rel="stylesheet" href="../css/headerstyle.css"> -->
     <!-- <link rel="stylesheet" href="../css/main-footer.css"> -->
 
@@ -21,6 +22,21 @@
 
     </header>
     <main>
+        <div class="search-container">
+            <form action="#">
+                <button class="search-close-btn" id="searchCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+
+                <label for="search">Search</label>
+                <div class="search-bar">
+
+                    <input type="search" name="search" id="search-input" placeholder="Search artists here">
+                    <button class="get-search" id="searchBtn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <!-- <span class="fa-solid fa-rectangle-xmark"></span> -->
+                    </button>
+                </div>
+            </form>
+        </div>
         <div class="container">
             <!-- booking content -->
             <div class="booking-content-wrapper">
